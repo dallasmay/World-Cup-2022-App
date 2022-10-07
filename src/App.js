@@ -1,10 +1,14 @@
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
+
+import AuthPage from './pages/AuthPage/AuthPage';
+
 
 function App() {
   return (
-    <div>
-      <h1>Welcome!</h1>
-    </div>
+    <Routes>
+      <Route path="/" element={<AuthPage />} />
+    </Routes>
   );
 }
 
