@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 
 import styles from "./SignupForm.module.css";
 
 const SignupForm = () => {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -17,10 +21,17 @@ const SignupForm = () => {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           console.log(userCredential);
+          updateProfile(auth.currentUser, {
+            displayName: `${firstName}`,
+          })
+            .then(() => {
+              console.log("Name updated successfully");
+            })
+            .catch((err) => console.log(err));
         })
         .catch((err) => console.log(err));
     } else {
-      alert("Passwords need to match")
+      alert("Passwords need to match");
     }
   };
 
@@ -31,7 +42,7 @@ const SignupForm = () => {
         <input
           type="text"
           id="name-signup"
-          onChange={(evt) => setName(evt.target.value)}
+          onChange={(evt) => setFirstName(evt.target.value)}
         />
         <label htmlFor="email-signup">Email:</label>
         <input

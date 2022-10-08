@@ -1,8 +1,10 @@
-import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import "./App.css";
+import { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-import LoginPage from './pages/LoginPage/LoginPage';
-import SignupPage from './pages/SignupPage/SignupPage';
+import LoginPage from "./pages/LoginPage/LoginPage";
+import SignupPage from "./pages/SignupPage/SignupPage";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -26,8 +28,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-
 function App() {
+  useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user);
+      } else {
+        console.log("User is signed out??");
+      }
+    });
+  }, []);
+
   return (
     <Routes>
       <Route path="/" element={<LoginPage />} />
