@@ -4,10 +4,13 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./SignupForm.module.css";
 
 const SignupForm = () => {
+  const navigate = useNavigate();
+
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,6 +31,7 @@ const SignupForm = () => {
               console.log("Name updated successfully");
             })
             .catch((err) => console.log(err));
+          navigate("/home");
         })
         .catch((err) => console.log(err));
     } else {

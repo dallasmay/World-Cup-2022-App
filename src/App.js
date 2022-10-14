@@ -1,10 +1,12 @@
 import "./App.css";
-import { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
+import HomePage from "./pages/HomePage/HomePage";
+import Header from "./components/Header/Header";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -29,23 +31,50 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userId, setUserId] = useState("");
+
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
+        console.log(user)
+        setIsAuthenticated(true);
+        setUserId(user.uid);
       } else {
         console.log("User is signed out??");
       }
     });
   }, []);
 
+  const logOut = () => {
+    setIsAuthenticated(false);
+  };
+
   return (
-    <Routes>
-      <Route path="/" element={<LoginPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<SignupPage />} />
-    </Routes>
+    <>
+      <Header logOut={logOut} isAuthenticated={isAuthenticated} />
+      <Routes>
+        <Route
+          path="/"
+          element={isAuthenticated ? <HomePage /> : <LoginPage />}
+        />
+        <Route
+          path="/login"
+          element={isAuthenticated ? <HomePage /> : <LoginPage />}
+        />
+        <Route
+          path="/register"
+          element={
+            isAuthenticated ? <HomePage /> : <SignupPage />
+          }
+        />
+        <Route
+          path="/home"
+          element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />}
+        />
+      </Routes>
+    </>
   );
 }
 

@@ -6,7 +6,7 @@ const LoginPage = () => {
   return (
     <>
       <h1>LoginPage</h1>
-      <LoginForm />
+      <LoginForm/>
       <Link to="/register">Sign Up</Link>
     </>
   );
