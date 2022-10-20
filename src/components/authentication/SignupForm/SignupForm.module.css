@@ -4,6 +4,7 @@
 }
 .input-container {
   border-bottom: 1px solid var(--white);
+  margin: 0 0 2.4rem 0;
 }
 .input-container:focus-within {
   border-bottom: 3px solid var(--white);
@@ -15,7 +16,7 @@
   color: var(--white);
   background-color: var(--black);
   padding: 0;
-  margin: 2.3rem 0 1rem 0;
+  margin: 2.1rem 0 1rem 0;
   border: none;
 }
 .auth-input:focus {
