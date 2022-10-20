@@ -6,6 +6,8 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
+import Button from "../../Button/Button";
+
 import styles from "./SignupForm.module.css";
 
 const SignupForm = () => {
@@ -14,13 +16,12 @@ const SignupForm = () => {
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   const auth = getAuth();
 
   const signupSubmitHandler = (evt) => {
     evt.preventDefault();
-    if (password === confirmPassword && email.includes("@")) {
+    if (email.includes("@")) {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           console.log(userCredential);
@@ -35,38 +36,46 @@ const SignupForm = () => {
         })
         .catch((err) => console.log(err));
     } else {
-      alert("Passwords need to match");
+      alert("Must enter valid email");
     }
   };
 
   return (
     <>
-      <form onSubmit={signupSubmitHandler}>
-        <label htmlFor="name-signup">Name:</label>
-        <input
-          type="text"
-          id="name-signup"
-          onChange={(evt) => setFirstName(evt.target.value)}
-        />
-        <label htmlFor="email-signup">Email:</label>
-        <input
-          type="email"
-          id="email-signup"
-          onChange={(evt) => setEmail(evt.target.value)}
-        />
-        <label htmlFor="password-signup">Password:</label>
-        <input
-          type="password"
-          id="password-signup"
-          onChange={(evt) => setPassword(evt.target.value)}
-        />
-        <label htmlFor="password-confirm-signup">Confirm Password:</label>
-        <input
-          type="password"
-          id="password-confirm-signup"
-          onChange={(evt) => setConfirmPassword(evt.target.value)}
-        />
-        <button type="submit">Register</button>
+      <form onSubmit={signupSubmitHandler} className={styles["signup-form"]}>
+        {/* <label htmlFor="name-signup">Name:</label> */}
+        <div className={styles["input-container"]}>
+          <input
+            type="text"
+            placeholder="Name"
+            id="name-signup"
+            className={styles["auth-input"]}
+            onChange={(evt) => setFirstName(evt.target.value)}
+          />
+        </div>
+        {/* <label htmlFor="email-signup">Email:</label> */}
+        <div className={styles["input-container"]}>
+          <input
+            type="email"
+            placeholder="Email"
+            id="email-signup"
+            className={styles["auth-input"]}
+            onChange={(evt) => setEmail(evt.target.value)}
+          />
+        </div>
+        {/* <label htmlFor="password-signup">Password:</label> */}
+        <div className={styles["input-container"]}>
+          <input
+            type="password"
+            placeholder="Password"
+            id="password-signup"
+            className={styles["auth-input"]}
+            onChange={(evt) => setPassword(evt.target.value)}
+          />
+        </div>
+        <div className={styles["create-acct-btn-container"]}>
+          <Button type="submit">Create account</Button>
+        </div>
       </form>
     </>
   );

@@ -53,7 +53,7 @@ function App() {
 
   return (
     <>
-      <Header logOut={logOut} isAuthenticated={isAuthenticated} />
+      {/* <Header logOut={logOut} isAuthenticated={isAuthenticated} /> */}
       <Routes>
         <Route
           path="/"

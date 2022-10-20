@@ -66,6 +66,9 @@ dd {
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
+a {
+  color: inherit;
+}
 
 input,
 button,
@@ -73,3 +76,8 @@ textarea,
 select {
   font: inherit;
 }
+
+input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+  }
