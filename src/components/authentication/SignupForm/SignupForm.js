@@ -7,6 +7,8 @@ import {
 import { useNavigate } from "react-router-dom";
 
 import Button from "../../Button/Button";
+import { ReactComponent as VisibilityIcon } from "../../../assets/icons/VisibilityIcon.svg";
+import { ReactComponent as HiddenVisibilityIcon } from "../../../assets/icons/HiddenVisibilityIcon.svg";
 
 import styles from "./SignupForm.module.css";
 
@@ -16,6 +18,7 @@ const SignupForm = () => {
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
   const auth = getAuth();
 
@@ -64,14 +67,31 @@ const SignupForm = () => {
           />
         </div>
         {/* <label htmlFor="password-signup">Password:</label> */}
-        <div className={styles["input-container"]}>
+        <div
+          className={`${styles["input-container"]} ${styles["password-container"]}`}
+        >
           <input
-            type="password"
+            type={isPasswordHidden ? "password" : "text"}
             placeholder="Password"
             id="password-signup"
             className={styles["auth-input"]}
             onChange={(evt) => setPassword(evt.target.value)}
           />
+          {isPasswordHidden ? (
+            <HiddenVisibilityIcon
+              className={styles["eye-icons"]}
+              onClick={() => {
+                setIsPasswordHidden((prevState) => !prevState);
+              }}
+            />
+          ) : (
+            <VisibilityIcon
+              className={styles["eye-icons"]}
+              onClick={() => {
+                setIsPasswordHidden((prevState) => !prevState);
+              }}
+            />
+          )}
         </div>
         <div className={styles["create-acct-btn-container"]}>
           <Button type="submit">Create account</Button>

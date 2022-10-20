@@ -25,6 +25,14 @@
   color: var(--white);
   opacity: 50%;
 }
+.password-container {
+  position: relative;
+}
+.eye-icons {
+  position: absolute;
+  top: 2.55rem;
+  right: .8rem;
+}
 .create-acct-btn-container {
   margin: 9.2rem 0 7.2rem 0;
   display: flex;
