@@ -1,7 +1,10 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useSelector, useDispatch } from "react-redux";
+
+import { authActions } from "./reduxStore/store";
 
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
@@ -31,16 +34,17 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userId, setUserId] = useState("");
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+
 
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log(user)
-        setIsAuthenticated(true);
-        setUserId(user.uid);
+        dispatch(authActions.login());
+        dispatch(authActions.setUserId(user.uid));
       } else {
         console.log("User is signed out??");
       }
@@ -48,7 +52,7 @@ function App() {
   }, []);
 
   const logOut = () => {
-    setIsAuthenticated(false);
+    dispatch(authActions.logout());
   };
 
   return (

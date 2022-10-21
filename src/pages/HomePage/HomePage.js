@@ -1,5 +1,13 @@
+import { useSelector } from "react-redux";
+
 const HomePage = () => {
-  return <h1>HomePage</h1>;
+  const userId = useSelector((state) => state.userId);
+
+  return (
+    <>
+      <h1>HomePage</h1>
+    </>
+  );
 };
 
 export default HomePage;
