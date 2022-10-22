@@ -5,12 +5,15 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import Button from "../../Button/Button";
 import { ReactComponent as VisibilityIcon } from "../../../assets/icons/VisibilityIcon.svg";
 import { ReactComponent as HiddenVisibilityIcon } from "../../../assets/icons/HiddenVisibilityIcon.svg";
 
 import styles from "./SignupForm.module.css";
+
+const URL = process.env.REACT_APP_SERVER_URL;
 
 const SignupForm = () => {
   const navigate = useNavigate();
@@ -35,6 +38,8 @@ const SignupForm = () => {
               console.log("Name updated successfully");
             })
             .catch((err) => console.log(err));
+            
+            axios.post(`${URL}/register`, {userId: userCredential.user.uid, name: firstName})
           navigate("/home");
         })
         .catch((err) => console.log(err));

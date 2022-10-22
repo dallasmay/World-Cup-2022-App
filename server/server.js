@@ -9,10 +9,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const { test } = require("./controller");
+const { seed, registerUser } = require("./controller");
 
 // ENDPOINTS
-app.get("/test", test);
+app.get("/seed", seed);
+
+app.post("/register", registerUser);
 
 app.listen(SERVER_PORT, () => {
   console.log(`Server running on port ${SERVER_PORT}`);
