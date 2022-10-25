@@ -1,7 +1,7 @@
 require("dotenv").config();
 const Sequelize = require("sequelize");
 
-const { CONNECTION_STRING,  } = process.env;
+const { CONNECTION_STRING } = process.env;
 
 const sequelize = new Sequelize(CONNECTION_STRING, {
   dialect: "postgres",
@@ -12,17 +12,44 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
 
 module.exports = {
   seed: (req, res) => {
-    sequelize.query(`CREATE TABLE users (
+    sequelize
+      .query(
+        `CREATE TABLE users (
         id VARCHAR(50) PRIMARY KEY NOT NULL UNIQUE,
         name VARCHAR(100) NOT NULL,
         team_name VARCHAR(100),
         score INT DEFAULT 0
-    );`).then(dbRes => res.status(200).send("Test successful")).catch((err) => console.log(err))
+    );`
+      )
+      .then((dbRes) => res.status(200).send("Test successful"))
+      .catch((err) => console.log(err));
   },
   registerUser: (req, res) => {
     const { userId, name } = req.body;
 
-    sequelize.query(`INSERT INTO users (id, name)
-    VALUES ('${userId}', '${name}')`);
-  }
-}
+    sequelize
+      .query(
+        `INSERT INTO users (id, name)
+    VALUES ('${userId}', '${name}')`
+      )
+      .then(() => res.status(200).send())
+      .catch((err) => console.log(err));
+  },
+  setTeamName: (req, res) => {
+    const { userId, teamName } = req.body;
+
+    sequelize
+      .query(
+        `UPDATE users
+    SET team_name = $1
+    WHERE id = $2`,
+        {
+          bind: [`${teamName}`, `${userId}`],
+        }
+      )
+      .then(() => {
+        res.status(200).send();
+      })
+      .catch((err) => console.log(err));
+  },
+};
