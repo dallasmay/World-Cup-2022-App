@@ -9,11 +9,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const { seed, registerUser, setTeamName } = require("./controller");
+const { seed, registerUser, setTeamName, getUserInfo } = require("./controller");
 
 // ENDPOINTS
 app.get("/seed", seed);
 
+app.post("/user", getUserInfo);
 app.post("/register", registerUser);
 app.post("/team", setTeamName);
 

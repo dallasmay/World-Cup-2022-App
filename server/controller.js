@@ -52,4 +52,15 @@ module.exports = {
       })
       .catch((err) => console.log(err));
   },
+  getUserInfo: (req, res) => {
+    const { userId } = req.body;
+
+    sequelize
+      .query(`SELECT team_name FROM users WHERE id = '${userId}'`)
+      .then((dbRes) => {
+        console.log(dbRes);
+        res.status(200).send(dbRes[0][0]);
+      })
+      .catch((err) => console.log(err));
+  },
 };

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -23,6 +24,8 @@ const SignupForm = () => {
   const [password, setPassword] = useState("");
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
+
+
   const auth = getAuth();
 
   const signupSubmitHandler = (evt) => {
@@ -38,9 +41,14 @@ const SignupForm = () => {
               console.log("Name updated successfully");
             })
             .catch((err) => console.log(err));
-            
-            axios.post(`${URL}/register`, {userId: userCredential.user.uid, name: firstName})
-          navigate("/home");
+
+          axios.post(`${URL}/register`, {
+            userId: userCredential.user.uid,
+            name: firstName,
+          }).then(() => {
+            console.log("User registered in supabase");
+            navigate("/register/pick-team")
+          }).catch(err => console.log(err));
         })
         .catch((err) => console.log(err));
     } else {
@@ -48,62 +56,64 @@ const SignupForm = () => {
     }
   };
 
-  return (
-    <>
-      <form onSubmit={signupSubmitHandler} className={styles["signup-form"]}>
-        {/* <label htmlFor="name-signup">Name:</label> */}
-        <div className={styles["input-container"]}>
-          <input
-            type="text"
-            placeholder="Name"
-            id="name-signup"
-            className={styles["auth-input"]}
-            onChange={(evt) => setFirstName(evt.target.value)}
-          />
-        </div>
-        {/* <label htmlFor="email-signup">Email:</label> */}
-        <div className={styles["input-container"]}>
-          <input
-            type="email"
-            placeholder="Email"
-            id="email-signup"
-            className={styles["auth-input"]}
-            onChange={(evt) => setEmail(evt.target.value)}
-          />
-        </div>
-        {/* <label htmlFor="password-signup">Password:</label> */}
-        <div
-          className={`${styles["input-container"]} ${styles["password-container"]}`}
-        >
-          <input
-            type={isPasswordHidden ? "password" : "text"}
-            placeholder="Password"
-            id="password-signup"
-            className={styles["auth-input"]}
-            onChange={(evt) => setPassword(evt.target.value)}
-          />
-          {isPasswordHidden ? (
-            <HiddenVisibilityIcon
-              className={styles["eye-icons"]}
-              onClick={() => {
-                setIsPasswordHidden((prevState) => !prevState);
-              }}
+  
+
+    return (
+      <>
+        <form onSubmit={signupSubmitHandler} className={styles["signup-form"]}>
+          {/* <label htmlFor="name-signup">Name:</label> */}
+          <div className={styles["input-container"]}>
+            <input
+              type="text"
+              placeholder="Name"
+              id="name-signup"
+              className={styles["auth-input"]}
+              onChange={(evt) => setFirstName(evt.target.value)}
             />
-          ) : (
-            <VisibilityIcon
-              className={styles["eye-icons"]}
-              onClick={() => {
-                setIsPasswordHidden((prevState) => !prevState);
-              }}
+          </div>
+          {/* <label htmlFor="email-signup">Email:</label> */}
+          <div className={styles["input-container"]}>
+            <input
+              type="email"
+              placeholder="Email"
+              id="email-signup"
+              className={styles["auth-input"]}
+              onChange={(evt) => setEmail(evt.target.value)}
             />
-          )}
-        </div>
-        <div className={styles["create-acct-btn-container"]}>
-          <Button type="submit">Create account</Button>
-        </div>
-      </form>
-    </>
-  );
+          </div>
+          {/* <label htmlFor="password-signup">Password:</label> */}
+          <div
+            className={`${styles["input-container"]} ${styles["password-container"]}`}
+          >
+            <input
+              type={isPasswordHidden ? "password" : "text"}
+              placeholder="Password"
+              id="password-signup"
+              className={styles["auth-input"]}
+              onChange={(evt) => setPassword(evt.target.value)}
+            />
+            {isPasswordHidden ? (
+              <HiddenVisibilityIcon
+                className={styles["eye-icons"]}
+                onClick={() => {
+                  setIsPasswordHidden((prevState) => !prevState);
+                }}
+              />
+            ) : (
+              <VisibilityIcon
+                className={styles["eye-icons"]}
+                onClick={() => {
+                  setIsPasswordHidden((prevState) => !prevState);
+                }}
+              />
+            )}
+          </div>
+          <div className={styles["create-acct-btn-container"]}>
+            <Button type="submit">Create account</Button>
+          </div>
+        </form>
+      </>
+    );
 };
 
 export default SignupForm;

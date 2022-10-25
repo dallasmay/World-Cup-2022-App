@@ -4,10 +4,13 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useSelector, useDispatch } from "react-redux";
 
+import axios from "axios";
+
 import { authActions } from "./reduxStore/store";
 
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
+import PickTeamNamePage from "./pages/PickTeamNamePage/PickTeamNamePage";
 import HomePage from "./pages/HomePage/HomePage";
 import Header from "./components/Header/Header";
 
@@ -33,16 +36,20 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
+// URL
+const URL = process.env.REACT_APP_SERVER_URL;
+
 function App() {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
-
+  const userId = useSelector((state) => state.userId);
+  const teamName = useSelector((state) => state.teamName);
 
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user)
+        console.log(user);
         dispatch(authActions.login());
         dispatch(authActions.setUserId(user.uid));
       } else {
@@ -50,6 +57,15 @@ function App() {
       }
     });
   }, []);
+
+  useEffect(() => {
+    console.log("test");
+    if (isAuthenticated) {
+      axios.post(`${URL}/user`, { userId: userId }).then((res) => {
+        dispatch(authActions.setTeamName(res.data.team_name));
+      });
+    }
+  }, [isAuthenticated]);
 
   const logOut = () => {
     dispatch(authActions.logout());
@@ -61,21 +77,63 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={isAuthenticated ? <HomePage /> : <LoginPage />}
+          element={
+            isAuthenticated && teamName !== null ? (
+              <Navigate to="/home" />
+            ) : isAuthenticated && teamName === null ? (
+              <Navigate to="/register/pick-team" />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
         <Route
           path="/login"
-          element={isAuthenticated ? <HomePage /> : <LoginPage />}
+          element={
+            isAuthenticated && teamName !== null ? (
+              <Navigate to="/home" />
+            ) : isAuthenticated && teamName === null ? (
+              <Navigate to="/register/pick-team" />
+            ) : (
+              <LoginPage />
+            )
+          }
         />
         <Route
           path="/register"
           element={
-            isAuthenticated ? <HomePage /> : <SignupPage />
+            isAuthenticated && teamName !== null ? (
+              <Navigate to="/home" />
+            ) : isAuthenticated && teamName === null ? (
+              <Navigate to="/register/pick-team" />
+            ) : (
+              <SignupPage />
+            )
+          }
+        />
+        <Route
+          path="/register/pick-team"
+          element={
+            isAuthenticated && teamName !== null ? (
+              <Navigate to="/home" />
+            ) : isAuthenticated && teamName === null ? (
+              <PickTeamNamePage />
+            ) : (
+              <SignupPage />
+            )
           }
         />
         <Route
           path="/home"
-          element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />}
+          element={
+            isAuthenticated && teamName !== null ? (
+              <HomePage />
+            ) : isAuthenticated && teamName === null ? (
+              <Navigate to="/register/pick-team" />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
       </Routes>
     </>
