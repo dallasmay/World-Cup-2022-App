@@ -1,0 +1,61 @@
+.logo-container {
+  display: flex;
+  justify-content: center;
+}
+.wc-logo {
+  display: block;
+  margin: 10.4rem 0 8.9rem 0;
+}
+.content-container {
+  padding: 0 1.6rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.team-container {
+  margin: 0 0 5.3rem 0;
+}
+.label {
+  font-size: 1.4rem;
+  line-height: 1.68rem;
+  color: var(--lightgrey);
+}
+.team-name {
+  font-size: 4.8rem;
+  line-height: 5rem;
+}
+.scoring-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6rem;
+}
+.position-container {
+  border-top: 2px solid var(--white);
+}
+.score-label {
+  margin: 1.4rem 0 0 0;
+}
+.points {
+  font-size: 3.6rem;
+  line-height: 4.32rem;
+}
+.links-container {
+  margin: 3.6rem 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+.link-li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.75rem 0 1.75rem 1.6rem;
+  margin: 0 0 .7rem 0;
+  border-radius: 20px;
+  background-color: var(--darkgrey);
+}
+.link-text {
+  font-size: 2.4rem;
+  line-height: 2.88rem;
+}
+.caret-svg {
+  margin: 0 1.642rem 0 0;
+}

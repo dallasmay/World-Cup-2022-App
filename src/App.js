@@ -123,7 +123,7 @@ function App() {
             )
           }
         />
-        <Route
+        {/* <Route
           path="/home"
           element={
             isAuthenticated && teamName !== null ? (
@@ -134,7 +134,8 @@ function App() {
               <Navigate to="/login" />
             )
           }
-        />
+        /> */}
+        <Route path="/home" element={<HomePage />} />
       </Routes>
     </>
   );
