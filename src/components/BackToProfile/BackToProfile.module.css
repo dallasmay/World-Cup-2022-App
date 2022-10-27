@@ -1,0 +1,15 @@
+.clickable-container {
+  padding: 5.7rem 0 2.3rem 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.label-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.label {
+  font-size: 2rem;
+  line-height: 2.4rem;
+  margin: 0 0 0 0.8rem;
+}
