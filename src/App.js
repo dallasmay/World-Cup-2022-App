@@ -13,6 +13,8 @@ import SignupPage from "./pages/SignupPage/SignupPage";
 import PickTeamNamePage from "./pages/PickTeamNamePage/PickTeamNamePage";
 import HomePage from "./pages/HomePage/HomePage";
 import LeaderboardPage from "./pages/LeaderboardPage/LeaderboardPage";
+import GroupStagePage from "./pages/GroupStagePage/GroupStagePage";
+import GroupSelectionPage from "./pages/GroupSelectionPage/GroupSelectionPage";
 import Header from "./components/Header/Header";
 
 // Import the functions you need from the SDKs you need
@@ -137,7 +139,9 @@ function App() {
           }
         /> */}
         <Route path="/home" element={<HomePage />} />
-        <Route path="/leaderboard" element={<LeaderboardPage />} />
+        <Route path="/leaderboard" element={<LeaderboardPage />} /> 
+        <Route path="/group-stage" element={<GroupStagePage />} />
+        <Route path="/group-stage/group-a" element={<GroupSelectionPage />} />
       </Routes>
     </>
   );

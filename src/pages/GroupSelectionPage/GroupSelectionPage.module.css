@@ -1,0 +1,6 @@
+.content-container {
+  padding: 0 1.6rem;
+  max-width: 600px;
+  margin: 0 auto;
+  border-top: 2px solid rgb(255, 255, 255, 0.2);
+}
