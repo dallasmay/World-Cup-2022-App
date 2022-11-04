@@ -1,3 +1,10 @@
 .country-card {
   border: solid 1px var(--white);
+  padding: 1.6rem 0;
+  touch-action: none;
+  background-color: var(--black);
+  cursor: grab;
+}
+.country-card:active {
+  cursor: grabbing;
 }
