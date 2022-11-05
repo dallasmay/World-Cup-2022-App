@@ -1,0 +1,12 @@
+.stage-header {
+  display: flex;
+  justify-content: space-between;
+  border-top: 2px solid rgb(255, 255, 255, .2);
+  border-bottom: 2px solid rgb(255, 255, 255, .2);
+}
+.stage-info {
+  color: rgb(255, 255, 255, .5);
+  padding: 1.6rem;
+  font-size: 2rem;
+  line-height: 2.4rem;
+}
