@@ -63,8 +63,13 @@ const GroupSortingContainer = () => {
           items={countriesArr.map((country) => country.id)}
           strategy={verticalListSortingStrategy}
         >
-          {countriesArr.map((country) => {
-            return <CountryCard {...country} key={country.id}/>;
+          {countriesArr.map((country, index) => {
+            return (
+              <>
+                <CountryCard {...country} key={country.id} />
+                {index < 3 && <hr className={styles["line-separator"]}/> }
+              </>
+            );
           })}
         </SortableContext>
       </DndContext>
