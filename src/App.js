@@ -141,7 +141,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/leaderboard" element={<LeaderboardPage />} /> 
         <Route path="/group-stage" element={<GroupStagePage />} />
-        <Route path="/group-stage/group-a" element={<GroupSelectionPage />} />
+        <Route path="/group-stage/group-B" element={<GroupSelectionPage />} />
       </Routes>
     </>
   );

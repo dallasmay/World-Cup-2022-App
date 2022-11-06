@@ -6,7 +6,7 @@ const GroupStagePage = () => {
   return (
     <>
         <h1>GroupStagePage</h1>
-        <GroupStageCard group="A" />
+        <GroupStageCard group="B" />
     </>
   );
 }

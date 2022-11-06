@@ -15,7 +15,7 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { restrictToVerticalAxis, restrictToWindowEdges } from "@dnd-kit/modifiers";
+import { restrictToVerticalAxis, restrictToWindowEdges, restrictToParentElement } from "@dnd-kit/modifiers";
 
 import CountryCard from "../CountryCard/CountryCard";
 
@@ -23,10 +23,10 @@ import styles from "./GroupSortingContainer.module.css";
 
 const GroupSortingContainer = () => {
   const [countriesArr, setCountriesArr] = useState([
-    { id: "1", name: "USA" },
-    { id: "2", name: "Wales" },
-    { id: "3", name: "England" },
-    { id: "4", name: "Iran" },
+    { id: "1", name: "United States", abbr: "USA" },
+    { id: "2", name: "Wales", abbr: "WAL" },
+    { id: "3", name: "England", abbr: "ENG" },
+    { id: "4", name: "Iran", abbr: "IRN" },
   ]);
 
   const sensors = useSensors(
@@ -57,14 +57,14 @@ const GroupSortingContainer = () => {
         sensors={sensors}
         collisionDetection={closestCenter}
         onDragEnd={handleDragEnd}
-        modifiers={[restrictToVerticalAxis, restrictToWindowEdges]}
+        modifiers={[restrictToVerticalAxis, restrictToWindowEdges, restrictToParentElement]}
       >
         <SortableContext
           items={countriesArr.map((country) => country.id)}
           strategy={verticalListSortingStrategy}
         >
           {countriesArr.map((country) => {
-            return <CountryCard {...country} key={country.id} />;
+            return <CountryCard {...country} key={country.id}/>;
           })}
         </SortableContext>
       </DndContext>

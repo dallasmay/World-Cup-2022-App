@@ -1,10 +1,60 @@
 .country-card {
-  border: solid 1px var(--white);
+  position: relative;
+  /* display: flex;
+  align-items: center; */
+  /* border: solid 1px var(--white); */
+  border-radius: 1rem;
   padding: 1.6rem 0;
   touch-action: none;
   background-color: var(--black);
-  cursor: grab;
+  flex-grow: 1;
 }
-.country-card:active {
-  cursor: grabbing;
+.rank {
+  font-size: 2.4rem;
+  line-height: 2.88rem;
+}
+.country-info-container {
+  display: flex;
+  align-items: center;
+  /* position: absolute;
+  left: 4.8rem; */
+}
+.country-info-container div:nth-of-type(3) {
+  margin-left: auto;
+}
+.flag-container {
+  display: inline-block;
+  border-radius: 50%;
+  height: 5.6rem;
+  width: 5.6rem;
+  background: url(/src/assets/1x1Flags/Country=Wales.png);
+  background-position: center;
+  background-size: contain;
+  margin: 0 1.6rem 0 0.8rem;
+}
+.full-country-name {
+  position: relative;
+  top: .3rem;
+  color: var(--lightgrey);
+  font-size: 1.4rem;
+  line-height: 1.68rem;
+}
+.abbr-rank-container {
+  display: flex;
+  align-items: flex-start;
+}
+.heading2 {
+  font-size: 4rem;
+  line-height: 4.8rem;
+  display: inline;
+}
+.fifa-ranking {
+  position: relative;
+  font-size: 1.4rem;
+  top: .5rem;
+}
+.drag-handle {
+  display: inline-block;
+  cursor: grab;
+  margin: 0 2.4rem 0 0;
 }
