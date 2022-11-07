@@ -42,13 +42,14 @@ module.exports = {
       .query(
         `UPDATE users
     SET team_name = $1
-    WHERE id = $2`,
+    WHERE id = $2
+    RETURNING team_name`,
         {
           bind: [`${teamName}`, `${userId}`],
         }
       )
-      .then(() => {
-        res.status(200).send();
+      .then((dbRes) => {
+        res.status(200).send(dbRes[0][0]);
       })
       .catch((err) => console.log(err));
   },

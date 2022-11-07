@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+
+import { authActions } from "../../reduxStore/store";
 
 import Button from "../../components/Button/Button";
 import { ReactComponent as WCLogo } from "../../assets/icons/SoccerBallLogo.svg";
@@ -11,6 +13,7 @@ import styles from "./PickTeamNamePage.module.css";
 const URL = process.env.REACT_APP_SERVER_URL;
 
 const PickTeamNamePage = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const userId = useSelector((state) => state.userId);
 
@@ -25,8 +28,8 @@ const PickTeamNamePage = () => {
 
     axios
       .post(`${URL}/team`, body)
-      .then(() => {
-        console.log("Team name successfully updated");
+      .then((res) => {
+        dispatch(authActions.setTeamName(res.data.team_name));
         navigate("/home");
       })
       .catch((err) => console.log(err));

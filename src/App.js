@@ -81,7 +81,7 @@ function App() {
         <Route
           path="/"
           element={
-            isAuthenticated && teamName !== null ? (
+            isAuthenticated && teamName !== null && teamName !== undefined ? (
               <Navigate to="/home" />
             ) : isAuthenticated && teamName === null ? (
               <Navigate to="/register/pick-team" />
@@ -93,7 +93,7 @@ function App() {
         <Route
           path="/login"
           element={
-            isAuthenticated && teamName !== null ? (
+            isAuthenticated && teamName !== null && teamName !== undefined ? (
               <Navigate to="/home" />
             ) : isAuthenticated && teamName === null ? (
               <Navigate to="/register/pick-team" />
@@ -105,7 +105,7 @@ function App() {
         <Route
           path="/register"
           element={
-            isAuthenticated && teamName !== null ? (
+            isAuthenticated && teamName !== null && teamName !== undefined ? (
               <Navigate to="/home" />
             ) : isAuthenticated && teamName === null ? (
               <Navigate to="/register/pick-team" />
@@ -117,19 +117,19 @@ function App() {
         <Route
           path="/register/pick-team"
           element={
-            isAuthenticated && teamName !== null ? (
+            isAuthenticated && teamName !== null && teamName !== undefined ? (
               <Navigate to="/home" />
-            ) : isAuthenticated && teamName === null ? (
+            ) : (isAuthenticated && teamName === null) || (isAuthenticated && teamName === undefined) ? (
               <PickTeamNamePage />
             ) : (
               <SignupPage />
             )
           }
         />
-        {/* <Route
+        <Route
           path="/home"
           element={
-            isAuthenticated && teamName !== null ? (
+            isAuthenticated && teamName !== null && teamName !== undefined ? (
               <HomePage />
             ) : isAuthenticated && teamName === null ? (
               <Navigate to="/register/pick-team" />
@@ -137,9 +137,9 @@ function App() {
               <Navigate to="/login" />
             )
           }
-        /> */}
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/leaderboard" element={<LeaderboardPage />} /> 
+        />
+        {/* <Route path="/home" element={<HomePage />} /> */}
+        <Route path="/leaderboard" element={<LeaderboardPage />} />
         <Route path="/group-stage" element={<GroupStagePage />} />
         <Route path="/group-stage/group-B" element={<GroupSelectionPage />} />
       </Routes>
