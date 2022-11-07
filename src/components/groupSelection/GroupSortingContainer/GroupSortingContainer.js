@@ -23,7 +23,7 @@ import styles from "./GroupSortingContainer.module.css";
 
 const GroupSortingContainer = () => {
   const [countriesArr, setCountriesArr] = useState([
-    { id: "1", name: "United States", abbr: "USA" },
+    { id: "1", name: "UnitedStates", abbr: "USA" },
     { id: "2", name: "Wales", abbr: "WAL" },
     { id: "3", name: "England", abbr: "ENG" },
     { id: "4", name: "Iran", abbr: "IRN" },
@@ -53,11 +53,19 @@ const GroupSortingContainer = () => {
 
   return (
     <div className={styles["group-sorting-container"]}>
+      <p className={`${styles["placement-number"]} ${styles.first}`}>1</p>
+      <p className={`${styles["placement-number"]} ${styles.second}`}>2</p>
+      <p className={`${styles["placement-number"]} ${styles.third}`}>3</p>
+      <p className={`${styles["placement-number"]} ${styles.fourth}`}>4</p>
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
         onDragEnd={handleDragEnd}
-        modifiers={[restrictToVerticalAxis, restrictToWindowEdges, restrictToParentElement]}
+        modifiers={[
+          restrictToVerticalAxis,
+          restrictToWindowEdges,
+          restrictToParentElement,
+        ]}
       >
         <SortableContext
           items={countriesArr.map((country) => country.id)}
@@ -67,7 +75,7 @@ const GroupSortingContainer = () => {
             return (
               <>
                 <CountryCard {...country} key={country.id} />
-                {index < 3 && <hr className={styles["line-separator"]}/> }
+                {index < 3 && <hr className={styles["line-separator"]} />}
               </>
             );
           })}

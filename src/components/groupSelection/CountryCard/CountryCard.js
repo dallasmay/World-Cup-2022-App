@@ -14,11 +14,15 @@ const CountryCard = ({ id, name, abbr }) => {
     transform: CSS.Transform.toString(transform),
   };
 
+
   return (
     <div className={styles["country-card"]} ref={setNodeRef} style={style}>
       <div className={styles["country-info-container"]}>
-        <div>
-          <span className={styles["flag-container"]}></span>
+        <div className={styles["flag-container"]}>
+          <span
+            className={styles["flag-element"]}
+            style={{ backgroundImage: `url(/1x1Flags/Country=${name}.png)` }}
+          ></span>
         </div>
         <div className={styles["country-name"]}>
           <p className={styles["full-country-name"]}>{name}</p>
@@ -27,13 +31,13 @@ const CountryCard = ({ id, name, abbr }) => {
             <p className={styles["fifa-ranking"]}>({"14"})</p>
           </div>
         </div>
-        <div>
-          <Grabber
-            className={styles["drag-handle"]}
-            ref={setActivatorNodeRef}
-            {...attributes}
-            {...listeners}
-          ></Grabber>
+        <div
+          className={styles["drag-handle-container"]}
+          ref={setActivatorNodeRef}
+          {...attributes}
+          {...listeners}
+        >
+          <Grabber className={styles["drag-handle"]}></Grabber>
         </div>
       </div>
     </div>

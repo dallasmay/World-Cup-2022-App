@@ -4,16 +4,16 @@
   align-items: center; */
   /* border: solid 1px var(--white); */
   border-radius: 1rem;
-  padding: 1.05rem 0;
+  padding: 0.5rem 0 0.8rem 0;
   margin: 0 0 0 3.8rem;
   touch-action: none;
   background-color: var(--black);
   flex-grow: 1;
 }
-.rank {
+/* .rank {
   font-size: 2.4rem;
   line-height: 2.88rem;
-}
+} */
 .country-info-container {
   display: flex;
   align-items: center;
@@ -24,11 +24,15 @@
   margin-left: auto;
 }
 .flag-container {
+  display: flex;
+  align-items: center ;
+}
+.flag-element {
   display: inline-block;
   border-radius: 50%;
   height: 5.6rem;
   width: 5.6rem;
-  background: url(/src/assets/1x1Flags/Country=Wales.png);
+  /* background: url(/src/assets/1x1Flags/Country=Wales.png); */
   background-position: center;
   background-size: contain;
   margin: 0 1.6rem 0 0.8rem;
@@ -54,8 +58,11 @@
   font-size: 1.4rem;
   top: .5rem;
 }
+.drag-handle-container {
+  padding: 2rem 0 2rem 1.5rem;
+  cursor: grab;
+}
 .drag-handle {
   display: inline-block;
-  cursor: grab;
   margin: 0 2.4rem 0 0;
 }
