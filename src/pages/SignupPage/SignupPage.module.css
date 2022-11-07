@@ -16,5 +16,6 @@
 .login-link {
   font-size: 2rem;
   line-height: 2.4rem;
+  text-decoration: underline;
   text-underline-offset: 0.7rem;
 }
