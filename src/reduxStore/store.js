@@ -1,9 +1,45 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
+const countries = [
+  { id: 1, name: "Argentina", abbr: "ARG", rank: 3 },
+  { id: 2, name: "Australia", abbr: "AUS", rank: 38 },
+  { id: 3, name: "Belgium", abbr: "BEL", rank: 2 },
+  { id: 4, name: "Brazil", abbr: "BRA", rank: 1 },
+  { id: 5, name: "Cameroon", abbr: "CMR", rank: 43 },
+  { id: 6, name: "Canada", abbr: "CAN", rank: 41 },
+  { id: 7, name: "Costa Rica", abbr: "CRC", rank: 31 },
+  { id: 8, name: "Croatia", abbr: "CRO", rank: 12 },
+  { id: 9, name: "Denmark", abbr: "DEN", rank: 10 },
+  { id: 10, name: "Ecuador", abbr: "ECU", rank: 44 },
+  { id: 11, name: "England", abbr: "ENG", rank: 5 },
+  { id: 12, name: "France", abbr: "FRA", rank: 4 },
+  { id: 13, name: "Germany", abbr: "GER", rank: 11 },
+  { id: 14, name: "Ghana", abbr: "GHA", rank: 61 },
+  { id: 15, name: "Iran", abbr: "IRN", rank: 20 },
+  { id: 16, name: "Japan", abbr: "JPN", rank: 24 },
+  { id: 17, name: "Mexico", abbr: "MEX", rank: 13 },
+  { id: 18, name: "Morocco", abbr: "MAR", rank: 22 },
+  { id: 19, name: "Netherlands", abbr: "NED", rank: 8 },
+  { id: 20, name: "Poland", abbr: "POL", rank: 26 },
+  { id: 21, name: "Portugal", abbr: "POR", rank: 9 },
+  { id: 22, name: "Qatar", abbr: "QAT", rank: 50 },
+  { id: 23, name: "Saudi Arabia", abbr: "KSA", rank: 51 },
+  { id: 24, name: "Senegal", abbr: "SEN", rank: 18 },
+  { id: 25, name: "Serbia", abbr: "SRB", rank: 21 },
+  { id: 26, name: "South Korea", abbr: "KOR", rank: 28 },
+  { id: 27, name: "Spain", abbr: "ESP", rank: 7 },
+  { id: 28, name: "Switzerland", abbr: "SUI", rank: 15 },
+  { id: 29, name: "Tunisia", abbr: "TUN", rank: 30 },
+  { id: 30, name: "United States", abbr: "USA", rank: 16 },
+  { id: 31, name: "Uruguay", abbr: "URU", rank: 14 },
+  { id: 32, name: "Wales", abbr: "WAL", rank: 19 },
+];
+
 const authInitialState = {
   isAuthenticated: false,
   userId: null,
   teamName: null,
+  countriesArr: countries
 };
 
 const authenticationSlice = createSlice({
