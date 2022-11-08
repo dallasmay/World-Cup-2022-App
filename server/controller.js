@@ -42,7 +42,7 @@ module.exports = {
           game_number INT,
           country_id INT NOT NULL REFERENCES countries(id),
           position INT NOT NULL,
-          date DATE NOT NULL DEFAULT CURRENT_DATE
+          UTC_timestamp TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT current_timestamp
         );
         INSERT INTO countries (name, abbr, fifa_rank)
         values ('Argentina', 'ARG', '3'),
@@ -120,5 +120,52 @@ module.exports = {
         res.status(200).send(dbRes[0][0]);
       })
       .catch((err) => console.log(err));
+  },
+  setDefaultBracket: (req, res) => {
+    const { userId } = req.body;
+
+    sequelize
+      .query(
+        `INSERT INTO brackets (user_id, round, group_letter, country_id, position)
+        VALUES ('${userId}', 'group', 'a', '19', '1'),
+        ('${userId}', 'group', 'a', '24', '2'),
+        ('${userId}', 'group', 'a', '10', '3'),
+        ('${userId}', 'group', 'a', '22', '4'),
+        ('${userId}', 'group', 'b', '11', '1'),
+        ('${userId}', 'group', 'b', '30', '2'),
+        ('${userId}', 'group', 'b', '32', '3'),
+        ('${userId}', 'group', 'b', '15', '4'),
+        ('${userId}', 'group', 'c', '1', '1'),
+        ('${userId}', 'group', 'c', '17', '2'),
+        ('${userId}', 'group', 'c', '20', '3'),
+        ('${userId}', 'group', 'c', '23', '4'),
+        ('${userId}', 'group', 'd', '12', '1'),
+        ('${userId}', 'group', 'd', '9', '2'),
+        ('${userId}', 'group', 'd', '29', '3'),
+        ('${userId}', 'group', 'd', '2', '4'),
+        ('${userId}', 'group', 'e', '27', '1'),
+        ('${userId}', 'group', 'e', '13', '2'),
+        ('${userId}', 'group', 'e', '16', '3'),
+        ('${userId}', 'group', 'e', '7', '4'),
+        ('${userId}', 'group', 'f', '3', '1'),
+        ('${userId}', 'group', 'f', '8', '2'),
+        ('${userId}', 'group', 'f', '18', '3'),
+        ('${userId}', 'group', 'f', '6', '4'),
+        ('${userId}', 'group', 'g', '4', '1'),
+        ('${userId}', 'group', 'g', '28', '2'),
+        ('${userId}', 'group', 'g', '25', '3'),
+        ('${userId}', 'group', 'g', '5', '4'),
+        ('${userId}', 'group', 'h', '21', '1'),
+        ('${userId}', 'group', 'h', '31', '2'),
+        ('${userId}', 'group', 'h', '26', '3'),
+        ('${userId}', 'group', 'h', '14', '4');
+    `
+      )
+      .then(() => {
+        res.status(200).send("Default bracket created for user");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 };

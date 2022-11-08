@@ -47,6 +47,12 @@ const SignupForm = () => {
             name: firstName,
           }).then(() => {
             console.log("User registered in supabase");
+            axios
+              .post(`${URL}/bracket/default`, {userId: userCredential.user.uid})
+              .then((res) => {
+                console.log(res.data);
+              })
+              .catch((err) => console.log(err));
             navigate("/register/pick-team")
           }).catch(err => console.log(err));
         })
