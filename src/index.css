@@ -33,6 +33,14 @@
   --white: #FFFFFF;
   --darkgrey: #333333;
   --lightgrey: #878787;
+  --red: #EC404F;
+  --yellow: #FECC4C;
+  --teal: #6DDAC6;
+  --orange: #EC8840;
+  --purple: #8C6AEC;
+  --green: #89DA6D;
+  --blue: #4B78FE;
+  --pink: #E16AEC;
 }
 
 html {
