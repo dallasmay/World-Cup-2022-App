@@ -17,7 +17,7 @@ const HomePage = () => {
       <div className={styles["content-container"]}>
         <div className={styles["team-container"]}>
           <p className={styles.label}>Your team</p>
-          <p className={styles["team-name"]}>Diamond Dyl's</p>
+          <p className={styles["team-name"]}>{teamName}</p>
         </div>
         <div className={styles["scoring-container"]}>
           <div className={styles["position-container"]}>
