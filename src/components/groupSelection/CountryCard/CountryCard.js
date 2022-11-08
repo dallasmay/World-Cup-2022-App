@@ -21,7 +21,7 @@ const CountryCard = ({ id, name, abbr }) => {
         <div className={styles["flag-container"]}>
           <span
             className={styles["flag-element"]}
-            style={{ backgroundImage: `url(/1x1Flags/Country=${name}.png)` }}
+            style={{ backgroundImage: `url(/1x1Flags/Country=${abbr}.png)` }}
           ></span>
         </div>
         <div className={styles["country-name"]}>
