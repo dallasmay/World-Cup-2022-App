@@ -7,7 +7,7 @@
   margin: 0 0 2.4rem 0;
 }
 .input-container:focus-within {
-  border-bottom: 3px solid var(--white);
+  box-shadow: 0 2px 0 0 var(--white);
 }
 .auth-input {
   font-size: 2.4rem;
