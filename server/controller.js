@@ -17,11 +17,68 @@ module.exports = {
         `CREATE TABLE users (
         id VARCHAR(50) PRIMARY KEY NOT NULL UNIQUE,
         name VARCHAR(100) NOT NULL,
-        team_name VARCHAR(100),
-        score INT DEFAULT 0
-    );`
+        team_name VARCHAR(100) UNIQUE,
+        score INT DEFAULT 0,
+        a_is_seen BOOL DEFAULT false,
+        b_is_seen BOOL DEFAULT false,
+        c_is_seen BOOL DEFAULT false,
+        d_is_seen BOOL DEFAULT false,
+        e_is_seen BOOL DEFAULT false,
+        f_is_seen BOOL DEFAULT false,
+        g_is_seen BOOL DEFAULT false,
+        h_is_seen BOOL DEFAULT false
+    );
+        CREATE TABLE countries (
+          id SERIAL PRIMARY KEY,
+          name VARCHAR(20) NOT NULL UNIQUE,
+          abbr VARCHAR(10) NOT NULL UNIQUE,
+          fifa_rank INT NOT NULL UNIQUE
+        );
+        CREATE TABLE brackets (
+          id UUID PRIMARY KEY NOT NULL DEFAULT uuid_generate_v4 (),
+          user_id VARCHAR(50) NOT NULL REFERENCES users(id),
+          round VARCHAR(10) NOT NULL,
+          group_letter VARCHAR(1) NOT NULL,
+          game_number INT,
+          country_id INT NOT NULL REFERENCES countries(id),
+          position INT NOT NULL,
+          date DATE NOT NULL DEFAULT CURRENT_DATE
+        );
+        INSERT INTO countries (name, abbr, fifa_rank)
+        values ('Argentina', 'ARG', '3'),
+        ('Australia', 'AUS', '38'),
+        ('Belgium', 'BEL', '2'),
+        ('Brazil', 'BRA', '1'),
+        ('Cameroon', 'CMR', '43'),
+        ('Canada', 'CAN', '41'),
+        ('Costa Rica', 'CRC', '31'),
+        ('Croatia', 'CRO', '12'),
+        ('Denmark', 'DEN', '10'),
+        ('Ecuador', 'ECU', '44'),
+        ('England', 'ENG', '5'),
+        ('France', 'FRA', '4'),
+        ('Germany', 'GER', '11'),
+        ('Ghana', 'GHA', '61'),
+        ('Iran', 'IRN', '20'),
+        ('Japan', 'JPN', '24'),
+        ('Mexico', 'MEX', '13'),
+        ('Morocco', 'MAR', '22'),
+        ('Netherlands', 'NED', '8'),
+        ('Poland', 'POL', '26'),
+        ('Portugal', 'POR', '9'),
+        ('Qatar', 'QAT', '50'),
+        ('Saudi Arabia', 'KSA', '51'),
+        ('Senegal', 'SEN', '18'),
+        ('Serbia', 'SRB', '21'),
+        ('South Korea', 'KOR', '28'),
+        ('Spain', 'ESP', '7'),
+        ('Switzerland', 'SUI', '15'),
+        ('Tunisia', 'TUN', '30'),
+        ('United States', 'USA', '16'),
+        ('Uruguay', 'URU', '14'),
+        ('Wales', 'WAL', '19');`
       )
-      .then((dbRes) => res.status(200).send("Test successful"))
+      .then(() => res.status(200).send("Db Seeded"))
       .catch((err) => console.log(err));
   },
   registerUser: (req, res) => {
