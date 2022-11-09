@@ -1,9 +1,17 @@
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+
+import { bracketActions } from "../../reduxStore/store";
+
 import BackToProfile from "../../components/BackToProfile/BackToProfile";
 import GroupStageCard from "../../components/GroupStageCard/GroupStageCard";
 
 import styles from "./GroupStagePage.module.css";
 
 const GroupStagePage = () => {
+  const groupsArr = useSelector((state) => state.bracket.groupsArr);
+
   return (
     <>
       <BackToProfile />
@@ -19,10 +27,18 @@ const GroupStagePage = () => {
             </button>
           </div>
         </div>
-        <GroupStageCard group="B" countryName={"Netherlands"} rank={"8"} abbr={"NED"} color={"red"}/>
+        {groupsArr.map((element) => {
+          return (
+            <GroupStageCard
+              key={element[0].group_letter}
+              groupLetter={element[0].group_letter}
+              country={element}
+            />
+          );
+        })}
       </div>
     </>
   );
-}
+};
 
 export default GroupStagePage;

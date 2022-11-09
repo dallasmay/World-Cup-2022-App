@@ -7,7 +7,7 @@ import { ReactComponent as Caret } from "../../assets/icons/Caret.svg";
 import styles from "./HomePage.module.css";
 
 const HomePage = () => {
-  const teamName = useSelector((state) => state.teamName);
+  const teamName = useSelector((state) => state.auth.teamName);
 
   return (
     <>

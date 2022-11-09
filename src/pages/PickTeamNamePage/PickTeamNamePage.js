@@ -15,7 +15,7 @@ const URL = process.env.REACT_APP_SERVER_URL;
 const PickTeamNamePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userId = useSelector((state) => state.userId);
+  const userId = useSelector((state) => state.auth.userId);
 
   const [teamName, setTeamName] = useState("");
 

@@ -1,3 +1,6 @@
+.group-stage-card-container {
+  margin: 0 0 3.6rem 0;
+}
 .header {
   display: flex;
   justify-content: space-between;
