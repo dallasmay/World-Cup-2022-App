@@ -35,11 +35,46 @@ const countries = [
   { id: 32, name: "Wales", abbr: "WAL", rank: 19 },
 ];
 
+// const countries = {
+//   1: { name: "Argentina", abbr: "ARG", rank: 3 },
+//   2: { name: "Australia", abbr: "AUS", rank: 38 },
+//   3: { name: "Belgium", abbr: "BEL", rank: 2 },
+//   4: { name: "Brazil", abbr: "BRA", rank: 1 },
+//   5: { name: "Cameroon", abbr: "CMR", rank: 43 },
+//   6: { name: "Canada", abbr: "CAN", rank: 41 },
+//   7: { name: "Costa Rica", abbr: "CRC", rank: 31 },
+//   8: { name: "Croatia", abbr: "CRO", rank: 12 },
+//   9: { name: "Denmark", abbr: "DEN", rank: 10 },
+//   10: { name: "Ecuador", abbr: "ECU", rank: 44 },
+//   11: { name: "England", abbr: "ENG", rank: 5 },
+//   12: { name: "France", abbr: "FRA", rank: 4 },
+//   13: { name: "Germany", abbr: "GER", rank: 11 },
+//   14: { name: "Ghana", abbr: "GHA", rank: 61 },
+//   15: { name: "Iran", abbr: "IRN", rank: 20 },
+//   16: { name: "Japan", abbr: "JPN", rank: 24 },
+//   17: { name: "Mexico", abbr: "MEX", rank: 13 },
+//   18: { name: "Morocco", abbr: "MAR", rank: 22 },
+//   19: { name: "Netherlands", abbr: "NED", rank: 8 },
+//   20: { name: "Poland", abbr: "POL", rank: 26 },
+//   21: { name: "Portugal", abbr: "POR", rank: 9 },
+//   22: { name: "Qatar", abbr: "QAT", rank: 50 },
+//   23: { name: "Saudi Arabia", abbr: "KSA", rank: 51 },
+//   24: { name: "Senegal", abbr: "SEN", rank: 18 },
+//   25: { name: "Serbia", abbr: "SRB", rank: 21 },
+//   26: { name: "South Korea", abbr: "KOR", rank: 28 },
+//   27: { name: "Spain", abbr: "ESP", rank: 7 },
+//   28: { name: "Switzerland", abbr: "SUI", rank: 15 },
+//   29: { name: "Tunisia", abbr: "TUN", rank: 30 },
+//   30: { name: "United States", abbr: "USA", rank: 16 },
+//   31: { name: "Uruguay", abbr: "URU", rank: 14 },
+//   32: { name: "Wales", abbr: "WAL", rank: 19 },
+// };
+
 const authInitialState = {
   isAuthenticated: false,
   userId: null,
   teamName: null,
-  countriesArr: countries
+  isLoading: true,
 };
 
 const authenticationSlice = createSlice({
@@ -58,13 +93,36 @@ const authenticationSlice = createSlice({
     setTeamName(currentState, action) {
       currentState.teamName = action.payload;
     },
+    setIsLoading(currentState, action) {
+      currentState.isLoading = action.payload;
+    }
+  },
+});
+
+const bracketInitialState = {
+  bracket: [],
+  countriesArr: countries,
+  groupsArr: [],
+};
+
+const bracketSlice = createSlice({
+  name: "bracket",
+  initialState: bracketInitialState,
+  reducers: {
+    setBracket(currentState, action) {
+      currentState.bracket = action.payload;
+    },
+    setGroupsArr(currentState, action) {
+      currentState.groupsArr = action.payload;
+    },
   },
 });
 
 const store = configureStore({
-  reducer: authenticationSlice.reducer,
+  reducer: { auth: authenticationSlice.reducer, bracket: bracketSlice.reducer },
 });
 
 export const authActions = authenticationSlice.actions;
+export const bracketActions = bracketSlice.actions;
 
 export default store;
