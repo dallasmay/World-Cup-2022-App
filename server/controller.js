@@ -168,4 +168,29 @@ module.exports = {
         console.log(err);
       });
   },
+  getGroupStageChoices: (req, res) => {
+    const { userId } = req.body;
+
+    // sequelize
+    //   .query(
+    //     `SELECT group_letter, country_id, position FROM brackets WHERE user_id = '${userId}'`
+    //   )
+    //   .then((dbRes) => {
+    //     res.status(200).send(dbRes);
+    //   })
+    //   .catch((err) => console.log(err));
+    sequelize
+      .query(
+        `SELECT group_letter, position, name, abbr, fifa_rank 
+          FROM brackets AS b
+          INNER JOIN countries AS c
+          ON b.country_id = c.id
+          WHERE b.user_id = '${userId}'
+          ORDER BY group_letter ASC, position ASC`
+      )
+      .then((dbRes) => {
+        res.status(200).send(dbRes);
+      })
+      .catch((err) => console.log(err));
+  },
 };

@@ -15,6 +15,7 @@ const {
   setTeamName,
   getUserInfo,
   setDefaultBracket,
+  getGroupStageChoices,
 } = require("./controller");
 
 // ENDPOINTS
@@ -24,6 +25,8 @@ app.post("/user", getUserInfo);
 app.post("/register", registerUser);
 app.post("/team", setTeamName);
 app.post("/bracket/default", setDefaultBracket);
+
+app.post("/bracket/group-stage", getGroupStageChoices)
 
 
 
