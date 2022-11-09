@@ -31,7 +31,7 @@ const HomePage = () => {
         </div>
         <nav>
           <ul className={styles["links-container"]}>
-            <Link>
+            <Link to="/group-stage">
               <li className={styles["link-li"]}>
                 <p className={styles["link-text"]}>Your bracket</p>
                 <Caret className={styles["caret-svg"]} />

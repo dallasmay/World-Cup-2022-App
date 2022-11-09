@@ -1,0 +1,35 @@
+.content-container {
+  padding: 0 1.6rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.heading1 {
+  font-size: 5.6rem;
+  line-height: 6.72rem;
+  margin: 6.4rem 0 2.4rem 0;
+}
+.build-bracket-info-card {
+  background-color: var(--white);
+  border-radius: 1.4rem;
+  padding: 3.2rem 1.6rem 3.2rem 1.6rem;
+  margin: 0 0 3.6rem 0;
+}
+.build-bracket-info-card-text {
+  font-size: 2.6rem;
+  line-height: 3.12rem;
+  text-align: center;
+  color: var(--black);
+  margin: 0 0 1.6rem 0;
+}
+.build-bracket-btn-container {
+  display: flex;
+  justify-content: center;
+}
+.build-bracket-btn {
+  font-size: 2rem;
+  line-height: 2.4rem;
+  color: var(--white);
+  background-color: var(--black);
+  border-radius: 9rem;
+  padding: 2rem 3.2rem;
+}

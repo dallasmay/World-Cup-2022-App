@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 1.2rem 0;
+}
+.group-text {
+  display: inline;
+  font-size: 2rem;
+  line-height: 2.4rem;
+  color: var(--lightgrey);
+}
+.group-letter {
+  display: inline;
+  font-size: 2rem;
+  line-height: 2.4rem;
+  color: var(--white);
+  margin-left: 0.4rem;
+}
+.arrow-icon {
+  margin: 0 1.5rem 0 0;
+}
+.country-card-container {
+  border-radius: 1.4rem;
+  padding: 0.4rem 0.4rem 0.4rem 0;
+}

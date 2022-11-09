@@ -1,0 +1,46 @@
+.country-card-flex-container {
+  display: flex;
+  margin: 0 0 0.4rem 0;
+}
+.country-card-flex-container:nth-child(4) {
+  margin-bottom: 0;
+}
+.position-container {
+  padding: 1.3rem;
+  margin: 0 0.8rem;
+}
+.black-dot {
+  display: inline-block;
+  background-color: var(--black);
+  height: .6rem;
+  width: .6rem;
+  border-radius: 50%;
+}
+.country-card {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem;
+  background-color: var(--black);
+  border-radius: 1rem;
+  flex-grow: 1;
+}
+.flag-circle {
+  display: inline-block;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  background-position: center;
+  background-size: contain;
+  margin: 0 0.8rem 0 0;
+}
+.country-text-container {
+  display: flex;
+}
+.country-name {
+  font-size: 2.8rem;
+  line-height: 3.36rem;
+}
+.country-rank {
+  font-size: 1.2rem;
+  line-height: 1.44rem;
+}
