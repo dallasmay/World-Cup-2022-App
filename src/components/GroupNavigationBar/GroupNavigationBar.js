@@ -1,11 +1,9 @@
 import { ReactComponent as PreviousArrow } from "../../assets/icons/PreviousArrow.svg";
 import { ReactComponent as NextArrow } from "../../assets/icons/NextArrow.svg";
 
-import Button from "../Button/Button";
-
 import styles from "./GroupNavigationBar.module.css";
 
-const GroupNavigationbar = ({ hasEdited }) => {
+const GroupNavigationbar = ({ hasEdited, saveChangeHandler }) => {
   return (
     <div className={styles["group-navigation-bar"]}>
       <button className={styles["previous-btn"]}>
@@ -13,7 +11,7 @@ const GroupNavigationbar = ({ hasEdited }) => {
       </button>
       {hasEdited ? (
         <div className={styles["save-btn-container"]}>
-          <Button>Save changes</Button>
+          <button onClick={saveChangeHandler} className={styles["save-btn"]}>Save changes</button>
         </div>
       ) : (
         <div className={styles["group-number-container"]}>

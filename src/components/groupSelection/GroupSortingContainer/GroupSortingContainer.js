@@ -21,8 +21,7 @@ import CountryCard from "../CountryCard/CountryCard";
 
 import styles from "./GroupSortingContainer.module.css";
 
-const GroupSortingContainer = ({ group, setHasEdited }) => {
-  const [countriesArr, setCountriesArr] = useState(group);
+const GroupSortingContainer = ({ countriesArr, setCountriesArr, setHasEdited, group }) => {
 
   useEffect(() => {
     if (JSON.stringify(countriesArr) === JSON.stringify(group)) {
