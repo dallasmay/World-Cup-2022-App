@@ -95,14 +95,28 @@ const authenticationSlice = createSlice({
     },
     setIsLoading(currentState, action) {
       currentState.isLoading = action.payload;
-    }
+    },
   },
 });
 
 const bracketInitialState = {
   bracket: [],
   countriesArr: countries,
-  groupsArr: [],
+  groupsArr: [
+    [-1],
+    [
+      { id: 12, name: "United States", abbr: "USA", fifa_rank: 12 },
+      { id: 6, name: "England", abbr: "ENG", fifa_rank: 6 },
+      { id: 26, name: "Wales", abbr: "WAL", fifa_rank: 26 },
+      { id: 52, name: "Iran", abbr: "IRN", fifa_rank: 52 },
+    ],
+    [-1],
+    [-1],
+    [-1],
+    [-1],
+    [-1],
+    [-1],
+  ],
 };
 
 const bracketSlice = createSlice({
@@ -113,7 +127,17 @@ const bracketSlice = createSlice({
       currentState.bracket = action.payload;
     },
     setGroupsArr(currentState, action) {
-      currentState.groupsArr = action.payload;
+      let currGroups = action.payload;
+      currentState.groupsArr = [
+        [currGroups[0], currGroups[1], currGroups[2], currGroups[3]],
+        [currGroups[4], currGroups[5], currGroups[6], currGroups[7]],
+        [currGroups[8], currGroups[9], currGroups[10], currGroups[11]],
+        [currGroups[12], currGroups[13], currGroups[14], currGroups[15]],
+        [currGroups[16], currGroups[17], currGroups[18], currGroups[19]],
+        [currGroups[20], currGroups[21], currGroups[22], currGroups[23]],
+        [currGroups[24], currGroups[25], currGroups[26], currGroups[27]],
+        [currGroups[28], currGroups[29], currGroups[30], currGroups[31]],
+      ];
     },
   },
 });

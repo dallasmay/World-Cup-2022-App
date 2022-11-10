@@ -74,46 +74,7 @@ function App() {
         axios.post(`${URL}/bracket/group-stage`, { userId }).then((res) => {
           dispatch(bracketActions.setBracket(res.data[0]));
           dispatch(
-            bracketActions.setGroupsArr([
-              [res.data[0][0], res.data[0][1], res.data[0][2], res.data[0][3]],
-              [res.data[0][4], res.data[0][5], res.data[0][6], res.data[0][7]],
-              [
-                res.data[0][8],
-                res.data[0][9],
-                res.data[0][10],
-                res.data[0][11],
-              ],
-              [
-                res.data[0][12],
-                res.data[0][13],
-                res.data[0][14],
-                res.data[0][15],
-              ],
-              [
-                res.data[0][16],
-                res.data[0][17],
-                res.data[0][18],
-                res.data[0][19],
-              ],
-              [
-                res.data[0][20],
-                res.data[0][21],
-                res.data[0][22],
-                res.data[0][23],
-              ],
-              [
-                res.data[0][24],
-                res.data[0][25],
-                res.data[0][26],
-                res.data[0][27],
-              ],
-              [
-                res.data[0][28],
-                res.data[0][29],
-                res.data[0][30],
-                res.data[0][31],
-              ],
-            ])
+            bracketActions.setGroupsArr(res.data[0])
           );
           dispatch(authActions.setIsLoading(false));
         });
