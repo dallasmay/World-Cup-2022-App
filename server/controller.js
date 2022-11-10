@@ -193,4 +193,29 @@ module.exports = {
       })
       .catch((err) => console.log(err));
   },
+  setGroupChoices: (req, res) => {
+    const { userId, countriesArr } = req.body;
+    const groupLetter = countriesArr[0].group_letter;
+
+    sequelize.query(
+      `DELETE
+         FROM brackets
+         WHERE user_id = '${userId}' AND group_letter = '${groupLetter}';
+         
+         INSERT INTO brackets (user_id, round, group_letter, country_id, position)
+        VALUES ('${userId}', 'group', '${groupLetter}', '${countriesArr[0].id}', '1'),
+        ('${userId}', 'group', '${groupLetter}', '${countriesArr[1].id}', '2'),
+        ('${userId}', 'group', '${groupLetter}', '${countriesArr[2].id}', '3'),
+        ('${userId}', 'group', '${groupLetter}', '${countriesArr[3].id}', '4');
+        
+        SELECT group_letter, position, name, abbr, fifa_rank, c.id 
+          FROM brackets AS b
+          INNER JOIN countries AS c
+          ON b.country_id = c.id
+          WHERE b.user_id = '${userId}'
+          ORDER BY group_letter ASC, position ASC;`
+    ).then((dbRes) => {
+      res.status(200).send(dbRes[0])
+    }).catch((err) => console.log(err));
+  },
 };
