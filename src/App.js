@@ -49,7 +49,8 @@ function App() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const userId = useSelector((state) => state.auth.userId);
   const teamName = useSelector((state) => state.auth.teamName);
-  const isLoading = useSelector((state) => state.auth.isLoading)
+  const isLoading = useSelector((state) => state.auth.isLoading);
+  const groupsArr = useSelector((state) => state.bracket.groupsArr);
 
   useEffect(() => {
     const auth = getAuth();
@@ -67,7 +68,7 @@ function App() {
   useEffect(() => {
     console.log("test");
     if (isAuthenticated) {
-      dispatch(authActions.setIsLoading(true))
+      // dispatch(authActions.setIsLoading(true));
       axios.post(`${URL}/user`, { userId: userId }).then((res) => {
         dispatch(authActions.setTeamName(res.data.team_name));
         axios.post(`${URL}/bracket/group-stage`, { userId }).then((res) => {
@@ -199,10 +200,90 @@ function App() {
         />
         {/* <Route path="/home" element={<HomePage />} /> */}
         <Route path="/leaderboard" element={<LeaderboardPage />} />
-        <Route path="/group-stage" element={isLoading ? (
+        <Route
+          path="/group-stage"
+          element={isLoading ? <Loading /> : <GroupStagePage />}
+        />
+        <Route
+          path="/group-stage/group-a"
+          element={
+            isLoading ? (
               <Loading />
-            ) : <GroupStagePage />} />
-        <Route path="/group-stage/group-B" element={<GroupSelectionPage />} />
+            ) : (
+              <GroupSelectionPage group={groupsArr[0]} />
+            )
+          }
+        />
+        <Route
+          path="/group-stage/group-b"
+          element={
+            isLoading ? (
+              <Loading />
+            ) : (
+              <GroupSelectionPage group={groupsArr[1]} />
+            )
+          }
+        />
+        <Route
+          path="/group-stage/group-c"
+          element={
+            isLoading ? (
+              <Loading />
+            ) : (
+              <GroupSelectionPage group={groupsArr[2]} />
+            )
+          }
+        />
+        <Route
+          path="/group-stage/group-d"
+          element={
+            isLoading ? (
+              <Loading />
+            ) : (
+              <GroupSelectionPage group={groupsArr[3]} />
+            )
+          }
+        />
+        <Route
+          path="/group-stage/group-e"
+          element={
+            isLoading ? (
+              <Loading />
+            ) : (
+              <GroupSelectionPage group={groupsArr[4]} />
+            )
+          }
+        />
+        <Route
+          path="/group-stage/group-f"
+          element={
+            isLoading ? (
+              <Loading />
+            ) : (
+              <GroupSelectionPage group={groupsArr[5]} />
+            )
+          }
+        />
+        <Route
+          path="/group-stage/group-g"
+          element={
+            isLoading ? (
+              <Loading />
+            ) : (
+              <GroupSelectionPage group={groupsArr[6]} />
+            )
+          }
+        />
+        <Route
+          path="/group-stage/group-h"
+          element={
+            isLoading ? (
+              <Loading />
+            ) : (
+              <GroupSelectionPage group={groupsArr[7]} />
+            )
+          }
+        />
       </Routes>
     </>
   );
