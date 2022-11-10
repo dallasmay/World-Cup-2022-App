@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import {
   DndContext,
@@ -21,13 +21,16 @@ import CountryCard from "../CountryCard/CountryCard";
 
 import styles from "./GroupSortingContainer.module.css";
 
-const GroupSortingContainer = () => {
-  const [countriesArr, setCountriesArr] = useState([
-    { id: "1", name: "UnitedStates", abbr: "USA" },
-    { id: "2", name: "Wales", abbr: "WAL" },
-    { id: "3", name: "England", abbr: "ENG" },
-    { id: "4", name: "Iran", abbr: "IRN" },
-  ]);
+const GroupSortingContainer = ({ group, setHasEdited }) => {
+  const [countriesArr, setCountriesArr] = useState(group);
+
+  useEffect(() => {
+    if (JSON.stringify(countriesArr) === JSON.stringify(group)) {
+      setHasEdited(false);
+    } else if (JSON.stringify(countriesArr) !== JSON.stringify(group)) {
+      setHasEdited(true);
+    }
+  }, [countriesArr])
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -46,7 +49,7 @@ const GroupSortingContainer = () => {
         const newIndex = prevState.findIndex(
           (country) => country.id === over.id
         );
-        return arrayMove(prevState, oldIndex, newIndex); 
+        return arrayMove(prevState, oldIndex, newIndex);
       })
     }
   };

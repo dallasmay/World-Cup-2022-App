@@ -5,7 +5,7 @@ import {ReactComponent as Grabber} from "../../../assets/icons/Grabber.svg"
 
 import styles from "./CountryCard.module.css";
 
-const CountryCard = ({ id, name, abbr }) => {
+const CountryCard = ({ id, name, abbr, fifa_rank }) => {
   const { setNodeRef, setActivatorNodeRef, attributes, listeners, transition, transform } =
     useSortable({ id: id });
 
@@ -28,7 +28,7 @@ const CountryCard = ({ id, name, abbr }) => {
           <p className={styles["full-country-name"]}>{name}</p>
           <div className={styles["abbr-rank-container"]}>
             <h2 className={styles.heading2}>{abbr}</h2>
-            <p className={styles["fifa-ranking"]}>({"14"})</p>
+            <p className={styles["fifa-ranking"]}>({fifa_rank})</p>
           </div>
         </div>
         <div
