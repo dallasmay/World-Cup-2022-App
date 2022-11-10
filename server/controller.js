@@ -181,7 +181,7 @@ module.exports = {
     //   .catch((err) => console.log(err));
     sequelize
       .query(
-        `SELECT group_letter, position, name, abbr, fifa_rank 
+        `SELECT group_letter, position, name, abbr, fifa_rank, c.id 
           FROM brackets AS b
           INNER JOIN countries AS c
           ON b.country_id = c.id
