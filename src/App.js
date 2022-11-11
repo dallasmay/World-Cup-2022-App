@@ -75,13 +75,37 @@ function App() {
       // dispatch(authActions.setIsLoading(true));
       axios.post(`${URL}/user`, { userId: userId }).then((res) => {
         dispatch(authActions.setTeamName(res.data.team_name));
-        axios.post(`${URL}/bracket/group-stage`, { userId }).then((res) => {
-          dispatch(bracketActions.setBracket(res.data[0]));
-          dispatch(
-            bracketActions.setGroupsArr(res.data[0])
-          );
-          dispatch(authActions.setIsLoading(false));
-        });
+        dispatch(authActions.setUserScore(res.data.score));
+        dispatch(
+          authActions.setGroupStageProgress({
+            a: res.data.a_is_seen,
+            b: res.data.b_is_seen,
+            c: res.data.c_is_seen,
+            d: res.data.d_is_seen,
+            e: res.data.e_is_seen,
+            f: res.data.f_is_seen,
+            g: res.data.g_is_seen,
+            h: res.data.h_is_seen,
+          })
+        );
+        if (
+          res.data.a_is_seen &&
+          res.data.b_is_seen &&
+          res.data.c_is_seen &&
+          res.data.d_is_seen &&
+          res.data.e_is_seen &&
+          res.data.f_is_seen &&
+          res.data.g_is_seen &&
+          res.data.h_is_seen
+        ) {
+          dispatch(authActions.setisGroupStageComplete(true))
+        }
+          axios.post(`${URL}/bracket/group-stage`, { userId }).then((res) => {
+            dispatch(bracketActions.setBracket(res.data[0]));
+            dispatch(bracketActions.setGroupsArr(res.data[0]));
+            dispatch(bracketActions.setRo16Arr(res.data[0]));
+            dispatch(authActions.setIsLoading(false));
+          });
       });
     }
   }, [isAuthenticated]);
@@ -250,9 +274,18 @@ function App() {
           }
         />
         <Route path="/ro16" element={isLoading ? <Loading /> : <Ro16Page />} />
-        <Route path="/quarterfinals" element={isLoading ? <Loading /> : <QuarterFinalPage />} />
-        <Route path="/semifinals" element={isLoading ? <Loading /> : <SemifinalPage />} />
-        <Route path="/finals" element={isLoading ? <Loading /> : <FinalsPage />} />
+        <Route
+          path="/quarterfinals"
+          element={isLoading ? <Loading /> : <QuarterFinalPage />}
+        />
+        <Route
+          path="/semifinals"
+          element={isLoading ? <Loading /> : <SemifinalPage />}
+        />
+        <Route
+          path="/finals"
+          element={isLoading ? <Loading /> : <FinalsPage />}
+        />
       </Routes>
     </>
   );

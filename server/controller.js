@@ -114,7 +114,9 @@ module.exports = {
     const { userId } = req.body;
 
     sequelize
-      .query(`SELECT team_name FROM users WHERE id = '${userId}'`)
+      .query(
+        `SELECT team_name, score, a_is_seen, b_is_seen, c_is_seen, d_is_seen, e_is_seen, f_is_seen, g_is_seen, h_is_seen FROM users WHERE id = '${userId}'`
+      )
       .then((dbRes) => {
         console.log(dbRes);
         res.status(200).send(dbRes[0][0]);

@@ -75,6 +75,18 @@ const authInitialState = {
   userId: null,
   teamName: null,
   isLoading: true,
+  userScore: 0,
+  groupStageProgress: {
+    a: false,
+    b: false,
+    c: false,
+    d: false,
+    e: false,
+    f: false,
+    g: false,
+    h: false,
+  },
+  isGroupStageComplete: true
 };
 
 const authenticationSlice = createSlice({
@@ -92,6 +104,15 @@ const authenticationSlice = createSlice({
     },
     setTeamName(currentState, action) {
       currentState.teamName = action.payload;
+    },
+    setUserScore(currentState, action) {
+      currentState.userScore = action.payload;
+    },
+    setGroupStageProgress(currentState, action) {
+      currentState.groupStageProgress = action.payload;
+    },
+    setisGroupStageComplete(currentState, action) {
+      currentState.isGroupStageComplete = action.payload;
     },
     setIsLoading(currentState, action) {
       currentState.isLoading = action.payload;
@@ -117,6 +138,7 @@ const bracketInitialState = {
     [-1],
     [-1],
   ],
+  ro16Arr: [],
 };
 
 const bracketSlice = createSlice({
@@ -137,6 +159,19 @@ const bracketSlice = createSlice({
         [currGroups[20], currGroups[21], currGroups[22], currGroups[23]],
         [currGroups[24], currGroups[25], currGroups[26], currGroups[27]],
         [currGroups[28], currGroups[29], currGroups[30], currGroups[31]],
+      ];
+    },
+    setRo16Arr(currentState, action) {
+      let currGroups = action.payload;
+      currentState.ro16Arr = [
+        [currGroups[0], currGroups[5], 49],
+        [currGroups[4], currGroups[1], 51],
+        [currGroups[8], currGroups[13], 50],
+        [currGroups[12], currGroups[9], 52],
+        [currGroups[16], currGroups[21], 53],
+        [currGroups[20], currGroups[17], 55],
+        [currGroups[24], currGroups[29], 54],
+        [currGroups[28], currGroups[25], 56]
       ];
     },
   },
