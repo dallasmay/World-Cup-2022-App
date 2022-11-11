@@ -32,6 +32,7 @@ const GroupSelectionPage = ({ group }) => {
       setIsLoading(false);
       setHasEdited(false);
       dispatch(bracketActions.setGroupsArr(res.data))
+      dispatch(bracketActions.setRo16Arr(res.data))
     });
   }
 
