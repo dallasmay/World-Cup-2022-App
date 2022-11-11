@@ -1,0 +1,47 @@
+.country-card-flex-container {
+  position: relative;
+  display: flex;
+  margin: 0 0 0.4rem 0;
+}
+.shape {
+  position: absolute;
+  top: -3px;
+}
+.shape2 {
+  position: absolute;
+  top: 0;
+}
+.country-card-flex-container:last-child {
+  margin-bottom: 0;
+}
+.position-container {
+  display: flex;
+  align-items: center;
+  width: 2.4rem;
+  height: 3.2rem;
+  padding: 0.7rem 0.45rem;
+  /* margin: auto 0.4rem; */
+  margin: auto 0.4rem auto 1.2rem;
+}
+.position {
+  font-size: 1.5rem;
+  line-height: 1.8rem;
+}
+.country-card {
+  display: flex;
+  align-items: center;
+  padding: 1.2rem 0 1.2rem 0.8rem;
+  background-color: var(--black);
+  border-radius: 1rem;
+  flex-grow: 1;
+}
+.white-text {
+  font-size: 2.2rem;
+  line-height: 2.64rem;
+}
+.grey-text {
+  font-size: 2.2rem;
+  line-height: 2.64rem;
+  margin: 0 0 0 0.4rem;
+  color: var(--lightgrey);
+}
