@@ -15,7 +15,7 @@ const GroupStagePage = () => {
 
   return (
     <>
-      <BackToProfile />
+      <BackToProfile path={"/home"} backTo={"profile"}/>
       <BracketNav />
       <div className={styles["content-container"]}>
         <h1 className={styles.heading1}>Group Stage</h1>

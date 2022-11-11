@@ -6,7 +6,7 @@ import styles from "./QuarterFinalPage.module.css";
 const QuarterFinalPage = () => {
   return (
     <>
-      <BackToProfile />
+      <BackToProfile path={"/home"} backTo={"profile"}/>
       <BracketNav />
       <h1>QuarterFinalPage</h1>
     </>

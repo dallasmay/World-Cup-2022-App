@@ -6,7 +6,7 @@ import styles from "./SemifinalPage.module.css";
 const SemifinalPage = () => {
   return (
     <>
-      <BackToProfile />
+      <BackToProfile path={"/home"} backTo={"profile"} />
       <BracketNav />
       <h1>SemifinalPage</h1>
     </>

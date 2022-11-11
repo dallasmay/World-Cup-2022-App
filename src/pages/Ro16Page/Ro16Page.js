@@ -11,7 +11,7 @@ const Ro16Page = () => {
 
   return (
     <>
-      <BackToProfile />
+      <BackToProfile path={"/home"} backTo={"profile"}/>
       <BracketNav />
       <div className={styles["content-container"]}>
         <h1 className={styles.heading1}>Round of 16</h1>

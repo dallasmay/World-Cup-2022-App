@@ -6,7 +6,7 @@ import styles from "./FinalsPage.module.css";
 const FinalsPage = () => {
   return (
     <>
-      <BackToProfile />
+      <BackToProfile path={"/home"} backTo={"profile"}/>
       <BracketNav />
       <h1>FinalsPage</h1>
     </>

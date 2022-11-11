@@ -5,7 +5,7 @@ import styles from "./LeaderboardPage.module.css";
 const LeaderboardPage = () => {
   return (
     <>
-      <BackToProfile />
+      <BackToProfile path={"/home"} backTo={"profile"}/>
       <div className={styles["content-container"]}>
         <h1 className={styles.heading1}>Leaderboard</h1>
         <div className={styles["leaderboard-container"]}>

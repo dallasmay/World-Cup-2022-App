@@ -39,7 +39,7 @@ const GroupSelectionPage = ({ group }) => {
   return (
     <>
     {isLoading ? <Loading /> : ""}
-      <BackToProfile />
+      <BackToProfile path={"/group-stage"} backTo={"Group Stage"}/>
       <StageHeader stage={"Group Stage"} otherInfo={"Nov 22-29"} />
       <div className={styles["content-container"]}>
         <h1 className={styles.heading1}>Group {group[0].group_letter.toUpperCase()}</h1>
