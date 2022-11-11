@@ -15,6 +15,10 @@ import HomePage from "./pages/HomePage/HomePage";
 import LeaderboardPage from "./pages/LeaderboardPage/LeaderboardPage";
 import GroupStagePage from "./pages/GroupStagePage/GroupStagePage";
 import GroupSelectionPage from "./pages/GroupSelectionPage/GroupSelectionPage";
+import Ro16Page from "./pages/Ro16Page/Ro16Page";
+import QuarterFinalPage from "./pages/QuarterFinalPage/QuarterFinalPage";
+import SemifinalPage from "./pages/SemifinalPage/SemifinalPage";
+import FinalsPage from "./pages/FinalsPage/FinalsPage";
 
 import Loading from "./components/Loading/Loading";
 import Header from "./components/Header/Header";
@@ -245,6 +249,10 @@ function App() {
             )
           }
         />
+        <Route path="/ro16" element={isLoading ? <Loading /> : <Ro16Page />} />
+        <Route path="/quarterfinals" element={isLoading ? <Loading /> : <QuarterFinalPage />} />
+        <Route path="/semifinals" element={isLoading ? <Loading /> : <SemifinalPage />} />
+        <Route path="/finals" element={isLoading ? <Loading /> : <FinalsPage />} />
       </Routes>
     </>
   );

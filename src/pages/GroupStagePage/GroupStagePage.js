@@ -5,6 +5,7 @@ import axios from "axios";
 import { bracketActions } from "../../reduxStore/store";
 
 import BackToProfile from "../../components/BackToProfile/BackToProfile";
+import BracketNav from "../../components/BracketNav/BracketNav";
 import GroupStageCard from "../../components/GroupStageCard/GroupStageCard";
 
 import styles from "./GroupStagePage.module.css";
@@ -15,6 +16,7 @@ const GroupStagePage = () => {
   return (
     <>
       <BackToProfile />
+      <BracketNav />
       <div className={styles["content-container"]}>
         <h1 className={styles.heading1}>Group Stage</h1>
         <div className={styles["build-bracket-info-card"]}>
