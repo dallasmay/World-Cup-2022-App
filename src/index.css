@@ -92,3 +92,19 @@ input:-webkit-autofill,
   input:-webkit-autofill:focus {
     transition: background-color 600000s 0s, color 600000s 0s;
   }
+
+  .box-shadow-1px-lightgrey {
+    box-shadow: 0 1px 0 0 var(--lightgrey); /* Border bottom */
+    box-shadow: 0 -1px 0 0 var(--lightgrey); /* Border top */
+    box-shadow: -1px 0 0 0 var(--lightgrey); /* Border left */
+    box-shadow: 1px 0 0 0 var(--lightgrey); /* Border right */
+    box-shadow: 0 0 0 1px var(--lightgrey);
+  }
+  .box-shadow-2px-yellow {
+    box-shadow: 0 2px 0 0 var(--yellow); /* Border bottom */
+    box-shadow: 0 -2px 0 0 var(--yellow); /* Border top */
+    box-shadow: -2px 0 0 0 var(--yellow); /* Border left */
+    box-shadow: 2px 0 0 0 var(--yellow); /* Border right */
+    box-shadow: 0 0 0 2px var(--yellow);
+  }
+  
