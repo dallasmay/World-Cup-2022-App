@@ -56,6 +56,7 @@ function App() {
   const teamName = useSelector((state) => state.auth.teamName);
   const isLoading = useSelector((state) => state.auth.isLoading);
   const groupsArr = useSelector((state) => state.bracket.groupsArr);
+  const ro16Arr = useSelector((state) => state.bracket.ro16Arr);
 
   useEffect(() => {
     const auth = getAuth();
@@ -275,7 +276,54 @@ function App() {
           }
         />
         <Route path="/ro16" element={isLoading ? <Loading /> : <Ro16Page />} />
-        <Route path="/ro16/game-49" element={isLoading ? <Loading /> : <H2HSelectionPage />} />
+        <Route
+          path="/ro16/game-49"
+          element={
+            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[0]} />
+          }
+        />
+        <Route
+          path="/ro16/game-51"
+          element={
+            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[1]} />
+          }
+        />
+        <Route
+          path="/ro16/game-50"
+          element={
+            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[2]} />
+          }
+        />
+        <Route
+          path="/ro16/game-52"
+          element={
+            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[3]} />
+          }
+        />
+        <Route
+          path="/ro16/game-53"
+          element={
+            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[4]} />
+          }
+        />
+        <Route
+          path="/ro16/game-55"
+          element={
+            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[5]} />
+          }
+        />
+        <Route
+          path="/ro16/game-54"
+          element={
+            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[6]} />
+          }
+        />
+        <Route
+          path="/ro16/game-56"
+          element={
+            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[7]} />
+          }
+        />
         <Route
           path="/quarterfinals"
           element={isLoading ? <Loading /> : <QuarterFinalPage />}

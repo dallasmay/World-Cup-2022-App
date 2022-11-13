@@ -7,7 +7,7 @@ import { ReactComponent as Crown } from "../../assets/icons/Crown.svg";
 
 import styles from "./H2HSelectionPage.module.css";
 
-const H2HSelectionPage = () => {
+const H2HSelectionPage = ({ group }) => {
   const [isLeftActive, setIsLeftActive] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -35,7 +35,7 @@ const H2HSelectionPage = () => {
       <BackToProfile path={"/ro16"} backTo={"Round of 16"} />
       <StageHeader stage={"Round of 16"} otherInfo={"Game 1 of 8"} />
       <div className={styles["content-container"]}>
-        <p className={styles["game-info"]}>Game 49</p>
+        <p className={styles["game-info"]}>Game {group[2]}</p>
         <p className={styles["game-info"]}>Dec 4</p>
         <p className={styles["game-info"]}>11:00AM MDT</p>
         <div className={styles["crown-container"]}>
@@ -73,13 +73,13 @@ const H2HSelectionPage = () => {
             disabled={isLoading ? true : false}
           >
             <img
-              src="/1x1Flags3x/Country=USA.png"
+              src={`/1x1Flags3x/Country=${group[0].abbr}.png`}
               className={styles["flag-img"]}
             />
-            <p className={styles.rank}>(14)</p>
+            <p className={styles.rank}>({group[0].fifa_rank})</p>
             <div className={styles["country-text-container"]}>
-              <p className={styles["team-name"]}>United States</p>
-              <p className={styles.abbr}>USA</p>
+              <p className={styles["team-name"]}>{group[0].name}</p>
+              <p className={styles.abbr}>{group[0].abbr}</p>
             </div>
           </button>
           <button
@@ -94,13 +94,13 @@ const H2HSelectionPage = () => {
             disabled={isLoading ? true : false}
           >
             <img
-              src="/1x1Flags3x/Country=Wales.png"
+              src={`/1x1Flags3x/Country=${group[1].abbr}.png`}
               className={styles["flag-img"]}
             />
-            <p className={styles.rank2}>(27)</p>
+            <p className={styles.rank2}>({group[1].fifa_rank})</p>
             <div className={styles["country-text-container2"]}>
-              <p className={styles["team-name2"]}>Wales</p>
-              <p className={styles.abbr2}>WAL</p>
+              <p className={styles["team-name2"]}>{group[1].name}</p>
+              <p className={styles.abbr2}>{group[1].abbr}</p>
             </div>
           </button>
         </div>
