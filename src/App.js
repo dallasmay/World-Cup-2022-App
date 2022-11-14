@@ -57,7 +57,10 @@ function App() {
   const isLoading = useSelector((state) => state.auth.isLoading);
   const groupsArr = useSelector((state) => state.bracket.groupsArr);
   const ro16Arr = useSelector((state) => state.bracket.ro16Arr);
-  const quarterFinalsArr = useSelector((state) => state.bracket.quarterFinalsArr);
+  const quarterFinalsArr = useSelector(
+    (state) => state.bracket.quarterFinalsArr
+  );
+  const isRo16Complete = useSelector((state) => state.auth.isRo16Complete);
 
   useEffect(() => {
     const auth = getAuth();
@@ -101,20 +104,20 @@ function App() {
           res.data.g_is_seen &&
           res.data.h_is_seen
         ) {
-          dispatch(authActions.setisGroupStageComplete(true))
+          dispatch(authActions.setisGroupStageComplete(true));
         }
-          axios.post(`${URL}/bracket/group-stage`, { userId }).then((res) => {
-            dispatch(bracketActions.setBracket(res.data[0]));
-            dispatch(bracketActions.setGroupsArr(res.data[0].rows));
-            dispatch(bracketActions.setRo16Arr(res.data[0].rows));
-            dispatch(bracketActions.setRo16Winners(res.data[1].rows));
-            dispatch(bracketActions.setQuarterFinalsArr(res.data[1].rows));
-            if ((res.data[1].rows).length === 8) {
-              dispatch(authActions.setIsQuarterFinalsComplete(true))
-            } 
-            dispatch(authActions.setIsLoading(false));
-            console.log(res.data)
-          });
+        axios.post(`${URL}/bracket/group-stage`, { userId }).then((res) => {
+          dispatch(bracketActions.setBracket(res.data[0]));
+          dispatch(bracketActions.setGroupsArr(res.data[0].rows));
+          dispatch(bracketActions.setRo16Arr(res.data[0].rows));
+          dispatch(bracketActions.setRo16Winners(res.data[1].rows));
+          dispatch(bracketActions.setQuarterFinalsArr(res.data[1].rows));
+          if (res.data[1].rows.length === 8) {
+            dispatch(authActions.setIsRo16Complete(true));
+          }
+          dispatch(authActions.setIsLoading(false));
+          console.log(res.data);
+        });
       });
     }
   }, [isAuthenticated]);
@@ -286,102 +289,102 @@ function App() {
         <Route
           path="/ro16/game-49"
           element={
-            isLoading ? (
-              <Loading />
-            ) : (
-              <H2HSelectionPage
-                group={ro16Arr[0]}
-              />
-            )
+            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[0]} />
           }
         />
         <Route
           path="/ro16/game-51"
           element={
-            isLoading ? (
-              <Loading />
-            ) : (
-              <H2HSelectionPage
-                group={ro16Arr[1]}
-              />
-            )
+            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[1]} />
           }
         />
         <Route
           path="/ro16/game-50"
           element={
-            isLoading ? (
-              <Loading />
-            ) : (
-              <H2HSelectionPage
-                group={ro16Arr[2]}
-              />
-            )
+            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[2]} />
           }
         />
         <Route
           path="/ro16/game-52"
           element={
-            isLoading ? (
-              <Loading />
-            ) : (
-              <H2HSelectionPage
-                group={ro16Arr[3]}
-              />
-            )
+            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[3]} />
           }
         />
         <Route
           path="/ro16/game-53"
           element={
-            isLoading ? (
-              <Loading />
-            ) : (
-              <H2HSelectionPage
-                group={ro16Arr[4]}
-              />
-            )
+            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[4]} />
           }
         />
         <Route
           path="/ro16/game-55"
           element={
-            isLoading ? (
-              <Loading />
-            ) : (
-              <H2HSelectionPage
-                group={ro16Arr[5]}
-              />
-            )
+            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[5]} />
           }
         />
         <Route
           path="/ro16/game-54"
           element={
-            isLoading ? (
-              <Loading />
-            ) : (
-              <H2HSelectionPage
-                group={ro16Arr[6]}
-              />
-            )
+            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[6]} />
           }
         />
         <Route
           path="/ro16/game-56"
           element={
-            isLoading ? (
-              <Loading />
-            ) : (
-              <H2HSelectionPage
-                group={ro16Arr[7]}
-              />
-            )
+            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[7]} />
           }
         />
         <Route
           path="/quarterfinals"
           element={isLoading ? <Loading /> : <QuarterFinalPage />}
+        />
+        <Route
+          path="/quarterfinals/game-57"
+          element={
+            isLoading ? (
+              <Loading />
+            ) : isRo16Complete ? (
+              <H2HSelectionPage group={quarterFinalsArr[0]} />
+            ) : (
+              <Navigate to="/quarterfinals" />
+            )
+          }
+        />
+        <Route
+          path="/quarterfinals/game-59"
+          element={
+            isLoading ? (
+              <Loading />
+            ) : isRo16Complete ? (
+              <H2HSelectionPage group={quarterFinalsArr[1]} />
+            ) : (
+              <Navigate to="/quarterfinals" />
+            )
+          }
+        />
+        <Route
+          path="/quarterfinals/game-58"
+          element={
+            isLoading ? (
+              <Loading />
+            ) : isRo16Complete ? (
+              <H2HSelectionPage group={quarterFinalsArr[2]} />
+            ) : (
+              <Navigate to="/quarterfinals" />
+            )
+          }
+        />
+        <Route
+          path="/quarterfinals/game-60"
+          element={
+            isLoading ? (
+              <Loading />
+            ) : isRo16Complete ? (
+              <H2HSelectionPage group={quarterFinalsArr[3]} />
+            ) : (
+              <Navigate to="/quarterfinals" />
+            )
+          }
         />
         <Route
           path="/semifinals"

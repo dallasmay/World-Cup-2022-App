@@ -35,7 +35,7 @@ const GroupSelectionPage = ({ group }) => {
       dispatch(bracketActions.setRo16Arr(res.data[3].rows))
       dispatch(bracketActions.setRo16Winners(res.data[4].rows));
       if ((res.data[4].rows).length < 8) {
-        dispatch(authActions.setIsQuarterFinalsComplete(false));
+        dispatch(authActions.setIsRo16Complete(false));
       }
     });
   }

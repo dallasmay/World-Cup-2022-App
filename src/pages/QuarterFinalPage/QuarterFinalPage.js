@@ -26,8 +26,8 @@ const lockedArr = [
 ];
 
 const QuarterFinalPage = () => {
-  const isQuarterFinalsComplete = useSelector(
-    (state) => state.auth.isQuarterFinalsComplete
+  const isRo16Complete = useSelector(
+    (state) => state.auth.isRo16Complete
   );
   const quarterFinalsArr = useSelector(
     (state) => state.bracket.quarterFinalsArr
@@ -39,11 +39,11 @@ const QuarterFinalPage = () => {
       <BracketNav />
       <div className={styles["content-container"]}>
         <h1 className={styles.heading1}>Quarterfinals</h1>
-        {isQuarterFinalsComplete ? (quarterFinalsArr.map((match) => {
+        {isRo16Complete ? (quarterFinalsArr.map((match) => {
           return (
             <QfHeadToHeadCard
               key={match[2]}
-              isStageComplete={isQuarterFinalsComplete}
+              isStageComplete={isRo16Complete}
               hasWinner={false}
               match={[match[0], match[1]]}
               game={match[2]}
@@ -51,7 +51,7 @@ const QuarterFinalPage = () => {
             />
           );
         })) : lockedArr.map((ele) => {
-          return <QfHeadToHeadCard isStageComplete={isQuarterFinalsComplete} hasWinner={false} match={[ele[0], ele[1]]} game={ele[2]}/>
+          return <QfHeadToHeadCard isStageComplete={isRo16Complete} hasWinner={false} match={[ele[0], ele[1]]} game={ele[2]}/>
         })}
       </div>
     </>

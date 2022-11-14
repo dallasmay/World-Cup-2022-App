@@ -43,7 +43,7 @@ const H2HSelectionPage = ({ group }) => {
           dispatch(bracketActions.setQuarterFinalsArr(res.data[3].rows))
           dispatch(bracketActions.setRo16Winners(res.data[3].rows));
           if((res.data[3].rows).length === 8) {
-            dispatch(authActions.setIsQuarterFinalsComplete(true));
+            dispatch(authActions.setIsRo16Complete(true));
           }
         })
         .catch((err) => {
@@ -69,7 +69,7 @@ const H2HSelectionPage = ({ group }) => {
             dispatch(bracketActions.setQuarterFinalsArr(res.data[3].rows));
             dispatch(bracketActions.setRo16Winners(res.data[3].rows));
             if (res.data[3].rows.length === 8) {
-              dispatch(authActions.setIsQuarterFinalsComplete(true));
+              dispatch(authActions.setIsRo16Complete(true));
             }
           })
           .catch((err) => {

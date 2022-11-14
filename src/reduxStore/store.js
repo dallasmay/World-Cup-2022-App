@@ -87,7 +87,7 @@ const authInitialState = {
     h: false,
   },
   isGroupStageComplete: true,
-  isQuarterFinalsComplete: false
+  isRo16Complete: false
 };
 
 const authenticationSlice = createSlice({
@@ -115,8 +115,8 @@ const authenticationSlice = createSlice({
     setisGroupStageComplete(currentState, action) {
       currentState.isGroupStageComplete = action.payload;
     },
-    setIsQuarterFinalsComplete(currentState, action) {
-      currentState.isQuarterFinalsComplete = action.payload;
+    setIsRo16Complete(currentState, action) {
+      currentState.isRo16Complete = action.payload;
     },
     setIsLoading(currentState, action) {
       currentState.isLoading = action.payload;
