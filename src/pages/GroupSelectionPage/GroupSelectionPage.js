@@ -31,8 +31,9 @@ const GroupSelectionPage = ({ group }) => {
     axios.post(`${URL}/bracket/set-group-stage`, body).then((res) => {
       setIsLoading(false);
       setHasEdited(false);
-      dispatch(bracketActions.setGroupsArr(res.data))
-      dispatch(bracketActions.setRo16Arr(res.data))
+      dispatch(bracketActions.setGroupsArr(res.data[3].rows))
+      dispatch(bracketActions.setRo16Arr(res.data[3].rows))
+      dispatch(bracketActions.setRo16Winners(res.data[4].rows));
     });
   }
 
