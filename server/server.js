@@ -16,7 +16,8 @@ const {
   getUserInfo,
   setDefaultBracket,
   getGroupStageChoices,
-  setGroupChoices
+  setGroupChoices,
+  setRo16Choice
 } = require("./controller");
 
 // ENDPOINTS
@@ -29,6 +30,8 @@ app.post("/bracket/default", setDefaultBracket);
 
 app.post("/bracket/group-stage", getGroupStageChoices)
 app.post("/bracket/set-group-stage", setGroupChoices);
+
+app.post("/bracket/ro16", setRo16Choice);
 
 
 
