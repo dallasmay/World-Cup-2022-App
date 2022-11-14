@@ -11,7 +11,7 @@ import styles from "./QfHeadToHeadCard.module.css";
 
 const QfHeadToHeadCard = ({ isStageComplete, hasWinner, match, game, position }) => {
   return (
-    <Link to={"/home"}>
+    <Link to={`/quarterfinals/game-${game}`}>
       <div className={styles["head-to-head-card"]}>
         <div className={styles["header"]}>
           <div>

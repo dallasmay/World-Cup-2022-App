@@ -15,22 +15,23 @@ import styles from "./QfSelectionPage.module.css";
 const URL = process.env.REACT_APP_SERVER_URL;
 
 const QfSelectionPage = ({ group }) => {
-  //   const ro16Winners = useSelector((state) => state.bracket.ro16Winners);
+    const quarterFinalsWinners = useSelector(
+      (state) => state.bracket.quarterFinalsWinners
+    );
 
-  //   const [winner, setWinner] = useState(
-  //     ro16Winners.find((ele) => {
-  //       return ele.name === group[0].name || ele.name === group[1].name;
-  //     })
-  //   );
+    const [winner, setWinner] = useState(
+      quarterFinalsWinners.find((ele) => {
+        return ele.name === group[0].name || ele.name === group[1].name;
+      })
+    );
 
-//   const [isLeftActive, setIsLeftActive] = useState(
-//     winner?.name === group[0].name
-//       ? true
-//       : winner?.name === group[1].name
-//       ? false
-//       : null
-//   );
-    const [isLeftActive, setIsLeftActive] = useState(true);
+  const [isLeftActive, setIsLeftActive] = useState(
+    winner?.name === group[0].name
+      ? true
+      : winner?.name === group[1].name
+      ? false
+      : null
+  );
 
   const [isLoading, setIsLoading] = useState(false);
   const userId = useSelector((state) => state.auth.userId);
@@ -46,14 +47,14 @@ const QfSelectionPage = ({ group }) => {
         gameNum: group[2],
       };
       axios
-        .post(`${URL}/bracket/ro16`, body)
+        .post(`${URL}/bracket/quarterfinals`, body)
         .then((res) => {
           setIsLoading(false);
-          console.log(res.data);
-          dispatch(bracketActions.setQuarterFinalsArr(res.data[3].rows));
-          dispatch(bracketActions.setRo16Winners(res.data[3].rows));
-          if (res.data[3].rows.length === 8) {
-            dispatch(authActions.setIsRo16Complete(true));
+          console.log(res.data[3].rows);
+          dispatch(bracketActions.setSemiFinalsArr(res.data[3].rows));
+          dispatch(bracketActions.setQuarterFinalsWinners(res.data[3].rows));
+          if ((res.data[3].rows).length === 4) {
+            dispatch(authActions.setIsQuarterFinalsComplete(true));
           }
         })
         .catch((err) => {
@@ -72,14 +73,14 @@ const QfSelectionPage = ({ group }) => {
         gameNum: group[2],
       };
       axios
-        .post(`${URL}/bracket/ro16`, body)
+        .post(`${URL}/bracket/quarterfinals`, body)
         .then((res) => {
           setIsLoading(false);
-          console.log(res.data);
-          dispatch(bracketActions.setQuarterFinalsArr(res.data[3].rows));
-          dispatch(bracketActions.setRo16Winners(res.data[3].rows));
-          if (res.data[3].rows.length === 8) {
-            dispatch(authActions.setIsRo16Complete(true));
+          console.log(res.data[3].rows);
+          dispatch(bracketActions.setSemiFinalsArr(res.data[3].rows));
+          dispatch(bracketActions.setQuarterFinalsWinners(res.data[3].rows));
+          if (res.data[3].rows.length === 4) {
+            dispatch(authActions.setIsQuarterFinalsComplete(true));
           }
         })
         .catch((err) => {
@@ -91,7 +92,7 @@ const QfSelectionPage = ({ group }) => {
 
   return (
     <>
-      <BackToProfile path={"/ro16"} backTo={"Round of 16"} />
+      <BackToProfile path={"/quarterfinals"} backTo={"Quarterfinals"} />
       <StageHeader stage={"Round of 16"} otherInfo={"Game 1 of 8"} />
       <div className={styles["content-container"]}>
         <p className={styles["game-info"]}>Game {group[2]}</p>

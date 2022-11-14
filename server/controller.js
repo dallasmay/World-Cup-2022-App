@@ -195,7 +195,14 @@ module.exports = {
           INNER JOIN countries AS c
           ON b.country_id = c.id
           WHERE b.user_id = '${userId}' AND round = 'ro16'
-          ORDER BY group_letter ASC, game_number ASC;`
+          ORDER BY group_letter ASC, game_number ASC;
+          
+          SELECT group_letter, position, name, abbr, fifa_rank, c.id, round, game_number 
+          FROM brackets AS b
+          INNER JOIN countries AS c
+          ON b.country_id = c.id
+          WHERE b.user_id = '${userId}' AND round = 'qua'
+          ORDER BY game_number ASC;`
       )
       .then((dbRes) => {
         res.status(200).send(dbRes[1]);
@@ -217,9 +224,7 @@ module.exports = {
         ? "53, 55, 58, 60, 61, 62, 63, 64"
         : groupLetter === "g" || groupLetter === "h"
         ? "54, 56, 58, 60, 61, 62, 63, 64"
-        : "" 
-        ;
-
+        : "";
     sequelize
       .query(
         `DELETE
@@ -289,5 +294,42 @@ module.exports = {
       .catch((err) => {
         console.log(err);
       });
+  },
+  setQuarterfinalsChoice: (req, res) => {
+    const { userId, winner, gameNum } = req.body;
+    const { group_letter, id, position } = winner;
+    console.log(userId, winner, gameNum, group_letter, id, position);
+
+    const deletePath =
+      gameNum === 57 || gameNum === 58
+        ? "61, 63, 64"
+        : gameNum === 59 || gameNum === 60
+        ? "62, 63, 64"
+        : "";
+
+    sequelize
+      .query(
+        `DELETE
+       FROM brackets
+       WHERE user_id = '${userId}' AND game_number = '${gameNum}';
+       
+       DELETE
+       FROM brackets
+       WHERE user_id = '${userId}' AND game_number IN (${deletePath});
+       
+       INSERT INTO brackets (user_id, round, group_letter, game_number, country_id, position)
+      VALUES ('${userId}', 'qua', '${group_letter}', '${gameNum}', '${id}', '${position}');
+      
+      SELECT group_letter, position, name, abbr, fifa_rank, c.id, round, game_number 
+          FROM brackets AS b
+          INNER JOIN countries AS c
+          ON b.country_id = c.id
+          WHERE b.user_id = '${userId}' AND round = 'qua'
+          ORDER BY game_number ASC;`
+      )
+      .then((dbRes) => {
+        res.status(200).send(dbRes[1]);
+      })
+      .catch((err) => console.log(err));
   },
 };
