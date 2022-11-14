@@ -1,4 +1,3 @@
-
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -6,6 +5,7 @@ import H2HPageCountryCard from "../H2HPageCountryCard/H2HPageCountryCard";
 import LockedH2HCountryCard from "../LockedH2HCountryCard/LockedH2HCountryCard";
 import { ReactComponent as Lock } from "../../assets/icons/Lock.svg";
 import { ReactComponent as LinkArrow } from "../../assets/icons/LinkToGroupArrow.svg";
+import { ReactComponent as Pip } from "../../assets/icons/Pip.svg";
 
 import styles from "./HeadToHeadCard.module.css";
 
@@ -23,8 +23,13 @@ const HeadToHeadCard = ({ game, countries, hasWinner }) => {
             <p className={styles["game-text"]}>Game</p>
             <p className={styles["game-letter"]}>{game}</p>
           </div>
-          {isGroupStageComplete ? (
+          {isGroupStageComplete && hasWinner ? (
             <LinkArrow className={styles["arrow-icon"]} />
+          ) : isGroupStageComplete && !hasWinner ? (
+            <>
+              <Pip className={styles.pip}/>
+              <LinkArrow className={styles["arrow-icon"]} />
+            </>
           ) : (
             <Lock className={styles["lock-icon"]} />
           )}
@@ -47,8 +52,8 @@ const HeadToHeadCard = ({ game, countries, hasWinner }) => {
               );
             } else {
               let winner = ro16Winners.find((ele) => {
-                return ele.name === country.name
-              })
+                return ele.name === country.name;
+              });
               return (
                 <H2HPageCountryCard
                   key={country.fifa_rank}
@@ -61,7 +66,13 @@ const HeadToHeadCard = ({ game, countries, hasWinner }) => {
                   }
                   group={country.group_letter}
                   positionNumber={country.position}
-                  isWinner={winner?.name === undefined && hasWinner ? false : winner?.name === country.name ? true : undefined}
+                  isWinner={
+                    winner?.name === undefined && hasWinner
+                      ? false
+                      : winner?.name === country.name
+                      ? true
+                      : undefined
+                  }
                 />
               );
             }
