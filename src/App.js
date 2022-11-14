@@ -57,6 +57,7 @@ function App() {
   const isLoading = useSelector((state) => state.auth.isLoading);
   const groupsArr = useSelector((state) => state.bracket.groupsArr);
   const ro16Arr = useSelector((state) => state.bracket.ro16Arr);
+  const quarterFinalsArr = useSelector((state) => state.bracket.quarterFinalsArr);
 
   useEffect(() => {
     const auth = getAuth();
@@ -104,9 +105,12 @@ function App() {
         }
           axios.post(`${URL}/bracket/group-stage`, { userId }).then((res) => {
             dispatch(bracketActions.setBracket(res.data[0]));
-            dispatch(bracketActions.setGroupsArr(res.data[0]));
-            dispatch(bracketActions.setRo16Arr(res.data[0]));
+            dispatch(bracketActions.setGroupsArr(res.data[0].rows));
+            dispatch(bracketActions.setRo16Arr(res.data[0].rows));
+            dispatch(bracketActions.setRo16Winners(res.data[1].rows));
+            dispatch(bracketActions.setQuarterFinalsArr(res.data[1].rows));
             dispatch(authActions.setIsLoading(false));
+            console.log(res.data)
           });
       });
     }
@@ -279,49 +283,97 @@ function App() {
         <Route
           path="/ro16/game-49"
           element={
-            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[0]} />
+            isLoading ? (
+              <Loading />
+            ) : (
+              <H2HSelectionPage
+                group={ro16Arr[0]}
+              />
+            )
           }
         />
         <Route
           path="/ro16/game-51"
           element={
-            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[1]} />
+            isLoading ? (
+              <Loading />
+            ) : (
+              <H2HSelectionPage
+                group={ro16Arr[1]}
+              />
+            )
           }
         />
         <Route
           path="/ro16/game-50"
           element={
-            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[2]} />
+            isLoading ? (
+              <Loading />
+            ) : (
+              <H2HSelectionPage
+                group={ro16Arr[2]}
+              />
+            )
           }
         />
         <Route
           path="/ro16/game-52"
           element={
-            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[3]} />
+            isLoading ? (
+              <Loading />
+            ) : (
+              <H2HSelectionPage
+                group={ro16Arr[3]}
+              />
+            )
           }
         />
         <Route
           path="/ro16/game-53"
           element={
-            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[4]} />
+            isLoading ? (
+              <Loading />
+            ) : (
+              <H2HSelectionPage
+                group={ro16Arr[4]}
+              />
+            )
           }
         />
         <Route
           path="/ro16/game-55"
           element={
-            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[5]} />
+            isLoading ? (
+              <Loading />
+            ) : (
+              <H2HSelectionPage
+                group={ro16Arr[5]}
+              />
+            )
           }
         />
         <Route
           path="/ro16/game-54"
           element={
-            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[6]} />
+            isLoading ? (
+              <Loading />
+            ) : (
+              <H2HSelectionPage
+                group={ro16Arr[6]}
+              />
+            )
           }
         />
         <Route
           path="/ro16/game-56"
           element={
-            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[7]} />
+            isLoading ? (
+              <Loading />
+            ) : (
+              <H2HSelectionPage
+                group={ro16Arr[7]}
+              />
+            )
           }
         />
         <Route
