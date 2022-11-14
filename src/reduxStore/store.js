@@ -86,7 +86,7 @@ const authInitialState = {
     g: false,
     h: false,
   },
-  isGroupStageComplete: true
+  isGroupStageComplete: true,
 };
 
 const authenticationSlice = createSlice({
@@ -139,6 +139,8 @@ const bracketInitialState = {
     [-1],
   ],
   ro16Arr: [],
+  ro16Winners: [],
+  quarterFinalsArr: [],
 };
 
 const bracketSlice = createSlice({
@@ -171,7 +173,19 @@ const bracketSlice = createSlice({
         [currGroups[16], currGroups[21], 53],
         [currGroups[20], currGroups[17], 55],
         [currGroups[24], currGroups[29], 54],
-        [currGroups[28], currGroups[25], 56]
+        [currGroups[28], currGroups[25], 56],
+      ];
+    },
+    setRo16Winners(currentState, action) {
+      currentState.ro16Winners = action.payload;
+    },
+    setQuarterFinalsArr(currentState, action) {
+      let ro16Winners = action.payload;
+      currentState.quarterFinalsArr = [
+        [ro16Winners[0], ro16Winners[2], 57],
+        [ro16Winners[1], ro16Winners[3], 59],
+        [ro16Winners[4], ro16Winners[6], 58],
+        [ro16Winners[5], ro16Winners[7], 60],
       ];
     },
   },
