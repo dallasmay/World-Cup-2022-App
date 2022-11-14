@@ -32,6 +32,7 @@ const HeadToHeadCard = ({ game, countries }) => {
             if (!isGroupStageComplete) {
               return (
                 <LockedH2HCountryCard
+                  key={country.fifa_rank}
                   whiteText={"Group " + country.group_letter.toUpperCase()}
                   greyText={country.position === 1 ? "Winner" : "Runner up"}
                   position={
@@ -45,6 +46,7 @@ const HeadToHeadCard = ({ game, countries }) => {
             } else {
               return (
                 <H2HPageCountryCard
+                  key={country.fifa_rank}
                   countryName={country.name}
                   rank={country.fifa_rank}
                   abbr={country.abbr}
