@@ -16,7 +16,7 @@ const Ro16Page = () => {
       <div className={styles["content-container"]}>
         <h1 className={styles.heading1}>Round of 16</h1>
         {ro16Arr.map((match) => {
-          return <HeadToHeadCard game={match[2]} countries={[match[0], match[1]]}/>; 
+          return <HeadToHeadCard key={match[2]} game={match[2]} countries={[match[0], match[1]]}/>; 
         })}
       </div>
     </>

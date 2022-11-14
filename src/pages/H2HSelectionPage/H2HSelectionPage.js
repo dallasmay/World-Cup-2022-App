@@ -1,33 +1,76 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
 import BackToProfile from "../../components/BackToProfile/BackToProfile";
 import StageHeader from "../../components/StageHeader/StageHeader";
 
 import { ReactComponent as Crown } from "../../assets/icons/Crown.svg";
+import { ReactComponent as Loader } from "../../assets/icons/SmallLoadingSoccer.svg";
+
+import { bracketActions } from "../../reduxStore/store";
 
 import styles from "./H2HSelectionPage.module.css";
 
-const H2HSelectionPage = ({ group }) => {
-  const [isLeftActive, setIsLeftActive] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+const URL = process.env.REACT_APP_SERVER_URL;
 
+const H2HSelectionPage = ({ group }) => {
+  const ro16Winners = useSelector((state) => state.bracket.ro16Winners);
+
+  const [winner, setWinner] = useState(ro16Winners.find((ele) => {
+    return ele.name === group[0].name || ele.name === group[1].name
+  }))
+  
+  const [isLeftActive, setIsLeftActive] = useState(winner?.name === group[0].name ? true : winner?.name === group[1].name ? false : null);
+  const [isLoading, setIsLoading] = useState(false);
+  const userId = useSelector((state) => state.auth.userId);
+  const dispatch = useDispatch();
+  
   const toggleActiveLeft = () => {
-    setIsLeftActive((prevState) => {
-      if (prevState === null) {
-        return true
-      } else if (prevState === false){
-        return true
-      }
-    });
+    if (isLeftActive === null || isLeftActive === false) {
+      setIsLoading(true);
+      setIsLeftActive(true);
+      let body = {
+        userId,
+        winner: group[0],
+        gameNum: group[2]
+      };
+      axios
+        .post(`${URL}/bracket/ro16`, body)
+        .then((res) => {
+          setIsLoading(false);
+          console.log(res.data);
+          dispatch(bracketActions.setQuarterFinalsArr(res.data[3].rows))
+          dispatch(bracketActions.setRo16Winners(res.data[3].rows));
+        })
+        .catch((err) => {
+          alert("There was a server error");
+          console.log(err);
+        });
+    }
   };
   const toggleActiveRight = () => {
-    setIsLeftActive((prevState) => {
-      if (prevState === null) {
-        return false;
-      } else if (prevState === true){
-        return false;
-      }
-    });
+    if (isLeftActive === null || isLeftActive === true) {
+        setIsLoading(true);
+        setIsLeftActive(false);
+        let body = {
+          userId,
+          winner: group[1],
+          gameNum: group[2],
+        };
+        axios
+          .post(`${URL}/bracket/ro16`, body)
+          .then((res) => {
+            setIsLoading(false);
+            console.log(res.data);
+            dispatch(bracketActions.setQuarterFinalsArr(res.data[3].rows));
+            dispatch(bracketActions.setRo16Winners(res.data[3].rows));
+          })
+          .catch((err) => {
+            alert("There was a server error");
+            console.log(err);
+        });
+    }
   };
 
   return (
@@ -38,6 +81,9 @@ const H2HSelectionPage = ({ group }) => {
         <p className={styles["game-info"]}>Game {group[2]}</p>
         <p className={styles["game-info"]}>Dec 4</p>
         <p className={styles["game-info"]}>11:00AM MDT</p>
+        {isLoading && <div className={styles["loader-container"]}>
+          <Loader className={styles.loader} />
+        </div>}
         <div className={styles["crown-container"]}>
           <Crown
             className={styles.crown}
