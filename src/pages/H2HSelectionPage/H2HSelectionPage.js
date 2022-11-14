@@ -8,7 +8,7 @@ import StageHeader from "../../components/StageHeader/StageHeader";
 import { ReactComponent as Crown } from "../../assets/icons/Crown.svg";
 import { ReactComponent as Loader } from "../../assets/icons/SmallLoadingSoccer.svg";
 
-import { bracketActions } from "../../reduxStore/store";
+import { bracketActions, authActions } from "../../reduxStore/store";
 
 import styles from "./H2HSelectionPage.module.css";
 
@@ -42,6 +42,9 @@ const H2HSelectionPage = ({ group }) => {
           console.log(res.data);
           dispatch(bracketActions.setQuarterFinalsArr(res.data[3].rows))
           dispatch(bracketActions.setRo16Winners(res.data[3].rows));
+          if((res.data[3].rows).length === 8) {
+            dispatch(authActions.setIsQuarterFinalsComplete(true));
+          }
         })
         .catch((err) => {
           alert("There was a server error");
@@ -65,6 +68,9 @@ const H2HSelectionPage = ({ group }) => {
             console.log(res.data);
             dispatch(bracketActions.setQuarterFinalsArr(res.data[3].rows));
             dispatch(bracketActions.setRo16Winners(res.data[3].rows));
+            if (res.data[3].rows.length === 8) {
+              dispatch(authActions.setIsQuarterFinalsComplete(true));
+            }
           })
           .catch((err) => {
             alert("There was a server error");

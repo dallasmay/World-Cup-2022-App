@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
-import { bracketActions } from "../../reduxStore/store";
+import { bracketActions, authActions } from "../../reduxStore/store";
 
 import GroupSortingContainer from "../../components/groupSelection/GroupSortingContainer/GroupSortingContainer";
 import BackToProfile from "../../components/BackToProfile/BackToProfile";
@@ -34,6 +34,9 @@ const GroupSelectionPage = ({ group }) => {
       dispatch(bracketActions.setGroupsArr(res.data[3].rows))
       dispatch(bracketActions.setRo16Arr(res.data[3].rows))
       dispatch(bracketActions.setRo16Winners(res.data[4].rows));
+      if ((res.data[4].rows).length < 8) {
+        dispatch(authActions.setIsQuarterFinalsComplete(false));
+      }
     });
   }
 

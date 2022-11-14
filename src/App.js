@@ -109,6 +109,9 @@ function App() {
             dispatch(bracketActions.setRo16Arr(res.data[0].rows));
             dispatch(bracketActions.setRo16Winners(res.data[1].rows));
             dispatch(bracketActions.setQuarterFinalsArr(res.data[1].rows));
+            if ((res.data[1].rows).length === 8) {
+              dispatch(authActions.setIsQuarterFinalsComplete(true))
+            } 
             dispatch(authActions.setIsLoading(false));
             console.log(res.data)
           });
