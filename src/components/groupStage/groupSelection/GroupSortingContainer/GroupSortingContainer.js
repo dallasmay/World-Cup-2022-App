@@ -17,7 +17,7 @@ import {
 } from "@dnd-kit/sortable";
 import { restrictToVerticalAxis, restrictToWindowEdges, restrictToParentElement } from "@dnd-kit/modifiers";
 
-import CountryCard from "../../groupStage/groupSelection/CountryCard/CountryCard";
+import CountryCard from "../../../groupStage/groupSelection/CountryCard/CountryCard";
 
 import styles from "./GroupSortingContainer.module.css";
 

@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { bracketActions, authActions } from "../../../reduxStore/store";
 
-import GroupSortingContainer from "../../../components/groupSelection/GroupSortingContainer/GroupSortingContainer";
+import GroupSortingContainer from "../../../components/groupStage/groupSelection/GroupSortingContainer/GroupSortingContainer";
 import BackToProfile from "../../../components/BackToProfile/BackToProfile";
 import StageHeader from "../../../components/StageHeader/StageHeader";
 import GroupNavigationbar from "../../../components/groupStage/GroupNavigationBar/GroupNavigationBar";

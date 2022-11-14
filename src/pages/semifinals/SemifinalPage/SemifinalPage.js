@@ -1,5 +1,5 @@
-import BackToProfile from "../../components/BackToProfile/BackToProfile";
-import BracketNav from "../../components/BracketNav/BracketNav";
+import BackToProfile from "../../../components/BackToProfile/BackToProfile";
+import BracketNav from "../../../components/BracketNav/BracketNav";
 
 import styles from "./SemifinalPage.module.css";
 

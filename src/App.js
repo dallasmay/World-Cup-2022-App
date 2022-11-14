@@ -17,9 +17,10 @@ import GroupStagePage from "./pages/groupStage/GroupStagePage/GroupStagePage";
 import GroupSelectionPage from "./pages/groupStage/GroupSelectionPage/GroupSelectionPage";
 import Ro16Page from "./pages/ro16/Ro16Page/Ro16Page";
 import QuarterFinalPage from "./pages/quarterfinals/QuarterFinalPage/QuarterFinalPage";
-import SemifinalPage from "./pages/SemifinalPage/SemifinalPage";
-import FinalsPage from "./pages/FinalsPage/FinalsPage";
+import SemifinalPage from "./pages/semifinals/SemifinalPage/SemifinalPage";
+import FinalsPage from "./pages/finals/FinalsPage/FinalsPage";
 import H2HSelectionPage from "./pages/ro16/H2HSelectionPage/H2HSelectionPage";
+import QfSelectionPage from "./pages/quarterfinals/QfSelectionPage/QfSelectionPage";
 
 import Loading from "./components/Loading/Loading";
 import Header from "./components/Header/Header";
@@ -344,7 +345,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : isRo16Complete ? (
-              <H2HSelectionPage group={quarterFinalsArr[0]} />
+              <QfSelectionPage group={quarterFinalsArr[0]} />
             ) : (
               <Navigate to="/quarterfinals" />
             )
@@ -356,7 +357,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : isRo16Complete ? (
-              <H2HSelectionPage group={quarterFinalsArr[1]} />
+              <QfSelectionPage group={quarterFinalsArr[1]} />
             ) : (
               <Navigate to="/quarterfinals" />
             )
@@ -368,7 +369,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : isRo16Complete ? (
-              <H2HSelectionPage group={quarterFinalsArr[2]} />
+              <QfSelectionPage group={quarterFinalsArr[2]} />
             ) : (
               <Navigate to="/quarterfinals" />
             )
@@ -380,7 +381,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : isRo16Complete ? (
-              <H2HSelectionPage group={quarterFinalsArr[3]} />
+              <QfSelectionPage group={quarterFinalsArr[3]} />
             ) : (
               <Navigate to="/quarterfinals" />
             )
