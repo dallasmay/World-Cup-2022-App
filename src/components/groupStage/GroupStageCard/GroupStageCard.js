@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import GroupStagePageCountryCard from "../GroupStagePageCountryCard/GroupStagePageCountryCard";
 
-import { ReactComponent as LinkToGroupArrow } from "../../assets/icons/LinkToGroupArrow.svg";
+import { ReactComponent as LinkToGroupArrow } from "../../../assets/icons/LinkToGroupArrow.svg";
 
 import styles from "./GroupStageCard.module.css";
 

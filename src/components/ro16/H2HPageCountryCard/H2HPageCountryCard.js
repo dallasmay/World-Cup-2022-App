@@ -1,4 +1,4 @@
-import { ReactComponent as Crown } from "../../assets/icons/SmallCrown.svg";
+import { ReactComponent as Crown } from "../../../assets/icons/SmallCrown.svg";
 
 import styles from "./H2HPageCountryCard.module.css";
 

@@ -2,13 +2,13 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
-import { bracketActions, authActions } from "../../reduxStore/store";
+import { bracketActions, authActions } from "../../../reduxStore/store";
 
-import GroupSortingContainer from "../../components/groupSelection/GroupSortingContainer/GroupSortingContainer";
-import BackToProfile from "../../components/BackToProfile/BackToProfile";
-import StageHeader from "../../components/StageHeader/StageHeader";
-import GroupNavigationbar from "../../components/GroupNavigationBar/GroupNavigationBar";
-import Loading from "../../components/Loading/Loading";
+import GroupSortingContainer from "../../../components/groupSelection/GroupSortingContainer/GroupSortingContainer";
+import BackToProfile from "../../../components/BackToProfile/BackToProfile";
+import StageHeader from "../../../components/StageHeader/StageHeader";
+import GroupNavigationbar from "../../../components/groupStage/GroupNavigationBar/GroupNavigationBar";
+import Loading from "../../../components/Loading/Loading";
 
 import styles from "./GroupSelectionPage.module.css";
 

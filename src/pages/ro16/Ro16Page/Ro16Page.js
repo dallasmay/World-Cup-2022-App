@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 
-import BackToProfile from "../../components/BackToProfile/BackToProfile";
-import BracketNav from "../../components/BracketNav/BracketNav";
-import HeadToHeadCard from "../../components/HeadToHeadCard/HeadToHeadCard";
+import BackToProfile from "../../../components/BackToProfile/BackToProfile";
+import BracketNav from "../../../components/BracketNav/BracketNav";
+import HeadToHeadCard from "../../../components/ro16/HeadToHeadCard/HeadToHeadCard";
 
 import styles from "./Ro16Page.module.css";
 

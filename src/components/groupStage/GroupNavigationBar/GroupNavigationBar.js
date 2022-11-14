@@ -1,5 +1,5 @@
-import { ReactComponent as PreviousArrow } from "../../assets/icons/PreviousArrow.svg";
-import { ReactComponent as NextArrow } from "../../assets/icons/NextArrow.svg";
+import { ReactComponent as PreviousArrow } from "../../../assets/icons/PreviousArrow.svg";
+import { ReactComponent as NextArrow } from "../../../assets/icons/NextArrow.svg";
 
 import styles from "./GroupNavigationBar.module.css";
 

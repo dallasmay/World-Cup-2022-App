@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 
-import BackToProfile from "../../components/BackToProfile/BackToProfile";
-import BracketNav from "../../components/BracketNav/BracketNav";
-import QfHeadToHeadCard from "../../components/QfHeadToHeadCard/QfHeadToHeadCard";
+import BackToProfile from "../../../components/BackToProfile/BackToProfile";
+import BracketNav from "../../../components/BracketNav/BracketNav";
+import QfHeadToHeadCard from "../../../components/quarterfinals/QfHeadToHeadCard/QfHeadToHeadCard";
 
 import styles from "./QuarterFinalPage.module.css";
 

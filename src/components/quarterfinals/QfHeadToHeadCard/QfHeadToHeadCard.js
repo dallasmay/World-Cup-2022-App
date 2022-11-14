@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import QfLockedH2HCountryCard from "../QfLockedH2HCountryCard/QfLockedH2HCountryCard";
 import QfH2HPageCountryCard from "../QfH2HPageCountryCard/QfH2HPageCountryCard";
 
-import { ReactComponent as Lock } from "../../assets/icons/Lock.svg";
-import { ReactComponent as LinkArrow } from "../../assets/icons/LinkToGroupArrow.svg";
-import { ReactComponent as Pip } from "../../assets/icons/Pip.svg";
+import { ReactComponent as Lock } from "../../../assets/icons/Lock.svg";
+import { ReactComponent as LinkArrow } from "../../../assets/icons/LinkToGroupArrow.svg";
+import { ReactComponent as Pip } from "../../../assets/icons/Pip.svg";
 
 import styles from "./QfHeadToHeadCard.module.css";
 

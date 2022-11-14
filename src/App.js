@@ -13,13 +13,13 @@ import SignupPage from "./pages/SignupPage/SignupPage";
 import PickTeamNamePage from "./pages/PickTeamNamePage/PickTeamNamePage";
 import HomePage from "./pages/HomePage/HomePage";
 import LeaderboardPage from "./pages/LeaderboardPage/LeaderboardPage";
-import GroupStagePage from "./pages/GroupStagePage/GroupStagePage";
-import GroupSelectionPage from "./pages/GroupSelectionPage/GroupSelectionPage";
-import Ro16Page from "./pages/Ro16Page/Ro16Page";
-import QuarterFinalPage from "./pages/QuarterFinalPage/QuarterFinalPage";
+import GroupStagePage from "./pages/groupStage/GroupStagePage/GroupStagePage";
+import GroupSelectionPage from "./pages/groupStage/GroupSelectionPage/GroupSelectionPage";
+import Ro16Page from "./pages/ro16/Ro16Page/Ro16Page";
+import QuarterFinalPage from "./pages/quarterfinals/QuarterFinalPage/QuarterFinalPage";
 import SemifinalPage from "./pages/SemifinalPage/SemifinalPage";
 import FinalsPage from "./pages/FinalsPage/FinalsPage";
-import H2HSelectionPage from "./pages/H2HSelectionPage/H2HSelectionPage";
+import H2HSelectionPage from "./pages/ro16/H2HSelectionPage/H2HSelectionPage";
 
 import Loading from "./components/Loading/Loading";
 import Header from "./components/Header/Header";

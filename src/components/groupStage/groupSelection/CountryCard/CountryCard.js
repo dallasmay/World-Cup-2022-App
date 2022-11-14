@@ -1,7 +1,7 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-import {ReactComponent as Grabber} from "../../../assets/icons/Grabber.svg"
+import {ReactComponent as Grabber} from "../../../../assets/icons/Grabber.svg"
 
 import styles from "./CountryCard.module.css";
 

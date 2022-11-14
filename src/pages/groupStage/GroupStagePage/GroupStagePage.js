@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
-import { bracketActions } from "../../reduxStore/store";
+import { bracketActions } from "../../../reduxStore/store";
 
-import BackToProfile from "../../components/BackToProfile/BackToProfile";
-import BracketNav from "../../components/BracketNav/BracketNav";
-import GroupStageCard from "../../components/GroupStageCard/GroupStageCard";
+import BackToProfile from "../../../components/BackToProfile/BackToProfile";
+import BracketNav from "../../../components/BracketNav/BracketNav";
+import GroupStageCard from "../../../components/groupStage/GroupStageCard/GroupStageCard";
 
 import styles from "./GroupStagePage.module.css";
 

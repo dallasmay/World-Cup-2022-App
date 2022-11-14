@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
-import BackToProfile from "../../components/BackToProfile/BackToProfile";
-import StageHeader from "../../components/StageHeader/StageHeader";
+import BackToProfile from "../../../components/BackToProfile/BackToProfile";
+import StageHeader from "../../../components/StageHeader/StageHeader";
 
-import { ReactComponent as Crown } from "../../assets/icons/Crown.svg";
-import { ReactComponent as Loader } from "../../assets/icons/SmallLoadingSoccer.svg";
+import { ReactComponent as Crown } from "../../../assets/icons/Crown.svg";
+import { ReactComponent as Loader } from "../../../assets/icons/SmallLoadingSoccer.svg";
 
-import { bracketActions, authActions } from "../../reduxStore/store";
+import { bracketActions, authActions } from "../../../reduxStore/store";
 
 import styles from "./H2HSelectionPage.module.css";
 

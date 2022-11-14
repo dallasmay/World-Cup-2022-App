@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 import H2HPageCountryCard from "../H2HPageCountryCard/H2HPageCountryCard";
 import LockedH2HCountryCard from "../LockedH2HCountryCard/LockedH2HCountryCard";
-import { ReactComponent as Lock } from "../../assets/icons/Lock.svg";
-import { ReactComponent as LinkArrow } from "../../assets/icons/LinkToGroupArrow.svg";
-import { ReactComponent as Pip } from "../../assets/icons/Pip.svg";
+import { ReactComponent as Lock } from "../../../assets/icons/Lock.svg";
+import { ReactComponent as LinkArrow } from "../../../assets/icons/LinkToGroupArrow.svg";
+import { ReactComponent as Pip } from "../../../assets/icons/Pip.svg";
 
 import styles from "./HeadToHeadCard.module.css";
 
