@@ -1,3 +1,5 @@
+import { ReactComponent as Crown } from "../../assets/icons/SmallCrown.svg";
+
 import styles from "./H2HPageCountryCard.module.css";
 
 const H2HPageCountryCard = ({
@@ -7,6 +9,7 @@ const H2HPageCountryCard = ({
   position,
   group,
   positionNumber,
+  isWinner
 }) => {
   return (
     <div className={styles["country-card-flex-container"]}>
@@ -50,14 +53,23 @@ const H2HPageCountryCard = ({
       <div className={styles["country-card"]}>
         <span
           className={styles["flag-circle"]}
-          style={{
-            backgroundImage: `url(/1x1Flags/Country=${abbr}.png)`,
-          }}
+          style={
+            isWinner || isWinner === undefined
+              ? {
+                  backgroundImage: `url(/1x1Flags/Country=${abbr}.png)`,
+                }
+              : {
+                  backgroundImage: `url(/1x1Flags/Country=${abbr}.png)`,
+                  opacity: "0.5",
+                }
+
+          }
         ></span>
-        <div className={styles["country-text-container"]}>
+        <div className={styles["country-text-container"]} style={isWinner || isWinner === undefined ? {} : {opacity: "0.5"}}>
           <p className={styles["country-name"]}>{countryName}</p>
           <p className={styles["country-rank"]}>({rank})</p>
         </div>
+        {isWinner ? <Crown className={styles.crown}/> : !isWinner ? "" : ""}
       </div>
     </div>
   );

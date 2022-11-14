@@ -55,3 +55,7 @@
   font-size: 1.2rem;
   line-height: 1.44rem;
 }
+.crown {
+  position: absolute;
+  right: 0;
+}

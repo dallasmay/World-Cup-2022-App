@@ -1,3 +1,4 @@
+
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -8,10 +9,11 @@ import { ReactComponent as LinkArrow } from "../../assets/icons/LinkToGroupArrow
 
 import styles from "./HeadToHeadCard.module.css";
 
-const HeadToHeadCard = ({ game, countries }) => {
+const HeadToHeadCard = ({ game, countries, hasWinner }) => {
   const isGroupStageComplete = useSelector(
     (state) => state.auth.isGroupStageComplete
   );
+  const ro16Winners = useSelector((state) => state.bracket.ro16Winners);
 
   return (
     <Link to={`/ro16/game-${game}`}>
@@ -44,6 +46,9 @@ const HeadToHeadCard = ({ game, countries }) => {
                 />
               );
             } else {
+              let winner = ro16Winners.find((ele) => {
+                return ele.name === country.name
+              })
               return (
                 <H2HPageCountryCard
                   key={country.fifa_rank}
@@ -56,6 +61,7 @@ const HeadToHeadCard = ({ game, countries }) => {
                   }
                   group={country.group_letter}
                   positionNumber={country.position}
+                  isWinner={winner?.name === undefined && hasWinner ? false : winner?.name === country.name ? true : undefined}
                 />
               );
             }
