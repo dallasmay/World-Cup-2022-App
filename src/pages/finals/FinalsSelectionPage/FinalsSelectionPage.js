@@ -105,7 +105,7 @@ const FinalsSelectionPage = ({ group }) => {
   return (
     <>
       <BackToProfile path={"/finals"} backTo={"Finals"} />
-      <StageHeader stage={"Finals"} otherInfo={"Game 1 of 2"} />
+      <StageHeader stage={"Finals"} otherInfo={`Game ${group[2] === 64 ? "1" : "2"} of 2`} />
       <div className={styles["content-container"]}>
         <p className={styles["game-info"]}>{group[2] === 64 ? "Finals" : group[2] === 63 ? "Third Place" : ""}</p>
         <p className={styles["game-info"]}>Dec 4</p>
