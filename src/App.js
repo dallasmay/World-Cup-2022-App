@@ -330,49 +330,81 @@ function App() {
         <Route
           path="/ro16/game-49"
           element={
-            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[0]} />
+            isLoading ? (
+              <Loading />
+            ) : (
+              <H2HSelectionPage group={ro16Arr[0]} key={9} />
+            )
           }
         />
         <Route
           path="/ro16/game-51"
           element={
-            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[1]} />
+            isLoading ? (
+              <Loading />
+            ) : (
+              <H2HSelectionPage group={ro16Arr[1]} key={10} />
+            )
           }
         />
         <Route
           path="/ro16/game-50"
           element={
-            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[2]} />
+            isLoading ? (
+              <Loading />
+            ) : (
+              <H2HSelectionPage group={ro16Arr[2]} key={11} />
+            )
           }
         />
         <Route
           path="/ro16/game-52"
           element={
-            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[3]} />
+            isLoading ? (
+              <Loading />
+            ) : (
+              <H2HSelectionPage group={ro16Arr[3]} key={12} />
+            )
           }
         />
         <Route
           path="/ro16/game-53"
           element={
-            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[4]} />
+            isLoading ? (
+              <Loading />
+            ) : (
+              <H2HSelectionPage group={ro16Arr[4]} key={13} />
+            )
           }
         />
         <Route
           path="/ro16/game-55"
           element={
-            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[5]} />
+            isLoading ? (
+              <Loading />
+            ) : (
+              <H2HSelectionPage group={ro16Arr[5]} key={14} />
+            )
           }
         />
         <Route
           path="/ro16/game-54"
           element={
-            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[6]} />
+            isLoading ? (
+              <Loading />
+            ) : (
+              <H2HSelectionPage group={ro16Arr[6]} key={15} />
+            )
           }
         />
         <Route
           path="/ro16/game-56"
           element={
-            isLoading ? <Loading /> : <H2HSelectionPage group={ro16Arr[7]} />
+            isLoading ? (
+              <Loading />
+            ) : (
+              <H2HSelectionPage group={ro16Arr[7]} key={16} />
+            )
           }
         />
         <Route
@@ -385,7 +417,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : isRo16Complete ? (
-              <QfSelectionPage group={quarterFinalsArr[0]} />
+              <QfSelectionPage group={quarterFinalsArr[0]} key={17} />
             ) : (
               <Navigate to="/quarterfinals" />
             )
@@ -397,7 +429,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : isRo16Complete ? (
-              <QfSelectionPage group={quarterFinalsArr[1]} />
+              <QfSelectionPage group={quarterFinalsArr[1]} key={18} />
             ) : (
               <Navigate to="/quarterfinals" />
             )
@@ -409,7 +441,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : isRo16Complete ? (
-              <QfSelectionPage group={quarterFinalsArr[2]} />
+              <QfSelectionPage group={quarterFinalsArr[2]} key={19} />
             ) : (
               <Navigate to="/quarterfinals" />
             )
@@ -421,7 +453,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : isRo16Complete ? (
-              <QfSelectionPage group={quarterFinalsArr[3]} />
+              <QfSelectionPage group={quarterFinalsArr[3]} key={20} />
             ) : (
               <Navigate to="/quarterfinals" />
             )

@@ -1,0 +1,30 @@
+.group-navigation-bar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.6rem 1.6rem;
+  background-color: var(--black);
+}
+.previous-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6.4rem;
+  height: 6.4rem;
+  border-radius: 50%;
+  background-color: var(--darkgrey);
+  border: none;
+}
+.next-btn {
+  font-size: 2rem;
+  line-height: 2.4rem;
+  background-color: var(--white);
+  padding: 2rem 3.3rem;
+  border-radius: 9rem;
+  border: none;
+}

@@ -4,6 +4,7 @@ import axios from "axios";
 
 import BackToProfile from "../../../components/BackToProfile/BackToProfile";
 import StageHeader from "../../../components/StageHeader/StageHeader";
+import H2HNavBar from "../../../components/H2HNavBar/H2HNavBar";
 
 import { ReactComponent as Crown } from "../../../assets/icons/Crown.svg";
 import { ReactComponent as Loader } from "../../../assets/icons/SmallLoadingSoccer.svg";
@@ -174,6 +175,7 @@ const H2HSelectionPage = ({ group }) => {
         </div>
         <p className={styles["select-winner"]}>Select the winner</p>
       </div>
+      <H2HNavBar round={"ro16"} gameNum={group[2]}/>
     </>
   );
 };
