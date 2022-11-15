@@ -55,6 +55,9 @@ const SemiSelectionPage = ({ group }) => {
             dispatch(bracketActions.setFinalsArr(res.data[3].rows))
             dispatch(bracketActions.setConsolationArr(res.data[3].rows));
             dispatch(bracketActions.setSemiFinalsWinners(res.data[3].rows));
+            dispatch(bracketActions.setFinalsWinner([]));
+            dispatch(bracketActions.setConsolationWinner([]));
+            //Status Change
             if (res.data[3].rows.length === 4) {
                 dispatch(authActions.setIsSemiFinalsComplete(true));
             }
@@ -83,6 +86,9 @@ const SemiSelectionPage = ({ group }) => {
             dispatch(bracketActions.setFinalsArr(res.data[3].rows));
             dispatch(bracketActions.setConsolationArr(res.data[3].rows));
             dispatch(bracketActions.setSemiFinalsWinners(res.data[3].rows));
+            dispatch(bracketActions.setFinalsWinner([]));
+            dispatch(bracketActions.setConsolationWinner([]));
+            //Status Change
             if (res.data[3].rows.length === 4) {
               dispatch(authActions.setIsSemiFinalsComplete(true));
             }

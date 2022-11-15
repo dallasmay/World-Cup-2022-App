@@ -284,15 +284,7 @@ module.exports = {
           INNER JOIN countries AS c
           ON b.country_id = c.id
           WHERE b.user_id = '${userId}' AND round = 'qua'
-          ORDER BY game_number ASC;
-          
-          SELECT group_letter, position, name, abbr, fifa_rank, c.id, round, game_number 
-          FROM brackets AS b
-          INNER JOIN countries AS c
-          ON b.country_id = c.id
-          WHERE (b.user_id = '${userId}' AND round = 'sem')
-          OR (b.user_id = '${userId}' AND round = 'cons')
-          ORDER BY round DESC, game_number ASC;`
+          ORDER BY game_number ASC;`
       )
       .then((dbRes) => {
         res.status(200).send(dbRes[1]);

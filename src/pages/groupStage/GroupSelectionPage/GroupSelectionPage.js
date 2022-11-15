@@ -35,9 +35,9 @@ const GroupSelectionPage = ({ group }) => {
       dispatch(bracketActions.setRo16Arr(res.data[3].rows))
       dispatch(bracketActions.setRo16Winners(res.data[4].rows));
       dispatch(bracketActions.setQuarterFinalsWinners(res.data[5].rows));
-      dispatch(bracketActions.setFinalsArr(res.data[6].rows));
-      dispatch(bracketActions.setConsolationArr(res.data[6].rows));
-      dispatch(bracketActions.setSemiFinalsWinners(res.data[6].rows));
+      dispatch(bracketActions.setFinalsArr([]));
+      dispatch(bracketActions.setConsolationArr([]));
+      dispatch(bracketActions.setSemiFinalsWinners([]));
       console.log(res.data)
       //Status Changes
       dispatch(authActions.setIsRo16Complete(false));
