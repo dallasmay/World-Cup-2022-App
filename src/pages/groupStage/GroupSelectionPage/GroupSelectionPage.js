@@ -54,7 +54,7 @@ const GroupSelectionPage = ({ group }) => {
       <div className={styles["content-container"]}>
         <h1 className={styles.heading1}>Group {group[0].group_letter.toUpperCase()}</h1>
         <GroupSortingContainer countriesArr={countriesArr} setCountriesArr={setCountriesArr} setHasEdited={setHasEdited} group={group}/>
-        <GroupNavigationbar hasEdited={hasEdited} saveChangeHandler={saveChangeHandler}/>
+        <GroupNavigationbar hasEdited={hasEdited} saveChangeHandler={saveChangeHandler} groupLetter={group[0].group_letter}/>
       </div>
     </>
   );

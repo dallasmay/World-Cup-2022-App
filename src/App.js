@@ -229,7 +229,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : (
-              <GroupSelectionPage group={groupsArr[0]} />
+              <GroupSelectionPage group={groupsArr[0]} key={1} />
             )
           }
         />
@@ -239,7 +239,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : (
-              <GroupSelectionPage group={groupsArr[1]} />
+              <GroupSelectionPage group={groupsArr[1]} key={2} />
             )
           }
         />
@@ -249,7 +249,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : (
-              <GroupSelectionPage group={groupsArr[2]} />
+              <GroupSelectionPage group={groupsArr[2]} key={3} />
             )
           }
         />
@@ -259,7 +259,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : (
-              <GroupSelectionPage group={groupsArr[3]} />
+              <GroupSelectionPage group={groupsArr[3]} key={4} />
             )
           }
         />
@@ -269,7 +269,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : (
-              <GroupSelectionPage group={groupsArr[4]} />
+              <GroupSelectionPage group={groupsArr[4]} key={5} />
             )
           }
         />
@@ -279,7 +279,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : (
-              <GroupSelectionPage group={groupsArr[5]} />
+              <GroupSelectionPage group={groupsArr[5]} key={6} />
             )
           }
         />
@@ -289,7 +289,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : (
-              <GroupSelectionPage group={groupsArr[6]} />
+              <GroupSelectionPage group={groupsArr[6]} key={7} />
             )
           }
         />
@@ -299,7 +299,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : (
-              <GroupSelectionPage group={groupsArr[7]} />
+              <GroupSelectionPage group={groupsArr[7]} key={8} />
             )
           }
         />
