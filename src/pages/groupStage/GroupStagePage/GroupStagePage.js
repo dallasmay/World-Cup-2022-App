@@ -7,28 +7,23 @@ import { bracketActions } from "../../../reduxStore/store";
 import BackToProfile from "../../../components/BackToProfile/BackToProfile";
 import BracketNav from "../../../components/BracketNav/BracketNav";
 import GroupStageCard from "../../../components/groupStage/GroupStageCard/GroupStageCard";
+import RoundInfoCard from "../../../components/RoundInfoCard/RoundInfoCard";
 
 import styles from "./GroupStagePage.module.css";
 
 const GroupStagePage = () => {
   const groupsArr = useSelector((state) => state.bracket.groupsArr);
+  const isGroupStageComplete = useSelector(
+    (state) => state.auth.isGroupStageComplete
+  );
 
   return (
     <>
-      <BackToProfile path={"/home"} backTo={"profile"}/>
+      <BackToProfile path={"/home"} backTo={"profile"} />
       <BracketNav />
       <div className={styles["content-container"]}>
         <h1 className={styles.heading1}>Group Stage</h1>
-        <div className={styles["build-bracket-info-card"]}>
-          <p className={styles["build-bracket-info-card-text"]}>
-            Make Group Stage predictions to gain access to future rounds
-          </p>
-          <div className={styles["build-bracket-btn-container"]}>
-            <button className={styles["build-bracket-btn"]}>
-              Build your bracket
-            </button>
-          </div>
-        </div>
+        {!isGroupStageComplete && <RoundInfoCard round={"Group Stage"} hasGreyText={true} btnPath={"/group-stage/group-a"}/>}
         {groupsArr.map((element) => {
           return (
             <GroupStageCard
