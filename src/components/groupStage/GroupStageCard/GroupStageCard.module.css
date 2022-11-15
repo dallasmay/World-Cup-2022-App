@@ -2,6 +2,7 @@
   margin: 0 0 3.6rem 0;
 }
 .header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,4 +27,8 @@
 .country-card-container {
   border-radius: 1.4rem;
   padding: 0.4rem 0.4rem 0.4rem 0;
+}
+.pip {
+  position: absolute;
+  right: 3.5rem;
 }

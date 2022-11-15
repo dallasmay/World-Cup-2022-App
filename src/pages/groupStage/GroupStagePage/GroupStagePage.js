@@ -16,7 +16,9 @@ const GroupStagePage = () => {
   const isGroupStageComplete = useSelector(
     (state) => state.auth.isGroupStageComplete
   );
-
+  const groupStageProgress = useSelector(
+    (state) => state.auth.groupStageProgress
+  );
   return (
     <>
       <BackToProfile path={"/home"} backTo={"profile"} />
@@ -24,12 +26,13 @@ const GroupStagePage = () => {
       <div className={styles["content-container"]}>
         <h1 className={styles.heading1}>Group Stage</h1>
         {!isGroupStageComplete && <RoundInfoCard round={"Group Stage"} hasGreyText={true} btnPath={"/group-stage/group-a"}/>}
-        {groupsArr.map((element) => {
+        {groupsArr.map((element, index) => {
           return (
             <GroupStageCard
               key={element[0].group_letter}
               groupLetter={element[0].group_letter}
               country={element}
+              hasSeen={groupStageProgress[index]}
             />
           );
         })}

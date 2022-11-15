@@ -170,6 +170,19 @@ module.exports = {
         console.log(err);
       });
   },
+  setGroupAsSeen: (req, res) => {
+    const { userId, groupLetter } = req.body;
+    const group = `${groupLetter}_is_seen`;
+
+    sequelize.query(
+      `UPDATE users
+        SET ${group} = true
+        WHERE id = '${userId}'
+        RETURNING a_is_seen, b_is_seen, c_is_seen, d_is_seen, e_is_seen, f_is_seen, g_is_seen, h_is_seen;`
+    ).then((dbRes) => {
+      res.status(200).send(dbRes[0])
+    }).catch((err) => console.log(err));
+  },
   getGroupStageChoices: (req, res) => {
     const { userId } = req.body;
 
@@ -419,5 +432,5 @@ module.exports = {
         res.status(200).send(dbRes[1]);
       })
       .catch((err) => console.log(err));
-  }
+  },
 };
