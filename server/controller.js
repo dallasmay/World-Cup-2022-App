@@ -202,7 +202,15 @@ module.exports = {
           INNER JOIN countries AS c
           ON b.country_id = c.id
           WHERE b.user_id = '${userId}' AND round = 'qua'
-          ORDER BY game_number ASC;`
+          ORDER BY game_number ASC;
+          
+          SELECT group_letter, position, name, abbr, fifa_rank, c.id, round, game_number 
+          FROM brackets AS b
+          INNER JOIN countries AS c
+          ON b.country_id = c.id
+          WHERE (b.user_id = '${userId}' AND round = 'sem')
+          OR (b.user_id = '${userId}' AND round = 'cons')
+          ORDER BY round DESC, game_number ASC;`
       )
       .then((dbRes) => {
         res.status(200).send(dbRes[1]);
@@ -354,4 +362,38 @@ module.exports = {
       })
       .catch((err) => console.log(err));
   },
+  setSemifinalsChoice: (req, res) => {
+    const { userId, winner, gameNum, runnerUp } = req.body;
+    const { group_letter, id, position } = winner;
+    const runnerUpId = runnerUp.id;
+    const runnerUpGroupLetter = runnerUp.group_letter;
+    const runnerUpPosition = runnerUp.position;
+
+    sequelize
+      .query(
+        `DELETE
+       FROM brackets
+       WHERE user_id = '${userId}' AND game_number = '${gameNum}';
+       
+       DELETE
+       FROM brackets
+       WHERE user_id = '${userId}' AND game_number IN (63, 64);
+       
+       INSERT INTO brackets (user_id, round, group_letter, game_number, country_id, position)
+      VALUES ('${userId}', 'sem', '${group_letter}', '${gameNum}', '${id}', '${position}'),
+      ('${userId}', 'cons', '${runnerUpGroupLetter}', '${gameNum}', '${runnerUpId}', '${runnerUpPosition}');
+      
+      SELECT group_letter, position, name, abbr, fifa_rank, c.id, round, game_number 
+          FROM brackets AS b
+          INNER JOIN countries AS c
+          ON b.country_id = c.id
+          WHERE (b.user_id = '${userId}' AND round = 'sem')
+          OR (b.user_id = '${userId}' AND round = 'cons')
+          ORDER BY round DESC, game_number ASC;`
+      )
+      .then((dbRes) => {
+        res.status(200).send(dbRes[1]);
+      })
+      .catch((err) => console.log(err));
+  }
 };

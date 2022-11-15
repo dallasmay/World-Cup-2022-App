@@ -1,0 +1,130 @@
+.content-container {
+  position: relative;
+  padding: 0 1.6rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.game-info {
+  font-size: 2rem;
+  line-height: 2.4rem;
+  text-align: center;
+}
+.game-info:first-child {
+  margin: 2.4rem 0 0 0;
+}
+.crown-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  justify-items: center;
+  margin: 3.925rem 0 0 0;
+}
+.crown {
+  visibility: hidden;
+}
+.cards-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  /* margin: 0 0 9.7rem 0; */
+}
+.country-card {
+  border: none;
+  border-radius: 2rem;
+  padding: 0;
+  text-align: unset;
+  color: var(--white);
+  background-color: var(--black);
+  overflow: hidden;
+  /* width: 16.7rem; */
+}
+.country-card:disabled {
+  cursor: not-allowed;
+}
+.country-card2 {
+  border: none;
+  border-radius: 2rem;
+  padding: 0;
+  text-align: unset;
+  color: var(--white);
+  background-color: var(--black);
+  overflow: hidden;
+  /* width: 16.7rem; */
+}
+.country-card2:disabled {
+  cursor: not-allowed;
+}
+.rank {
+  font-size: 2rem;
+  line-height: 2.4rem;
+  margin: 0 0 3.2rem 1.2rem;
+}
+.rank2 {
+  font-size: 2rem;
+  line-height: 2.4rem;
+  text-align: right;
+  margin: 0 1.2rem 3.2rem 0;
+}
+/* .flag-span {
+  display: inline-block;
+  height: 16.7rem;
+  width: 100%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+} */
+.flag-img {
+  width: 100%;
+  margin: 0 0 1.2rem 0;
+  display: block;
+}
+.country-text-container {
+  margin: 0 0 0 1.2rem;
+}
+.team-name {
+  color: var(--lightgrey);
+  font-size: 1.6rem;
+  line-height: 1.92rem;
+  margin: 0 0 -1rem 0;
+}
+.abbr {
+  font-size: 6.4rem;
+  line-height: 7.68rem;
+}
+.country-text-container2 {
+  text-align: right;
+  margin: 0 1.2rem 0 0;
+}
+.team-name2 {
+  color: var(--lightgrey);
+  font-size: 1.6rem;
+  line-height: 1.92rem;
+  margin: 0 0 -1rem 0;
+}
+.abbr2 {
+  font-size: 6.4rem;
+  line-height: 7.68rem;
+}
+.select-winner {
+  color: var(--lightgrey);
+  font-size: 1.6rem;
+  line-height: 1.92rem;
+  text-align: center;
+  margin: 1.9rem 0 0 0;
+}
+.loader-container {
+  /* position: absolute; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loader {
+  position: absolute;
+  top: 9rem;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

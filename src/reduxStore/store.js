@@ -88,7 +88,8 @@ const authInitialState = {
   },
   isGroupStageComplete: true,
   isRo16Complete: false,
-  isQuarterFinalsComplete: false
+  isQuarterFinalsComplete: false,
+  isSemiFinalsComplete: false
 };
 
 const authenticationSlice = createSlice({
@@ -122,6 +123,9 @@ const authenticationSlice = createSlice({
     setIsQuarterFinalsComplete(currentState, action) {
       currentState.isQuarterFinalsComplete = action.payload;
     },
+    setIsSemiFinalsComplete(currentState, action) {
+      currentState.isSemiFinalsComplete = action.payload;
+    },
     setIsLoading(currentState, action) {
       currentState.isLoading = action.payload;
     },
@@ -151,6 +155,11 @@ const bracketInitialState = {
   quarterFinalsArr: [],
   quarterFinalsWinners: [],
   semiFinalsArr: [],
+  semiFinalsWinners: [],
+  finalsArr: [],
+  finalsWinner: [],
+  consolationArr: [],
+  consolationWinner: [],
 };
 
 const bracketSlice = createSlice({
@@ -202,8 +211,40 @@ const bracketSlice = createSlice({
       currentState.quarterFinalsWinners = action.payload;
     },
     setSemiFinalsArr(currentState, action) {
-      currentState.semiFinalsArr = action.payload;
-    }
+      let qfWinners = action.payload;
+      currentState.semiFinalsArr = [
+        [qfWinners[0], qfWinners[1], 61, [57, 58]],
+        [qfWinners[2], qfWinners[3], 62, [59, 60]],
+      ];
+    },
+    setSemiFinalsWinners(currentState, action) {
+      let mixedArr = action.payload;
+      if (mixedArr.length === 2) {
+        currentState.semiFinalsWinners = [mixedArr[0]]
+      } else if (mixedArr.length === 4) {
+        currentState.semiFinalsWinners = [mixedArr[0], mixedArr[1]]
+      }
+    },
+    setFinalsArr(currentState, action) {
+      let sfWinners = action.payload;
+      if (sfWinners.length === 2) {
+        currentState.finalsArr = [[sfWinners[0], 64, [61, 62]]];
+      } else if (sfWinners.length === 4) {
+        currentState.finalsArr = [[sfWinners[0], sfWinners[1], 64, [61, 62]]];
+      }
+    },
+    setFinalsWinner(currentState, action) {},
+    setConsolationArr(currentState, action) {
+      let sfRunnerUps = action.payload;
+      if (sfRunnerUps.length === 2) {
+        currentState.consolationArr = [[sfRunnerUps[1], 63, [61, 62]]]
+      } else if (sfRunnerUps.length === 4) {
+      currentState.consolationArr = [
+        [sfRunnerUps[2], sfRunnerUps[3], 63, [61, 62]],
+      ];
+      }
+    },
+    setConsolationWinner(currentState, action) {},
   },
 });
 

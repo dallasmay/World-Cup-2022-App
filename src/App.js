@@ -21,6 +21,7 @@ import SemifinalPage from "./pages/semifinals/SemifinalPage/SemifinalPage";
 import FinalsPage from "./pages/finals/FinalsPage/FinalsPage";
 import H2HSelectionPage from "./pages/ro16/H2HSelectionPage/H2HSelectionPage";
 import QfSelectionPage from "./pages/quarterfinals/QfSelectionPage/QfSelectionPage";
+import SemiSelectionPage from "./pages/semifinals/SemiSelectionPage/SemiSelectionPage";
 
 import Loading from "./components/Loading/Loading";
 import Header from "./components/Header/Header";
@@ -62,6 +63,10 @@ function App() {
     (state) => state.bracket.quarterFinalsArr
   );
   const isRo16Complete = useSelector((state) => state.auth.isRo16Complete);
+  const isQuarterFinalsComplete = useSelector(
+    (state) => state.auth.isQuarterFinalsComplete
+  );
+  const semiFinalsArr = useSelector((state) => state.bracket.semiFinalsArr);
 
   useEffect(() => {
     const auth = getAuth();
@@ -108,6 +113,7 @@ function App() {
           dispatch(authActions.setisGroupStageComplete(true));
         }
         axios.post(`${URL}/bracket/group-stage`, { userId }).then((res) => {
+          console.log(res.data);
           dispatch(bracketActions.setBracket(res.data[0]));
           dispatch(bracketActions.setGroupsArr(res.data[0].rows));
           dispatch(bracketActions.setRo16Arr(res.data[0].rows));
@@ -115,11 +121,17 @@ function App() {
           dispatch(bracketActions.setQuarterFinalsArr(res.data[1].rows));
           dispatch(bracketActions.setQuarterFinalsWinners(res.data[2].rows));
           dispatch(bracketActions.setSemiFinalsArr(res.data[2].rows));
+          dispatch(bracketActions.setFinalsArr(res.data[3].rows));
+          dispatch(bracketActions.setConsolationArr(res.data[3].rows));
+          dispatch(bracketActions.setSemiFinalsWinners(res.data[3].rows));
           if (res.data[1].rows.length === 8) {
             dispatch(authActions.setIsRo16Complete(true));
           }
           if ((res.data[2].rows).length === 4) {
             dispatch(authActions.setIsQuarterFinalsComplete(true));
+          } 
+          if ((res.data[3].rows).length === 4) {
+            dispatch(authActions.setIsSemiFinalsComplete(true));
           } 
           dispatch(authActions.setIsLoading(false));
           console.log(res.data);
@@ -395,6 +407,30 @@ function App() {
         <Route
           path="/semifinals"
           element={isLoading ? <Loading /> : <SemifinalPage />}
+        />
+        <Route
+          path="/semifinals/game-61"
+          element={
+            isLoading ? (
+              <Loading />
+            ) : isQuarterFinalsComplete ? (
+              <SemiSelectionPage group={semiFinalsArr[0]} />
+            ) : (
+              <Navigate to="/semifinals" />
+            )
+          }
+        />
+        <Route
+          path="/semifinals/game-62"
+          element={
+            isLoading ? (
+              <Loading />
+            ) : isQuarterFinalsComplete ? (
+              <SemiSelectionPage group={semiFinalsArr[1]} />
+            ) : (
+              <Navigate to="/semifinals" />
+            )
+          }
         />
         <Route
           path="/finals"
