@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+
 import { Link } from "react-router-dom";
 
 import QfLockedH2HCountryCard from "../QfLockedH2HCountryCard/QfLockedH2HCountryCard";
@@ -10,6 +12,9 @@ import { ReactComponent as Pip } from "../../../assets/icons/Pip.svg";
 import styles from "./QfHeadToHeadCard.module.css";
 
 const QfHeadToHeadCard = ({ isStageComplete, hasWinner, match, game, position }) => {
+  const quarterFinalsWinners = useSelector(
+    (state) => state.bracket.quarterFinalsWinners
+  );
   return (
     <Link to={`/quarterfinals/game-${game}`}>
       <div className={styles["head-to-head-card"]}>
@@ -31,7 +36,25 @@ const QfHeadToHeadCard = ({ isStageComplete, hasWinner, match, game, position })
         </div>
         <div className={styles["country-card-container"]}>
           {isStageComplete ? match.map((country, index) => {
-            return <QfH2HPageCountryCard key={country.fifa_rank} countryName={country.name} rank={country.fifa_rank} abbr={country.abbr} position={position[index]}/>
+            let winner = quarterFinalsWinners.find((ele) => {
+              return ele.name === country.name;
+            });
+            return (
+              <QfH2HPageCountryCard
+                key={country.fifa_rank}
+                countryName={country.name}
+                rank={country.fifa_rank}
+                abbr={country.abbr}
+                position={position[index]}
+                isWinner={
+                  winner?.name === undefined && hasWinner
+                    ? false
+                    : winner?.name === country.name
+                    ? true
+                    : undefined
+                }
+              />
+            );
           }) : match.map((ele, index) => {
               return (
                 <QfLockedH2HCountryCard
