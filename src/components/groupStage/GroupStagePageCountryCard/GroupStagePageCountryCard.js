@@ -1,11 +1,14 @@
 import styles from "./GroupStagePageCountryCard.module.css";
 
-const GroupStagePageCountryCard = ({ countryName, rank, abbr }) => {
+const GroupStagePageCountryCard = ({ countryName, rank, abbr, hasSeen, index }) => {
   return (
     <div className={styles["country-card-flex-container"]}>
-      <div className={styles["position-container"]}>
+      {!hasSeen ? <div className={styles["dot-container"]}>
         <span className={styles["black-dot"]}></span>
-      </div>
+      </div> :
+      <div className={styles["position-container"]}>
+        <p className={styles.position}>{index + 1}</p>
+      </div>}
       <div className={styles["country-card"]}>
         <span
           className={styles["flag-circle"]}

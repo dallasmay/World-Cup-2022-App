@@ -5,9 +5,18 @@
 .country-card-flex-container:last-child {
   margin-bottom: 0;
 }
-.position-container {
+.dot-container {
   padding: 1.3rem;
   margin: 0 0.8rem;
+}
+.position-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.2rem;
+  width: 3.2rem;
+  /* padding: 0.7rem; */
+  margin: 0.9rem 0.8rem;
 }
 .black-dot {
   display: inline-block;
@@ -15,6 +24,12 @@
   height: .6rem;
   width: .6rem;
   border-radius: 50%;
+}
+.position {
+  font-size: 2.4rem;
+  line-height: 1.8rem;
+  text-align: center;
+  color: var(--black);
 }
 .country-card {
   display: flex;

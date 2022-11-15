@@ -96,13 +96,15 @@ const GroupStageCard = ({ groupLetter, country, hasSeen }) => {
           }
         >
           {country &&
-            country.map((ele) => {
+            country.map((ele, index) => {
               return (
                 <GroupStagePageCountryCard
                   key={ele?.fifa_rank}
                   countryName={ele?.name}
                   rank={ele?.fifa_rank}
                   abbr={ele?.abbr}
+                  hasSeen={hasSeen}
+                  index={index}
                 />
               );
             })}
