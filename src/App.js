@@ -22,6 +22,7 @@ import FinalsPage from "./pages/finals/FinalsPage/FinalsPage";
 import H2HSelectionPage from "./pages/ro16/H2HSelectionPage/H2HSelectionPage";
 import QfSelectionPage from "./pages/quarterfinals/QfSelectionPage/QfSelectionPage";
 import SemiSelectionPage from "./pages/semifinals/SemiSelectionPage/SemiSelectionPage";
+import FinalsSelectionPage from "./pages/finals/FinalsSelectionPage/FinalsSelectionPage";
 
 import Loading from "./components/Loading/Loading";
 import Header from "./components/Header/Header";
@@ -67,6 +68,11 @@ function App() {
     (state) => state.auth.isQuarterFinalsComplete
   );
   const semiFinalsArr = useSelector((state) => state.bracket.semiFinalsArr);
+  const isSemiFinalsComplete = useSelector(
+    (state) => state.auth.isSemiFinalsComplete
+  );
+  const finalsArr = useSelector((state) => state.bracket.finalsArr);
+  const consolationArr = useSelector((state) => state.bracket.consolationArr);
 
   useEffect(() => {
     const auth = getAuth();
@@ -435,6 +441,30 @@ function App() {
         <Route
           path="/finals"
           element={isLoading ? <Loading /> : <FinalsPage />}
+        />
+        <Route
+          path="/finals/game-63"
+          element={
+            isLoading ? (
+              <Loading />
+            ) : isSemiFinalsComplete ? (
+              <FinalsSelectionPage group={consolationArr[0]} />
+            ) : (
+              <Navigate to="/finals" />
+            )
+          }
+        />
+        <Route
+          path="/finals/game-64"
+          element={
+            isLoading ? (
+              <Loading />
+            ) : isSemiFinalsComplete ? (
+              <FinalsSelectionPage group={finalsArr[0]} />
+            ) : (
+              <Navigate to="/finals" />
+            )
+          }
         />
       </Routes>
     </>

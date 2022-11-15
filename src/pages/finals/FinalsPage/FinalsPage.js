@@ -14,7 +14,7 @@ const lockedArr = [
   ],
   [
     { whiteText: "Game 61", greyText: "Loser", position: "L61" },
-    { whiteText: "Game 62", greyText: "Winner", position: "L62" },
+    { whiteText: "Game 62", greyText: "Loser", position: "L62" },
     62,
   ],
 ];

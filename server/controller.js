@@ -174,14 +174,17 @@ module.exports = {
     const { userId, groupLetter } = req.body;
     const group = `${groupLetter}_is_seen`;
 
-    sequelize.query(
-      `UPDATE users
+    sequelize
+      .query(
+        `UPDATE users
         SET ${group} = true
         WHERE id = '${userId}'
         RETURNING a_is_seen, b_is_seen, c_is_seen, d_is_seen, e_is_seen, f_is_seen, g_is_seen, h_is_seen;`
-    ).then((dbRes) => {
-      res.status(200).send(dbRes[0])
-    }).catch((err) => console.log(err));
+      )
+      .then((dbRes) => {
+        res.status(200).send(dbRes[0]);
+      })
+      .catch((err) => console.log(err));
   },
   getGroupStageChoices: (req, res) => {
     const { userId } = req.body;
@@ -433,4 +436,33 @@ module.exports = {
       })
       .catch((err) => console.log(err));
   },
+  setFinalsChoices: (req, res) => {
+    const { userId, winner, gameNum } = req.body;
+    const { group_letter, id, position } = winner;
+    
+    sequelize
+      .query(
+        `DELETE
+       FROM brackets
+       WHERE user_id = '${userId}' AND game_number = '${gameNum}';
+       
+       INSERT INTO brackets (user_id, round, group_letter, game_number, country_id, position)
+      VALUES ('${userId}', '${
+          gameNum === 64 ? "final" : gameNum === 63 ? "wCons" : ""
+        }', '${group_letter}', '${gameNum}', '${id}', '${position}');
+
+      
+      SELECT group_letter, position, name, abbr, fifa_rank, c.id, round, game_number 
+          FROM brackets AS b
+          INNER JOIN countries AS c
+          ON b.country_id = c.id
+          WHERE b.user_id = '${userId}' AND round = '${
+          gameNum === 64 ? "final" : gameNum === 63 ? "wCons" : ""
+        }';`
+      )
+      .then((dbRes) => {
+        res.status(200).send(dbRes[1]);
+      })
+      .catch((err) => console.log(err));
+  }
 };
