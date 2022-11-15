@@ -35,12 +35,14 @@ const GroupSelectionPage = ({ group }) => {
       dispatch(bracketActions.setRo16Arr(res.data[3].rows))
       dispatch(bracketActions.setRo16Winners(res.data[4].rows));
       dispatch(bracketActions.setQuarterFinalsWinners(res.data[5].rows));
-      if ((res.data[4].rows).length < 8) {
-        dispatch(authActions.setIsRo16Complete(false));
-      }
-      if ((res.data[5].rows).length < 4) {
-        dispatch(authActions.setIsQuarterFinalsComplete(false));
-      }
+      dispatch(bracketActions.setFinalsArr(res.data[6].rows));
+      dispatch(bracketActions.setConsolationArr(res.data[6].rows));
+      dispatch(bracketActions.setSemiFinalsWinners(res.data[6].rows));
+      console.log(res.data)
+      //Status Changes
+      dispatch(authActions.setIsRo16Complete(false));
+      dispatch(authActions.setIsQuarterFinalsComplete(false));
+      dispatch(authActions.setIsSemiFinalsComplete(false));
     });
   }
 

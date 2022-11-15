@@ -223,6 +223,8 @@ const bracketSlice = createSlice({
         currentState.semiFinalsWinners = [mixedArr[0]]
       } else if (mixedArr.length === 4) {
         currentState.semiFinalsWinners = [mixedArr[0], mixedArr[1]]
+      } else {
+        currentState.semiFinalsWinners = mixedArr;
       }
     },
     setFinalsArr(currentState, action) {

@@ -27,7 +27,7 @@ const SemifinalPage = () => {
   const semiFinalsWinners = useSelector(
     (state) => state.bracket.semiFinalsWinners
   );
-console.log(semiFinalsArr);
+console.log("SemiFinalsWinners:", semiFinalsWinners);
   return (
     <>
       <BackToProfile path={"/home"} backTo={"profile"} />

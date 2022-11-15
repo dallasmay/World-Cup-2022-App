@@ -53,9 +53,14 @@ const QfSelectionPage = ({ group }) => {
           console.log(res.data[3].rows);
           dispatch(bracketActions.setSemiFinalsArr(res.data[3].rows));
           dispatch(bracketActions.setQuarterFinalsWinners(res.data[3].rows));
+          dispatch(bracketActions.setFinalsArr(res.data[4].rows));
+          dispatch(bracketActions.setConsolationArr(res.data[4].rows));
+          dispatch(bracketActions.setSemiFinalsWinners(res.data[4].rows));
+          //Status Changes
           if ((res.data[3].rows).length === 4) {
             dispatch(authActions.setIsQuarterFinalsComplete(true));
           }
+          dispatch(authActions.setIsSemiFinalsComplete(false));
         })
         .catch((err) => {
           alert("There was a server error");
@@ -79,9 +84,14 @@ const QfSelectionPage = ({ group }) => {
           console.log(res.data[3].rows);
           dispatch(bracketActions.setSemiFinalsArr(res.data[3].rows));
           dispatch(bracketActions.setQuarterFinalsWinners(res.data[3].rows));
+          dispatch(bracketActions.setFinalsArr(res.data[4].rows));
+          dispatch(bracketActions.setConsolationArr(res.data[4].rows));
+          dispatch(bracketActions.setSemiFinalsWinners(res.data[4].rows));
+          //Status Changes
           if (res.data[3].rows.length === 4) {
             dispatch(authActions.setIsQuarterFinalsComplete(true));
           }
+          dispatch(authActions.setIsSemiFinalsComplete(false));
         })
         .catch((err) => {
           alert("There was a server error");

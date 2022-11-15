@@ -44,12 +44,15 @@ const H2HSelectionPage = ({ group }) => {
           dispatch(bracketActions.setRo16Winners(res.data[3].rows));
           dispatch(bracketActions.setQuarterFinalsWinners(res.data[4].rows));
           dispatch(bracketActions.setSemiFinalsArr(res.data[4].rows));
+          dispatch(bracketActions.setFinalsArr(res.data[5].rows));
+          dispatch(bracketActions.setConsolationArr(res.data[5].rows));
+          dispatch(bracketActions.setSemiFinalsWinners(res.data[5].rows));
+          //Status Changes
           if((res.data[3].rows).length === 8) {
             dispatch(authActions.setIsRo16Complete(true));
           }
-          if (res.data[4].rows.length < 4) {
             dispatch(authActions.setIsQuarterFinalsComplete(false));
-          }
+            dispatch(authActions.setIsSemiFinalsComplete(false));
         })
         .catch((err) => {
           alert("There was a server error");
@@ -75,12 +78,15 @@ const H2HSelectionPage = ({ group }) => {
             dispatch(bracketActions.setRo16Winners(res.data[3].rows));
             dispatch(bracketActions.setQuarterFinalsWinners(res.data[4].rows));
             dispatch(bracketActions.setSemiFinalsArr(res.data[4].rows));
+            dispatch(bracketActions.setFinalsArr(res.data[5].rows));
+            dispatch(bracketActions.setConsolationArr(res.data[5].rows));
+            dispatch(bracketActions.setSemiFinalsWinners(res.data[5].rows));
+            //Status Changes
             if (res.data[3].rows.length === 8) {
               dispatch(authActions.setIsRo16Complete(true));
             }
-            if (res.data[4].rows.length < 4) {
               dispatch(authActions.setIsQuarterFinalsComplete(false));
-            }
+              dispatch(authActions.setIsSemiFinalsComplete(false));
           })
           .catch((err) => {
             alert("There was a server error");
