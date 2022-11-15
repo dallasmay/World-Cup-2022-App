@@ -130,15 +130,32 @@ function App() {
           dispatch(bracketActions.setFinalsArr(res.data[3].rows));
           dispatch(bracketActions.setConsolationArr(res.data[3].rows));
           dispatch(bracketActions.setSemiFinalsWinners(res.data[3].rows));
+          if (res.data[4].rows.length === 1) {
+            if (res.data[4].rows[0].round === "final") {
+              dispatch(bracketActions.setFinalsWinner([res.data[4].rows[0]]));
+            } else if (res.data[4].rows[0].round === "wCons") {
+              dispatch(
+                bracketActions.setConsolationWinner([res.data[4].rows[0]])
+              );
+            }
+          } else if (res.data[4].rows.length === 0) {
+            dispatch(bracketActions.setConsolationWinner([]));
+            dispatch(bracketActions.setFinalsWinner([]));
+          } else {
+            dispatch(
+              bracketActions.setConsolationWinner([res.data[4].rows[0]])
+            );
+            dispatch(bracketActions.setFinalsWinner([res.data[4].rows[1]]));
+          }
           if (res.data[1].rows.length === 8) {
             dispatch(authActions.setIsRo16Complete(true));
           }
-          if ((res.data[2].rows).length === 4) {
+          if (res.data[2].rows.length === 4) {
             dispatch(authActions.setIsQuarterFinalsComplete(true));
-          } 
-          if ((res.data[3].rows).length === 4) {
+          }
+          if (res.data[3].rows.length === 4) {
             dispatch(authActions.setIsSemiFinalsComplete(true));
-          } 
+          }
           dispatch(authActions.setIsLoading(false));
           console.log(res.data);
         });

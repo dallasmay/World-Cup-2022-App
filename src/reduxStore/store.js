@@ -226,7 +226,9 @@ const bracketSlice = createSlice({
         currentState.finalsArr = [[sfWinners[0], sfWinners[1], 64, [61, 62]]];
       }
     },
-    setFinalsWinner(currentState, action) {},
+    setFinalsWinner(currentState, action) {
+      currentState.finalsWinner = action.payload;
+    },
     setConsolationArr(currentState, action) {
       let sfRunnerUps = action.payload;
       if (sfRunnerUps.length === 2) {
@@ -237,7 +239,9 @@ const bracketSlice = createSlice({
       ];
       }
     },
-    setConsolationWinner(currentState, action) {},
+    setConsolationWinner(currentState, action) {
+      currentState.consolationWinner = action.payload;
+    },
   },
 });
 

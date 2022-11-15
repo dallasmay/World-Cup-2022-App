@@ -16,10 +16,11 @@ const URL = process.env.REACT_APP_SERVER_URL;
 
 const FinalsSelectionPage = ({ group }) => {
   const finalsWinner = useSelector((state) => state.bracket.finalsWinner);
+  const consolationWinner = useSelector((state) => state.bracket.consolationWinner)
 
 
   const [winner, setWinner] = useState(
-    finalsWinner.find((ele) => {
+    (group[2] === 64 ? finalsWinner : consolationWinner).find((ele) => {
       return ele.name === group[0].name || ele.name === group[1].name;
     })
   );
@@ -49,7 +50,12 @@ const FinalsSelectionPage = ({ group }) => {
         .post(`${URL}/bracket/finals`, body)
         .then((res) => {
           setIsLoading(false);
-          console.log(res.data);
+          console.log(res.data[2].rows[0]);
+          if (res.data[2].rows[0].round === "final") {
+            dispatch(bracketActions.setFinalsWinner([res.data[2].rows[0]]));
+          } else if (res.data[2].rows[0].round === "wCons") {
+            dispatch(bracketActions.setConsolationWinner([res.data[2].rows[0]]));
+          }
           //   dispatch(bracketActions.setFinalsArr(res.data[3].rows));
           //   dispatch(bracketActions.setConsolationArr(res.data[3].rows));
           //   dispatch(bracketActions.setSemiFinalsWinners(res.data[3].rows));
@@ -76,7 +82,12 @@ const FinalsSelectionPage = ({ group }) => {
         .post(`${URL}/bracket/finals`, body)
         .then((res) => {
           setIsLoading(false);
-          console.log(res.data);
+          console.log(res.data[2].rows[0]);
+          if (res.data[2].rows[0].round === "final") {
+            dispatch(bracketActions.setFinalsWinner([res.data[2].rows[0]]));
+          } else if (res.data[2].rows[0].round === "wCons") {
+            dispatch(bracketActions.setConsolationWinner([res.data[2].rows[0]]));
+          }
           //   dispatch(bracketActions.setFinalsArr(res.data[3].rows));
           //   dispatch(bracketActions.setConsolationArr(res.data[3].rows));
           //   dispatch(bracketActions.setSemiFinalsWinners(res.data[3].rows));
@@ -96,7 +107,7 @@ const FinalsSelectionPage = ({ group }) => {
       <BackToProfile path={"/finals"} backTo={"Finals"} />
       <StageHeader stage={"Finals"} otherInfo={"Game 1 of 2"} />
       <div className={styles["content-container"]}>
-        <p className={styles["game-info"]}>Game {group[2]}</p>
+        <p className={styles["game-info"]}>{group[2] === 64 ? "Finals" : group[2] === 63 ? "Third Place" : ""}</p>
         <p className={styles["game-info"]}>Dec 4</p>
         <p className={styles["game-info"]}>11:00AM MDT</p>
         {isLoading && (

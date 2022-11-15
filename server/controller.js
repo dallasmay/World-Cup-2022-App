@@ -189,14 +189,6 @@ module.exports = {
   getGroupStageChoices: (req, res) => {
     const { userId } = req.body;
 
-    // sequelize
-    //   .query(
-    //     `SELECT group_letter, country_id, position FROM brackets WHERE user_id = '${userId}'`
-    //   )
-    //   .then((dbRes) => {
-    //     res.status(200).send(dbRes);
-    //   })
-    //   .catch((err) => console.log(err));
     sequelize
       .query(
         `SELECT group_letter, position, name, abbr, fifa_rank, c.id, round, game_number 
@@ -226,7 +218,15 @@ module.exports = {
           ON b.country_id = c.id
           WHERE (b.user_id = '${userId}' AND round = 'sem')
           OR (b.user_id = '${userId}' AND round = 'cons')
-          ORDER BY round DESC, game_number ASC;`
+          ORDER BY round DESC, game_number ASC;
+          
+          SELECT group_letter, position, name, abbr, fifa_rank, c.id, round, game_number 
+          FROM brackets AS b
+          INNER JOIN countries AS c
+          ON b.country_id = c.id
+          WHERE (b.user_id = '${userId}' AND round = 'final')
+          OR (b.user_id = '${userId}' AND round = 'wCons')
+          ORDER BY game_number ASC;`
       )
       .then((dbRes) => {
         res.status(200).send(dbRes[1]);
