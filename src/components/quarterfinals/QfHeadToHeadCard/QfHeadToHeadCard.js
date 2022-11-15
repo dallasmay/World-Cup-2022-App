@@ -19,14 +19,16 @@ const QfHeadToHeadCard = ({
   position,
   roundWinners,
   path,
+  isFinal,
+  isCons,
 }) => {
   return (
     <Link to={`/${path}/game-${game}`}>
       <div className={styles["head-to-head-card"]}>
         <div className={styles["header"]}>
           <div>
-            <p className={styles["game-text"]}>Game</p>
-            <p className={styles["game-letter"]}>{game}</p>
+            <p className={styles["game-text"]}>{isFinal || isCons ? "" : "Game"}</p>
+            <p className={styles["game-letter"]}>{isFinal ? "Final" : isCons ? "Third Place" : game}</p>
           </div>
           {isStageComplete && hasWinner ? (
             <LinkArrow className={styles["arrow-icon"]} />
