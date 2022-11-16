@@ -112,7 +112,7 @@ module.exports = {
         if (err.name === "SequelizeUniqueConstraintError") {
           res.status(400).send("Teamname Already Taken");
         } else {
-        res.status(400).send(err);
+          res.status(400).send(err);
         }
         console.log(err);
       });
@@ -438,7 +438,7 @@ module.exports = {
   setFinalsChoices: (req, res) => {
     const { userId, winner, gameNum } = req.body;
     const { group_letter, id, position } = winner;
-    
+
     sequelize
       .query(
         `DELETE
@@ -463,5 +463,13 @@ module.exports = {
         res.status(200).send(dbRes[1]);
       })
       .catch((err) => console.log(err));
+  },
+  getLeaderBoard: (req, res) => {
+    sequelize.query(`SELECT name, team_name, score FROM users ORDER BY score DESC`).then((dbRes) => {
+      res.status(200).send(dbRes[0]);
+    }).catch((err) => {
+      console.log(err);
+      res.status(400).send("Server Error");
+    })
   }
 };

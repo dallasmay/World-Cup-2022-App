@@ -22,6 +22,7 @@ const {
   setSemifinalsChoice,
   setGroupAsSeen,
   setFinalsChoices,
+  getLeaderBoard,
 } = require("./controller");
 
 // ENDPOINTS
@@ -42,7 +43,9 @@ app.post("/bracket/quarterfinals", setQuarterfinalsChoice);
 
 app.post("/bracket/semifinals", setSemifinalsChoice);
 
-app.post("/bracket/finals", setFinalsChoices)
+app.post("/bracket/finals", setFinalsChoices);
+
+app.get("/leaderboard", getLeaderBoard);
 
 
 

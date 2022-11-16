@@ -78,7 +78,6 @@ function App() {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
         dispatch(authActions.login());
         dispatch(authActions.setUserId(user.uid));
       } else {
@@ -119,7 +118,6 @@ function App() {
           dispatch(authActions.setisGroupStageComplete(true));
         }
         axios.post(`${URL}/bracket/group-stage`, { userId }).then((res) => {
-          console.log(res.data);
           dispatch(bracketActions.setBracket(res.data[0]));
           dispatch(bracketActions.setGroupsArr(res.data[0].rows));
           dispatch(bracketActions.setRo16Arr(res.data[0].rows));
@@ -157,7 +155,6 @@ function App() {
             dispatch(authActions.setIsSemiFinalsComplete(true));
           }
           dispatch(authActions.setIsLoading(false));
-          console.log(res.data);
         });
       });
     }
