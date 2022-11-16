@@ -12,6 +12,7 @@
 .link-container {
   display: flex;
   justify-content: center;
+  margin: 0 0 5rem 0;
 }
 .login-link {
   font-size: 2rem;

@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
+import { authActions } from "../../../reduxStore/store";
 
 import Button from "../../Button/Button";
 import { ReactComponent as VisibilityIcon } from "../../../assets/icons/VisibilityIcon.svg";
@@ -13,14 +16,22 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
+  const isLoading = useSelector((state) => state.auth.isLoading);
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const auth = getAuth();
 
   const signIn = (evt) => {
     evt.preventDefault();
+    dispatch(authActions.setIsLoading(true));
     signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+      dispatch(authActions.setIsLoading(false));
       navigate("/home");
+    }).catch((err) => {
+      dispatch(authActions.setIsLoading(false));
+      alert(err);
     });
   };
 

@@ -18,8 +18,10 @@ const PickTeamNamePage = () => {
   const userId = useSelector((state) => state.auth.userId);
 
   const [teamName, setTeamName] = useState("");
+  const [isTaken, setIsTaken] = useState(false);
 
   const teamNameSubmitHandler = (evt) => {
+    dispatch(authActions.setIsLoading(true));
     evt.preventDefault();
     let body = {
       userId,
@@ -29,10 +31,20 @@ const PickTeamNamePage = () => {
     axios
       .post(`${URL}/team`, body)
       .then((res) => {
+        console.log(res)
         dispatch(authActions.setTeamName(res.data.team_name));
+        dispatch(authActions.setIsLoading(false));
         navigate("/home");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err.response.data);
+        if (err.response.data === "Teamname Already Taken") {
+          alert(err.response.data)
+        } else {
+          alert(err);
+        }
+        dispatch(authActions.setIsLoading(false));
+      });
   };
 
   return (
@@ -55,6 +67,9 @@ const PickTeamNamePage = () => {
               id="name-signup"
               className={styles["auth-input"]}
               onChange={(evt) => setTeamName(evt.target.value)}
+              maxLength="30"
+              minLength="2"
+              onClick={() => setIsTaken(false)}
             />
           </div>
           <div className={styles["next-btn-container"]}>

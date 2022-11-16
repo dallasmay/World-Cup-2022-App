@@ -90,7 +90,7 @@ function App() {
   useEffect(() => {
     console.log("test");
     if (isAuthenticated) {
-      // dispatch(authActions.setIsLoading(true));
+      dispatch(authActions.setIsLoading(true));
       axios.post(`${URL}/user`, { userId: userId }).then((res) => {
         dispatch(authActions.setTeamName(res.data.team_name));
         dispatch(authActions.setUserScore(res.data.score));
@@ -170,6 +170,7 @@ function App() {
   return (
     <>
       {/* <Header logOut={logOut} isAuthenticated={isAuthenticated} /> */}
+      {isLoading && <Loading />}
       <Routes>
         <Route
           path="/"

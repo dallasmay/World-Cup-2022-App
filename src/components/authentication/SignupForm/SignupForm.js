@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -7,6 +7,8 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
+import { authActions } from "../../../reduxStore/store";
 
 import Button from "../../Button/Button";
 import { ReactComponent as VisibilityIcon } from "../../../assets/icons/VisibilityIcon.svg";
@@ -18,6 +20,7 @@ const URL = process.env.REACT_APP_SERVER_URL;
 
 const SignupForm = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
@@ -31,6 +34,7 @@ const SignupForm = () => {
   const signupSubmitHandler = (evt) => {
     evt.preventDefault();
     if (email.includes("@")) {
+      dispatch(authActions.setIsLoading(true));
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           console.log(userCredential);
@@ -51,12 +55,16 @@ const SignupForm = () => {
               .post(`${URL}/bracket/default`, {userId: userCredential.user.uid})
               .then((res) => {
                 console.log(res.data);
+                window.location.reload();
               })
               .catch((err) => console.log(err));
             navigate("/register/pick-team")
           }).catch(err => console.log(err));
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          alert(err);
+          dispatch(authActions.setIsLoading(false));
+        });
     } else {
       alert("Must enter valid email");
     }

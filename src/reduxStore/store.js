@@ -74,7 +74,7 @@ const authInitialState = {
   isAuthenticated: false,
   userId: null,
   teamName: null,
-  isLoading: true,
+  isLoading: false,
   userScore: 0,
   groupStageProgress: [false, false, false, false, false, false, false, false],
   isGroupStageComplete: false,

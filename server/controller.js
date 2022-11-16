@@ -108,7 +108,14 @@ module.exports = {
       .then((dbRes) => {
         res.status(200).send(dbRes[0][0]);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.name === "SequelizeUniqueConstraintError") {
+          res.status(400).send("Teamname Already Taken");
+        } else {
+        res.status(400).send(err);
+        }
+        console.log(err);
+      });
   },
   getUserInfo: (req, res) => {
     const { userId } = req.body;
