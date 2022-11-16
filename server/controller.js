@@ -210,7 +210,7 @@ module.exports = {
           INNER JOIN countries AS c
           ON b.country_id = c.id
           WHERE b.user_id = '${userId}' AND round = 'ro16'
-          ORDER BY group_letter ASC, game_number ASC;
+          ORDER BY game_number ASC;
           
           SELECT group_letter, position, name, abbr, fifa_rank, c.id, round, game_number 
           FROM brackets AS b
@@ -278,13 +278,13 @@ module.exports = {
           ON b.country_id = c.id
           WHERE b.user_id = '${userId}' AND round = 'group'
           ORDER BY group_letter ASC, position ASC;
-          
+
           SELECT group_letter, position, name, abbr, fifa_rank, c.id, round, game_number 
           FROM brackets AS b
           INNER JOIN countries AS c
           ON b.country_id = c.id
           WHERE b.user_id = '${userId}' AND round = 'ro16'
-          ORDER BY group_letter ASC, game_number ASC;
+          ORDER BY game_number ASC;
           
           SELECT group_letter, position, name, abbr, fifa_rank, c.id, round, game_number 
           FROM brackets AS b
@@ -325,13 +325,13 @@ module.exports = {
        
        INSERT INTO brackets (user_id, round, group_letter, game_number, country_id, position)
       VALUES ('${userId}', 'ro16', '${group_letter}', '${gameNum}', '${id}', '${position}');
-          
+
           SELECT group_letter, position, name, abbr, fifa_rank, c.id, round, game_number 
           FROM brackets AS b
           INNER JOIN countries AS c
           ON b.country_id = c.id
           WHERE b.user_id = '${userId}' AND round = 'ro16'
-          ORDER BY group_letter ASC, game_number ASC;
+          ORDER BY game_number ASC;
           
           SELECT group_letter, position, name, abbr, fifa_rank, c.id, round, game_number 
           FROM brackets AS b

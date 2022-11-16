@@ -192,10 +192,10 @@ const bracketSlice = createSlice({
     setQuarterFinalsArr(currentState, action) {
       let ro16Winners = action.payload;
       currentState.quarterFinalsArr = [
-        [ro16Winners[0], ro16Winners[2], 57, [49, 50]],
-        [ro16Winners[1], ro16Winners[3], 59, [51, 52]],
-        [ro16Winners[4], ro16Winners[6], 58, [53, 54]],
-        [ro16Winners[5], ro16Winners[7], 60, [55, 56]],
+        [ro16Winners[0], ro16Winners[1], 57, [49, 50]],
+        [ro16Winners[2], ro16Winners[3], 59, [51, 52]],
+        [ro16Winners[4], ro16Winners[5], 58, [53, 54]],
+        [ro16Winners[6], ro16Winners[7], 60, [55, 56]],
       ];
     },
     setQuarterFinalsWinners(currentState, action) {
