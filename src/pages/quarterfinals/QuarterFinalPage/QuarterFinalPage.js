@@ -37,7 +37,6 @@ const QuarterFinalPage = () => {
   const quarterFinalsWinners = useSelector(
     (state) => state.bracket.quarterFinalsWinners
   );
-console.log("QuarterFinals winners", quarterFinalsWinners);
   return (
     <>
       <BackToProfile path={"/home"} backTo={"profile"} />

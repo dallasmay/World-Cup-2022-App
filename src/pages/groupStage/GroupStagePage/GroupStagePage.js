@@ -29,7 +29,7 @@ const GroupStagePage = () => {
         {groupsArr.map((element, index) => {
           return (
             <GroupStageCard
-              key={element[0].group_letter}
+              key={index}
               groupLetter={element[0].group_letter}
               country={element}
               hasSeen={groupStageProgress[index]}
