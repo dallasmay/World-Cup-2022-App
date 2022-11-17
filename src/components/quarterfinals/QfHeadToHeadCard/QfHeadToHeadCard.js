@@ -23,7 +23,7 @@ const QfHeadToHeadCard = ({
   isCons,
 }) => {
   return (
-    <Link to={`/${path}/game-${game}`}>
+    <Link to={isStageComplete ? `/${path}/game-${game}` : ""}>
       <div className={styles["head-to-head-card"]}>
         <div className={styles["header"]}>
           <div>

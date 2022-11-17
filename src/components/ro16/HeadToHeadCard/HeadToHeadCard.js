@@ -16,7 +16,7 @@ const HeadToHeadCard = ({ game, countries, hasWinner }) => {
   const ro16Winners = useSelector((state) => state.bracket.ro16Winners);
 
   return (
-    <Link to={`/ro16/game-${game}`}>
+    <Link to={isGroupStageComplete ? `/ro16/game-${game}` : ""}>
       <div className={styles["head-to-head-card"]}>
         <div className={styles["header"]}>
           <div>
