@@ -20,6 +20,9 @@
   background-color: var(--darkgrey);
   border: none;
 }
+.previous-btn:hover {
+  cursor: pointer;
+}
 .next-btn {
   font-size: 2rem;
   line-height: 2.4rem;
@@ -27,4 +30,7 @@
   padding: 2rem 3.3rem;
   border-radius: 9rem;
   border: none;
+}
+.next-btn:hover {
+  cursor: pointer;
 }

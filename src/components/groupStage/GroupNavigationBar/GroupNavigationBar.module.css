@@ -20,6 +20,9 @@
   background-color: var(--darkgrey);
   border: none;
 }
+.previous-btn:hover {
+  cursor: pointer;
+}
 .next-btn {
   display: flex;
   justify-content: center;
@@ -29,6 +32,9 @@
   border-radius: 50%;
   background-color: var(--white);
   border: none;
+}
+.next-btn:hover {
+  cursor: pointer;
 }
 .group-number-text {
   display: inline;

@@ -7,3 +7,6 @@
   border-radius: 9rem;
   padding: 2rem 3.2rem;
 }
+.btn:hover {
+  cursor: pointer;
+}

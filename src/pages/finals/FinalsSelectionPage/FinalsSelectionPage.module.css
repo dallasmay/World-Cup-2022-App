@@ -41,18 +41,8 @@
 .country-card:disabled {
   cursor: not-allowed;
 }
-.country-card2 {
-  border: none;
-  border-radius: 2rem;
-  padding: 0;
-  text-align: unset;
-  color: var(--white);
-  background-color: var(--black);
-  overflow: hidden;
-  /* width: 16.7rem; */
-}
-.country-card2:disabled {
-  cursor: not-allowed;
+.country-card:hover {
+  cursor: pointer;
 }
 .rank {
   font-size: 2rem;
@@ -65,14 +55,6 @@
   text-align: right;
   margin: 0 1.2rem 3.2rem 0;
 }
-/* .flag-span {
-  display: inline-block;
-  height: 16.7rem;
-  width: 100%;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-} */
 .flag-img {
   width: 100%;
   margin: 0 0 1.2rem 0;
@@ -120,7 +102,7 @@
 }
 .loader {
   position: absolute;
-  top: 9rem;
+  top: 7.5rem;
   animation: spin 2s linear infinite;
 }
 
