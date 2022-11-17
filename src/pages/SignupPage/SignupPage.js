@@ -1,15 +1,24 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { Link } from "react-router-dom";
 
 import SignupForm from "../../components/authentication/SignupForm/SignupForm";
 import Loading from "../../components/Loading/Loading";
 
-import styles from "./SignupPage.module.css";
+import { authActions } from "../../reduxStore/store";
+
 import { ReactComponent as WCLogo } from "../../assets/icons/SoccerBallLogo.svg";
+
+import styles from "./SignupPage.module.css";
 
 const SignupPage = () => {
   const isLoading = useSelector((state) => state.auth.isLoading);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authActions.setIsLoading(false));
+  }, [])
 
   return isLoading ? (
     <Loading />

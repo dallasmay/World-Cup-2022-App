@@ -119,7 +119,7 @@ const GroupNavigationbar = ({ hasEdited, saveChangeHandler, groupLetter }) => {
         }
         onClick={setGroupHasSeenLeft}
       >
-        <button className={styles["previous-btn"]}>
+        <button className={styles["previous-btn"]} style={groupLetter === "a" ? {visibility: "hidden"} : {}}>
           <PreviousArrow className={styles["previous-arrow"]} />
         </button>
       </Link>
@@ -143,7 +143,7 @@ const GroupNavigationbar = ({ hasEdited, saveChangeHandler, groupLetter }) => {
         }
         onClick={setGroupHasSeenRight}
       >
-        <button className={styles["next-btn"]}>
+        <button className={styles["next-btn"]} style={groupLetter === "h" ? {visibility: "hidden"} : {}}>
           <NextArrow className={styles["next-arrow"]} />
         </button>
       </Link>
