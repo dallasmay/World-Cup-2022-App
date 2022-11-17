@@ -53,7 +53,7 @@ const PickTeamNamePage = () => {
         <WCLogo className={styles["wc-logo"]} />
       </div>
       <div className={styles["content-container"]}>
-        <h1 className={styles.heading1}>Choose your team name</h1>
+        <h1 className={styles.heading1}>Choose your team name for the leaderboard</h1>
         <form
           onSubmit={teamNameSubmitHandler}
           className={styles["signup-form"]}

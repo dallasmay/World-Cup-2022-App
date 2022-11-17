@@ -34,7 +34,7 @@ const LeaderboardPage = () => {
                 <p className={styles.rank}>{index + 1}</p>
                 <div>
                   <p className={styles["team-name"]} style={ele.team_name === teamName ? {color: "var(--green)"} : {}}>
-                    {ele.team_name > 20
+                    {ele.team_name.length > 20
                       ? ele.team_name.slice(0, 19) + "..."
                       : ele.team_name}
                   </p>
