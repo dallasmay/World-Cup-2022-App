@@ -51,7 +51,6 @@ const FinalsSelectionPage = ({ group }) => {
         .post(`${URL}/bracket/finals`, body)
         .then((res) => {
           setIsLoading(false);
-          console.log(res.data[2].rows[0]);
           if (res.data[2].rows[0].round === "final") {
             dispatch(bracketActions.setFinalsWinner([res.data[2].rows[0]]));
           } else if (res.data[2].rows[0].round === "wCons") {
@@ -83,7 +82,6 @@ const FinalsSelectionPage = ({ group }) => {
         .post(`${URL}/bracket/finals`, body)
         .then((res) => {
           setIsLoading(false);
-          console.log(res.data[2].rows[0]);
           if (res.data[2].rows[0].round === "final") {
             dispatch(bracketActions.setFinalsWinner([res.data[2].rows[0]]));
           } else if (res.data[2].rows[0].round === "wCons") {

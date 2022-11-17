@@ -51,7 +51,6 @@ const QfSelectionPage = ({ group }) => {
         .post(`${URL}/bracket/quarterfinals`, body)
         .then((res) => {
           setIsLoading(false);
-          console.log(res.data[3].rows);
           dispatch(bracketActions.setSemiFinalsArr(res.data[3].rows));
           dispatch(bracketActions.setQuarterFinalsWinners(res.data[3].rows));
           dispatch(bracketActions.setFinalsArr(res.data[4].rows));
@@ -82,7 +81,6 @@ const QfSelectionPage = ({ group }) => {
         .post(`${URL}/bracket/quarterfinals`, body)
         .then((res) => {
           setIsLoading(false);
-          console.log(res.data[3].rows);
           dispatch(bracketActions.setSemiFinalsArr(res.data[3].rows));
           dispatch(bracketActions.setQuarterFinalsWinners(res.data[3].rows));
           dispatch(bracketActions.setFinalsArr(res.data[4].rows));

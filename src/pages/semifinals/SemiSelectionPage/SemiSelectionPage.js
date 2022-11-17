@@ -52,7 +52,6 @@ const SemiSelectionPage = ({ group }) => {
           .post(`${URL}/bracket/semifinals`, body)
           .then((res) => {
             setIsLoading(false);
-            console.log(res.data);
             dispatch(bracketActions.setFinalsArr(res.data[3].rows))
             dispatch(bracketActions.setConsolationArr(res.data[3].rows));
             dispatch(bracketActions.setSemiFinalsWinners(res.data[3].rows));
@@ -83,7 +82,6 @@ const SemiSelectionPage = ({ group }) => {
           .post(`${URL}/bracket/semifinals`, body)
           .then((res) => {
             setIsLoading(false);
-            console.log(res.data);
             dispatch(bracketActions.setFinalsArr(res.data[3].rows));
             dispatch(bracketActions.setConsolationArr(res.data[3].rows));
             dispatch(bracketActions.setSemiFinalsWinners(res.data[3].rows));

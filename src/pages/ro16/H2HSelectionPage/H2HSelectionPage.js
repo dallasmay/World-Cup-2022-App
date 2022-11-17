@@ -40,7 +40,6 @@ const H2HSelectionPage = ({ group }) => {
         .post(`${URL}/bracket/ro16`, body)
         .then((res) => {
           setIsLoading(false);
-          console.log(res.data);
           dispatch(bracketActions.setQuarterFinalsArr(res.data[3].rows));
           dispatch(bracketActions.setRo16Winners(res.data[3].rows));
           dispatch(bracketActions.setQuarterFinalsWinners(res.data[4].rows));
@@ -74,7 +73,6 @@ const H2HSelectionPage = ({ group }) => {
           .post(`${URL}/bracket/ro16`, body)
           .then((res) => {
             setIsLoading(false);
-            console.log(res.data);
             dispatch(bracketActions.setQuarterFinalsArr(res.data[3].rows));
             dispatch(bracketActions.setRo16Winners(res.data[3].rows));
             dispatch(bracketActions.setQuarterFinalsWinners(res.data[4].rows));
