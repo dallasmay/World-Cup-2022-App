@@ -171,9 +171,7 @@ function App() {
         <Route
           path="/"
           element={
-            isLoading ? (
-              <Loading />
-            ) : isAuthenticated &&
+             isAuthenticated &&
               teamName !== null &&
               teamName !== undefined ? (
               <Navigate to="/home" />
