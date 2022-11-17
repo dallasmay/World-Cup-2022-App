@@ -99,14 +99,17 @@ const H2HSelectionPage = ({ group }) => {
   return (
     <>
       <BackToProfile path={"/ro16"} backTo={"Round of 16"} />
-      <StageHeader stage={"Round of 16"} otherInfo={"Game 1 of 8"} />
+      {/* <StageHeader stage={"Round of 16"} otherInfo={"Game 1 of 8"} /> */}
       <div className={styles["content-container"]}>
-        <p className={styles["game-info"]}>Game {group[2]}</p>
-        <p className={styles["game-info"]}>Dec 4</p>
-        <p className={styles["game-info"]}>11:00AM MDT</p>
-        {isLoading && <div className={styles["loader-container"]}>
-          <Loader className={styles.loader} />
-        </div>}
+          <p className={styles["game-info"]}>Game {group[2]}</p>
+          <p className={styles["select-winner"]}>Select the winner</p>
+        {/* <p className={styles["game-info"]}>Dec 4</p>
+        <p className={styles["game-info"]}>11:00AM MDT</p> */}
+        {isLoading && (
+          <div className={styles["loader-container"]}>
+            <Loader className={styles.loader} />
+          </div>
+        )}
         <div className={styles["crown-container"]}>
           <Crown
             className={styles.crown}
@@ -173,9 +176,8 @@ const H2HSelectionPage = ({ group }) => {
             </div>
           </button>
         </div>
-        <p className={styles["select-winner"]}>Select the winner</p>
       </div>
-      <H2HNavBar round={"ro16"} gameNum={group[2]}/>
+      <H2HNavBar round={"ro16"} gameNum={group[2]} />
     </>
   );
 };

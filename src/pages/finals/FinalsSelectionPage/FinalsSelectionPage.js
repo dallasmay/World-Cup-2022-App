@@ -4,6 +4,7 @@ import axios from "axios";
 
 import BackToProfile from "../../../components/BackToProfile/BackToProfile";
 import StageHeader from "../../../components/StageHeader/StageHeader";
+import H2HNavBar from "../../../components/H2HNavBar/H2HNavBar";
 
 import { ReactComponent as Crown } from "../../../assets/icons/Crown.svg";
 import { ReactComponent as Loader } from "../../../assets/icons/SmallLoadingSoccer.svg";
@@ -105,11 +106,12 @@ const FinalsSelectionPage = ({ group }) => {
   return (
     <>
       <BackToProfile path={"/finals"} backTo={"Finals"} />
-      <StageHeader stage={"Finals"} otherInfo={`Game ${group[2] === 64 ? "1" : "2"} of 2`} />
+      {/* <StageHeader stage={"Finals"} otherInfo={`Game ${group[2] === 64 ? "1" : "2"} of 2`} /> */}
       <div className={styles["content-container"]}>
-        <p className={styles["game-info"]}>{group[2] === 64 ? "Finals" : group[2] === 63 ? "Third Place" : ""}</p>
-        <p className={styles["game-info"]}>Dec 4</p>
-        <p className={styles["game-info"]}>11:00AM MDT</p>
+        <p className={styles["game-info"]}>
+          {group[2] === 64 ? "World Cup Final" : group[2] === 63 ? "Third Place" : ""}
+        </p>
+        <p className={styles["select-winner"]}>Select the winner</p>
         {isLoading && (
           <div className={styles["loader-container"]}>
             <Loader className={styles.loader} />
@@ -181,8 +183,8 @@ const FinalsSelectionPage = ({ group }) => {
             </div>
           </button>
         </div>
-        <p className={styles["select-winner"]}>Select the winner</p>
       </div>
+      <H2HNavBar round={"finals"} gameNum={group[2]} />
     </>
   );
 };

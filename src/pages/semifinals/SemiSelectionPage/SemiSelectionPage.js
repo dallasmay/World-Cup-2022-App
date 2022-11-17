@@ -104,11 +104,10 @@ const SemiSelectionPage = ({ group }) => {
   return (
     <>
       <BackToProfile path={"/semifinals"} backTo={"Semifinals"} />
-      <StageHeader stage={"Semifinals"} otherInfo={"Game 1 of 2"} />
+      {/* <StageHeader stage={"Semifinals"} otherInfo={"Game 1 of 2"} /> */}
       <div className={styles["content-container"]}>
         <p className={styles["game-info"]}>Game {group[2]}</p>
-        <p className={styles["game-info"]}>Dec 4</p>
-        <p className={styles["game-info"]}>11:00AM MDT</p>
+        <p className={styles["select-winner"]}>Select the winner</p>
         {isLoading && (
           <div className={styles["loader-container"]}>
             <Loader className={styles.loader} />
@@ -180,7 +179,6 @@ const SemiSelectionPage = ({ group }) => {
             </div>
           </button>
         </div>
-        <p className={styles["select-winner"]}>Select the winner</p>
       </div>
       <H2HNavBar round={"semifinals"} gameNum={group[2]} />
     </>

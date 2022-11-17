@@ -467,7 +467,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : isQuarterFinalsComplete ? (
-              <SemiSelectionPage group={semiFinalsArr[0]} />
+              <SemiSelectionPage group={semiFinalsArr[0]} key={21}/>
             ) : (
               <Navigate to="/semifinals" />
             )
@@ -479,7 +479,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : isQuarterFinalsComplete ? (
-              <SemiSelectionPage group={semiFinalsArr[1]} />
+              <SemiSelectionPage group={semiFinalsArr[1]} key={22}/>
             ) : (
               <Navigate to="/semifinals" />
             )
@@ -495,7 +495,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : isSemiFinalsComplete ? (
-              <FinalsSelectionPage group={consolationArr[0]} />
+              <FinalsSelectionPage group={consolationArr[0]} key={23}/>
             ) : (
               <Navigate to="/finals" />
             )
@@ -507,7 +507,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : isSemiFinalsComplete ? (
-              <FinalsSelectionPage group={finalsArr[0]} />
+              <FinalsSelectionPage group={finalsArr[0]} key={24}/>
             ) : (
               <Navigate to="/finals" />
             )

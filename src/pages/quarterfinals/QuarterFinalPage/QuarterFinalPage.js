@@ -39,7 +39,7 @@ const QuarterFinalPage = () => {
   );
   return (
     <>
-      <BackToProfile path={"/home"} backTo={"profile"} />
+      <BackToProfile path={"/home"} backTo={"profile"} noBottomLine={true}/>
       <BracketNav />
       <div className={styles["content-container"]}>
         <h1 className={styles.heading1}>Quarterfinals</h1>

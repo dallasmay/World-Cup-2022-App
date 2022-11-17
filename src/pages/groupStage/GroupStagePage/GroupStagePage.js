@@ -21,11 +21,17 @@ const GroupStagePage = () => {
   );
   return (
     <>
-      <BackToProfile path={"/home"} backTo={"profile"} />
+      <BackToProfile path={"/home"} backTo={"profile"} noBottomLine={true}/>
       <BracketNav />
       <div className={styles["content-container"]}>
         <h1 className={styles.heading1}>Group Stage</h1>
-        {!isGroupStageComplete && <RoundInfoCard round={"Group Stage"} hasGreyText={true} btnPath={"/group-stage/group-a"}/>}
+        {!isGroupStageComplete && (
+          <RoundInfoCard
+            round={"Group Stage"}
+            hasGreyText={true}
+            btnPath={"/group-stage/group-a"}
+          />
+        )}
         {groupsArr.map((element, index) => {
           return (
             <GroupStageCard

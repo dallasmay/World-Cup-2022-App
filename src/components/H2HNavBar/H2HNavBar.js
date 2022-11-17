@@ -20,17 +20,23 @@ const H2HNavBar = ({ round, gameNum }) => {
   const semiPrevPath = (gameNum === 61 ? "" : `/${round}/game-${semiGameNumArr[semiIndex - 1]}`);
   const semiNextPath = (gameNum === 62 ? "" : `/${round}/game-${semiGameNumArr[semiIndex + 1]}`);
 
-  const prevStyle = (gameNum === 49 || gameNum === 57 || gameNum === 61 ? {visibility: "hidden"} : {});
-  const nextStyle = (gameNum === 56 || gameNum === 60 || gameNum === 62 ? {visibility: "hidden"} : {});
+  const finalGameNumArr = [64, 63];
+  const finalIndex = finalGameNumArr.indexOf(gameNum);
+  const finalPrevPath = (gameNum === 64 ? "" : `/${round}/game-${finalGameNumArr[finalIndex - 1]}`);
+  const finalNextPath = (gameNum === 63 ? "" : `/${round}/game-${finalGameNumArr[finalIndex + 1]}`);
+  
+
+  const prevStyle = (gameNum === 49 || gameNum === 57 || gameNum === 61 || gameNum === 64 ? {visibility: "hidden"} : {});
+  const nextStyle = (gameNum === 56 || gameNum === 60 || gameNum === 62 || gameNum === 63 ? {visibility: "hidden"} : {});
 
   return (
     <div className={styles["group-navigation-bar"]}>
-      <Link to={round === "ro16" ? ro16PrevPath : round === "quarterfinals" ? qfPrevPath : round === "semifinals" ? semiPrevPath : ""}>
+      <Link to={round === "ro16" ? ro16PrevPath : round === "quarterfinals" ? qfPrevPath : round === "semifinals" ? semiPrevPath : round === "finals" ? finalPrevPath : ""}>
         <button className={styles["previous-btn"]} style={prevStyle}>
           <PreviousArrow className={styles["previous-arrow"]} />
         </button>
       </Link>
-      <Link to={round === "ro16" ? ro16NextPath : round === "quarterfinals" ? qfNextPath : round === "semifinals" ? semiNextPath : ""}>
+      <Link to={round === "ro16" ? ro16NextPath : round === "quarterfinals" ? qfNextPath : round === "semifinals" ? semiNextPath : round === "finals" ? finalNextPath : ""}>
         <button className={styles["next-btn"]} style={nextStyle}>Next Match</button>
       </Link>
     </div>

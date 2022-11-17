@@ -104,11 +104,10 @@ const QfSelectionPage = ({ group }) => {
   return (
     <>
       <BackToProfile path={"/quarterfinals"} backTo={"Quarterfinals"} />
-      <StageHeader stage={"Round of 16"} otherInfo={"Game 1 of 8"} />
+      {/* <StageHeader stage={"Round of 16"} otherInfo={"Game 1 of 8"} /> */}
       <div className={styles["content-container"]}>
         <p className={styles["game-info"]}>Game {group[2]}</p>
-        <p className={styles["game-info"]}>Dec 4</p>
-        <p className={styles["game-info"]}>11:00AM MDT</p>
+        <p className={styles["select-winner"]}>Select the winner</p>
         {isLoading && (
           <div className={styles["loader-container"]}>
             <Loader className={styles.loader} />
@@ -180,7 +179,6 @@ const QfSelectionPage = ({ group }) => {
             </div>
           </button>
         </div>
-        <p className={styles["select-winner"]}>Select the winner</p>
       </div>
       <H2HNavBar round={"quarterfinals"} gameNum={group[2]} />
     </>
