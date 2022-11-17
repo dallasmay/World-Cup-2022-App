@@ -166,7 +166,6 @@ function App() {
 
   return (
     <>
-      {/* <Header logOut={logOut} isAuthenticated={isAuthenticated} /> */}
       {isLoading && <Loading />}
       <Routes>
         <Route
@@ -513,6 +512,7 @@ function App() {
             )
           }
         />
+        <Route path="/logout" element={<Header />} />
       </Routes>
     </>
   );

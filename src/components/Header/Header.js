@@ -8,8 +8,7 @@ const Header = ({ logOut, isAuthenticated }) => {
     signOut(auth)
       .then(() => {
         console.log("Signed out successfully");
-        logOut();
-        redirect("/login");
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -21,7 +20,7 @@ const Header = ({ logOut, isAuthenticated }) => {
       <h1>Header</h1>
       <Link to="/login">
         <button onClick={userSignOut}>
-          {isAuthenticated ? "Logout" : "Login"}
+          Logout
         </button>
       </Link>
     </>
