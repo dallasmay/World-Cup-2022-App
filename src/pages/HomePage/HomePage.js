@@ -44,7 +44,7 @@ const HomePage = () => {
                 <Caret className={styles["caret-svg"]} />
               </li>
             </Link>
-            <Link>
+            <Link to="/scoring">
               <li className={styles["link-li"]}>
                 <p className={styles["link-text"]}>Scoring system</p>
                 <Caret className={styles["caret-svg"]} />

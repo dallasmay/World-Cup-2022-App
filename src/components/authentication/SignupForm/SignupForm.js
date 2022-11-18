@@ -54,7 +54,7 @@ const SignupForm = () => {
             axios
               .post(`${URL}/bracket/default`, {userId: userCredential.user.uid})
               .then((res) => {
-                console.log(res.data);
+                localStorage.setItem("seenSaveWarning", "false");
                 window.location.reload();
               })
               .catch((err) => console.log(err));

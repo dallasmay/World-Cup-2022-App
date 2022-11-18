@@ -23,6 +23,7 @@ import H2HSelectionPage from "./pages/ro16/H2HSelectionPage/H2HSelectionPage";
 import QfSelectionPage from "./pages/quarterfinals/QfSelectionPage/QfSelectionPage";
 import SemiSelectionPage from "./pages/semifinals/SemiSelectionPage/SemiSelectionPage";
 import FinalsSelectionPage from "./pages/finals/FinalsSelectionPage/FinalsSelectionPage";
+import ScoringPage from "./pages/ScoringPage/ScoringPage";
 
 import Loading from "./components/Loading/Loading";
 import Header from "./components/Header/Header";
@@ -510,6 +511,7 @@ function App() {
             )
           }
         />
+        <Route path="/scoring" element={isLoading ? <Loading /> : <ScoringPage />} />
         <Route path="/logout" element={<Header />} />
       </Routes>
     </>

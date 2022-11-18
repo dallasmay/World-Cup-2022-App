@@ -10,3 +10,39 @@
   padding: 0 0 1rem 0;
   margin: 5.4rem 0 1.5rem 0;
 }
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background-color: rgb(15, 15, 15, .8);
+  z-index: 250;
+}
+.modal {
+  max-width: calc(100vw - 2rem);
+  color: var(--black);
+  background-color: var(--white);
+  padding: 3.2rem 1.6rem;
+  font-size: 2rem;
+  line-height: 2.3rem;
+  border-radius: 2rem;
+  text-align: center;
+}
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+.modal-btn {
+  color: var(--white);
+  background-color: var(--black);
+  border-radius: 9rem;
+  padding: 2rem 3.2rem;
+  margin: 2rem 0 0 0;
+}
+.modal-btn {
+  cursor: pointer;
+}
