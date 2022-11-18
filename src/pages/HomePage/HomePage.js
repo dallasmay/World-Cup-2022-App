@@ -9,6 +9,7 @@ import styles from "./HomePage.module.css";
 const HomePage = () => {
   const teamName = useSelector((state) => state.auth.teamName);
   const userScore = useSelector((state) => state.auth.userScore);
+  const userRank = useSelector((state) => state.auth.userRank);
 
   return (
     <>
@@ -27,7 +28,7 @@ const HomePage = () => {
           </div>
           <div className={styles["position-container"]}>
             <p className={`${styles.label} ${styles["score-label"]}`}>Rank</p>
-            <p className={styles.points}>16th</p>
+            <p className={styles.points}>{userRank}th</p>
           </div>
         </div>
         <nav>

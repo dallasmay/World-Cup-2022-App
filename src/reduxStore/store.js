@@ -41,6 +41,7 @@ const authInitialState = {
   teamName: null,
   isLoading: true,
   userScore: 0,
+  userRank: 0,
   groupStageProgress: [false, false, false, false, false, false, false, false],
   isGroupStageComplete: false,
   isRo16Complete: false,
@@ -66,6 +67,9 @@ const authenticationSlice = createSlice({
     },
     setUserScore(currentState, action) {
       currentState.userScore = action.payload;
+    },
+    setUserRank(currentState, action) {
+      currentState.userRank = action.payload;
     },
     setGroupStageProgress(currentState, action) {
       currentState.groupStageProgress = action.payload;

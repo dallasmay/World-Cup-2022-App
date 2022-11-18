@@ -92,29 +92,30 @@ function App() {
     if (isAuthenticated) {
       dispatch(authActions.setIsLoading(true));
       axios.post(`${URL}/user`, { userId: userId }).then((res) => {
-        dispatch(authActions.setTeamName(res.data.team_name));
-        dispatch(authActions.setUserScore(res.data.score));
+        dispatch(authActions.setTeamName(res.data[0].team_name));
+        dispatch(authActions.setUserScore(res.data[0].score));
+        dispatch(authActions.setUserRank(res.data[1]));
         dispatch(
           authActions.setGroupStageProgress([
-            res.data.a_is_seen,
-            res.data.b_is_seen,
-            res.data.c_is_seen,
-            res.data.d_is_seen,
-            res.data.e_is_seen,
-            res.data.f_is_seen,
-            res.data.g_is_seen,
-            res.data.h_is_seen,
+            res.data[0].a_is_seen,
+            res.data[0].b_is_seen,
+            res.data[0].c_is_seen,
+            res.data[0].d_is_seen,
+            res.data[0].e_is_seen,
+            res.data[0].f_is_seen,
+            res.data[0].g_is_seen,
+            res.data[0].h_is_seen,
           ])
         );
         if (
-          res.data.a_is_seen &&
-          res.data.b_is_seen &&
-          res.data.c_is_seen &&
-          res.data.d_is_seen &&
-          res.data.e_is_seen &&
-          res.data.f_is_seen &&
-          res.data.g_is_seen &&
-          res.data.h_is_seen
+          res.data[0].a_is_seen &&
+          res.data[0].b_is_seen &&
+          res.data[0].c_is_seen &&
+          res.data[0].d_is_seen &&
+          res.data[0].e_is_seen &&
+          res.data[0].f_is_seen &&
+          res.data[0].g_is_seen &&
+          res.data[0].h_is_seen
         ) {
           dispatch(authActions.setisGroupStageComplete(true));
         }
