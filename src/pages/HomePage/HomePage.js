@@ -28,7 +28,18 @@ const HomePage = () => {
           </div>
           <div className={styles["position-container"]}>
             <p className={`${styles.label} ${styles["score-label"]}`}>Rank</p>
-            <p className={styles.points}>{userRank}th</p>
+            <p className={styles.points}>
+              {userRank}
+              {userRank === 11 || userRank === 12 || userRank === 13
+                ? "th"
+                : `${userRank}`[`${userRank}`.length - 1] === "1"
+                ? "st"
+                : `${userRank}`[`${userRank}`.length - 1] === "2"
+                ? "nd"
+                : `${userRank}`[`${userRank}`.length - 1] === "3"
+                ? "rd"
+                : "th"}
+            </p>
           </div>
         </div>
         <nav>
