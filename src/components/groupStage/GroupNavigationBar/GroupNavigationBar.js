@@ -138,13 +138,13 @@ const GroupNavigationbar = ({ hasEdited, saveChangeHandler, groupLetter }) => {
       <Link
         to={
           groupLetter === "h"
-            ? ""
+            ? "/group-stage"
             : `/group-stage/group-${groupLetterArr[index + 1]}`
         }
         onClick={setGroupHasSeenRight}
       >
-        <button className={styles["next-btn"]} style={groupLetter === "h" ? {visibility: "hidden"} : {}}>
-          <NextArrow className={styles["next-arrow"]} />
+        <button className={styles["next-btn"]}>
+          {groupLetter === "h" ? "Done" : <NextArrow className={styles["next-arrow"]} />}
         </button>
       </Link>
     </div>
