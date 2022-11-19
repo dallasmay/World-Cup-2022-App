@@ -10,12 +10,12 @@ const lockedArr = [
   [
     { whiteText: "Game 61", greyText: "Winner", position: "W61" },
     { whiteText: "Game 62", greyText: "Winner", position: "W62" },
-    61,
+    64,
   ],
   [
     { whiteText: "Game 61", greyText: "Loser", position: "L61" },
     { whiteText: "Game 62", greyText: "Loser", position: "L62" },
-    62,
+    63,
   ],
 ];
 
@@ -75,7 +75,7 @@ const FinalsPage = () => {
             );
           })}
         {!isSemiFinalsComplete &&
-          lockedArr.map((ele) => {
+          lockedArr.map((ele, index) => {
             return (
               <QfHeadToHeadCard
                 key={ele[2]}
@@ -83,6 +83,8 @@ const FinalsPage = () => {
                 hasWinner={false}
                 match={[ele[0], ele[1]]}
                 game={ele[2]}
+                isFinal={index === 0 ? true : false}
+                isCons={index === 1 ? true : false}
               />
             );
           })}
