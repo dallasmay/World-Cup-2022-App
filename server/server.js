@@ -23,11 +23,16 @@ const {
   setGroupAsSeen,
   setFinalsChoices,
   getLeaderBoard,
+  setLiveGroupChoice,
+  calcGroupPoints,
 } = require("./controller");
 
-// ENDPOINTS
+// DEV ENDPOINTS
 app.get("/seed", seed);
+app.post("/live-bracket/group", setLiveGroupChoice);
+app.post("/points/group", calcGroupPoints);
 
+//ENDPOINTS
 app.post("/user", getUserInfo);
 app.post("/register", registerUser);
 app.post("/team", setTeamName);

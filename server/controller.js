@@ -134,7 +134,7 @@ module.exports = {
         let scoreArr = dbRes[1][1].rows;
         let entry = scoreArr.find((ele) => {
           return ele.id === userId;
-        })
+        });
         let rank = scoreArr.indexOf(entry) + 1;
         res.status(200).send([dbRes[0][0], rank]);
       })
@@ -486,5 +486,46 @@ module.exports = {
         console.log(err);
         res.status(400).send("Server Error");
       });
+  },
+  setLiveGroupChoice: (req, res) => {
+    const { country1, country2, country3, country4, userId, groupLetter } =
+      req.body;
+    console.log(country1, country2, country3, country4, userId, groupLetter);
+
+    // sequelize.query(`
+    //     CREATE TABLE live_bracket (
+    //       id UUID PRIMARY KEY NOT NULL DEFAULT uuid_generate_v4 (),
+    //       user_id VARCHAR(50) NOT NULL,
+    //       round VARCHAR(10) NOT NULL,
+    //       group_letter VARCHAR(1) NOT NULL,
+    //       game_number INT,
+    //       country_id INT NOT NULL REFERENCES countries(id),
+    //       position INT NOT NULL,
+    //       UTC_timestamp TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT current_timestamp
+    //     );`).then((res) => console.log(res));
+
+    sequelize
+      .query(
+        `
+         DELETE
+         FROM live_bracket
+         WHERE user_id = '${userId}' AND round = 'group' AND group_letter = '${groupLetter}';
+
+         INSERT INTO live_bracket (user_id, round, group_letter, country_id, position)
+        VALUES ('${userId}', 'group', '${groupLetter}', '${country1[0].id}', '${country1[1]}'),
+        ('${userId}', 'group', '${groupLetter}', '${country2[0].id}', '${country2[1]}'),
+        ('${userId}', 'group', '${groupLetter}', '${country3[0].id}', '${country3[1]}'),
+        ('${userId}', 'group', '${groupLetter}', '${country4[0].id}', '${country4[1]}');`
+      )
+      .then((dbRes) => {
+        console.log(dbRes);
+        res
+          .status(200)
+          .send(`Group ${groupLetter.toUpperCase()} updated successfully!`);
+      })
+      .catch((err) => console.log(err));
+  },
+  calcGroupPoints: (req, res) => {
+    const {userId} = req.body; 
   }
 };
