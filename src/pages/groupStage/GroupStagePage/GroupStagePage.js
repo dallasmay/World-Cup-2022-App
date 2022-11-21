@@ -8,6 +8,7 @@ import BackToProfile from "../../../components/BackToProfile/BackToProfile";
 import BracketNav from "../../../components/BracketNav/BracketNav";
 import GroupStageCard from "../../../components/groupStage/GroupStageCard/GroupStageCard";
 import RoundInfoCard from "../../../components/RoundInfoCard/RoundInfoCard";
+import LockBanner from "../../../components/LockBanner/LockBanner";
 
 import styles from "./GroupStagePage.module.css";
 
@@ -43,6 +44,7 @@ const GroupStagePage = () => {
           );
         })}
       </div>
+      <LockBanner />
     </>
   );
 };
