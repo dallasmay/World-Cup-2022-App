@@ -526,6 +526,120 @@ module.exports = {
       .catch((err) => console.log(err));
   },
   calcGroupPoints: (req, res) => {
-    const {userId} = req.body; 
-  }
+    sequelize
+      .query(
+        `
+      SELECT user_id, country_id, group_letter, position
+      FROM brackets
+      WHERE round = 'group'
+      ORDER BY user_id, group_letter ASC, position ASC;
+
+      SELECT country_id, group_letter, position
+      FROM live_bracket
+      ORDER BY group_letter ASC, position ASC;
+    `
+      )
+      .then((dbRes) => {
+        const userBrackets = dbRes[1][0].rows;
+        const liveBracket = dbRes[1][1].rows;
+
+        const numOfBrackets = userBrackets.length / 32;
+        const separatedUserBrackets = [];
+        const scores = [];
+        const userIds = [];
+
+        for (let i = 1; i <= numOfBrackets; i++) {
+          let currentBracket = [];
+          for (let j = 0; j < 32; j++) {
+            currentBracket.push(userBrackets.shift());
+          }
+          separatedUserBrackets.push(currentBracket);
+        }
+
+        for (let i = 0; i < separatedUserBrackets.length; i++) {
+          let positionScore = 0;
+          let qualScore = 0;
+          for (let j = 0; j < 32; j++) {
+            let currPositionScore = 0;
+            let currQualScore = 0;
+            if (
+              separatedUserBrackets[i][j].country_id ===
+              liveBracket[j].country_id
+            ) {
+              liveBracket[j].position === 1
+                ? (currPositionScore += 26)
+                : liveBracket[j].position === 2
+                ? (currPositionScore += 16)
+                : liveBracket[j].position === 3 || liveBracket[j].position === 4
+                ? (currPositionScore += 10)
+                : 0;
+            }
+            if (separatedUserBrackets[i][j].position === 1) {
+              if (
+                separatedUserBrackets[i][j].country_id ===
+                  liveBracket[j].country_id ||
+                separatedUserBrackets[i][j].country_id ===
+                  liveBracket[j + 1].country_id
+              ) {
+                currQualScore += 18;
+              }
+            }
+            if (separatedUserBrackets[i][j].position === 2) {
+              if (
+                separatedUserBrackets[i][j].country_id ===
+                  liveBracket[j].country_id ||
+                separatedUserBrackets[i][j].country_id ===
+                  liveBracket[j - 1].country_id
+              ) {
+                currQualScore += 18;
+              }
+            }
+            positionScore += currPositionScore;
+            qualScore += currQualScore;
+          }
+          scores.push(positionScore + qualScore);
+          userIds.push(`'${separatedUserBrackets[i][0].user_id}'`);
+          console.log(
+            separatedUserBrackets[i][0].user_id,
+            positionScore,
+            qualScore
+          );
+        }
+        res.status(200).send([scores, userIds]);
+
+  //       sequelize
+  //         .query(
+  //           `
+  //       UPDATE test_users
+  //       SET
+  //         group_score=bulk_query.updated_group_score
+  //       FROM
+  //         (
+  //           SELECT *
+  //           FROM
+  //             UNNEST(ARRAY[${userIds}], ARRAY[${scores}])
+  //             AS t(user_id, updated_group_score)
+  //         ) AS bulk_query
+  //       WHERE
+  //         test_users.id=bulk_query.user_id;
+  // `
+  //         )
+  //         .then((dbRes) => {
+  //           console.log(dbRes);
+  //           res.status(200).send([scores, userIds]);
+  //         });
+      });
+
+    // sequelize.query(`
+    //       CREATE TABLE test_users (
+    //     id VARCHAR(50) PRIMARY KEY NOT NULL UNIQUE,
+    //     name VARCHAR(100) NOT NULL,
+    //     team_name VARCHAR(100) UNIQUE,
+    //     group_score INT DEFAULT 0,
+    //     ro16_score INT DEFAULT 0,
+    //     quarter_score INT DEFAULT 0,
+    //     semi_score INT DEFAULT 0,
+    //     final_score INT DEFAULT 0
+    // );`);
+  },
 };

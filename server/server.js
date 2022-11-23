@@ -30,7 +30,7 @@ const {
 // DEV ENDPOINTS
 app.get("/seed", seed);
 app.post("/live-bracket/group", setLiveGroupChoice);
-app.post("/points/group", calcGroupPoints);
+app.get("/points/group", calcGroupPoints);
 
 //ENDPOINTS
 app.post("/user", getUserInfo);
