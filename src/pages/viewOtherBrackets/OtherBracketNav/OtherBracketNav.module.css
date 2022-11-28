@@ -1,0 +1,24 @@
+.bracket-nav {
+  overflow-x: auto;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 1.6rem 0 1.6rem;
+}
+.ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  white-space: nowrap;
+}
+.link-li {
+  display: inline-flex;
+  font-size: 1.6rem;
+  line-height: 1.92rem;
+  background-color: var(--darkgrey);
+  padding: 1.8rem 1.6rem;
+  border-radius: 9rem;
+}
+.link-active {
+  color: var(--white);
+  background-color: var(--white);
+}

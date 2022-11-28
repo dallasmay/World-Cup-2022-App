@@ -24,6 +24,12 @@ import QfSelectionPage from "./pages/quarterfinals/QfSelectionPage/QfSelectionPa
 import SemiSelectionPage from "./pages/semifinals/SemiSelectionPage/SemiSelectionPage";
 import FinalsSelectionPage from "./pages/finals/FinalsSelectionPage/FinalsSelectionPage";
 import ScoringPage from "./pages/ScoringPage/ScoringPage";
+//Other Bracket Pages
+import OtherGroupStagePage from "./pages/viewOtherBrackets/OtherGroupStagePage/OtherGroupStagePage";
+import OtherRo16Page from "./pages/viewOtherBrackets/OtherRo16Page/OtherRo16Page";
+import OtherQfPage from "./pages/viewOtherBrackets/OtherQfPage/OtherQfPage";
+import OtherSfPage from "./pages/viewOtherBrackets/OtherSfPage/OtherSfPage";
+import OtherFinalsPage from "./pages/viewOtherBrackets/OtherFinalsPage/OtherFinalsPage";
 
 import Loading from "./components/Loading/Loading";
 import Header from "./components/Header/Header";
@@ -75,6 +81,9 @@ function App() {
   const finalsArr = useSelector((state) => state.bracket.finalsArr);
   const consolationArr = useSelector((state) => state.bracket.consolationArr);
 
+  //Other bracket
+  const otherGroupsArr = useSelector((state) => state.otherBracket.groupsArr);
+
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
@@ -88,7 +97,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log("test");
+    // console.log("test");
     if (isAuthenticated) {
       dispatch(authActions.setIsLoading(true));
       axios.post(`${URL}/user`, { userId: userId }).then((res) => {
@@ -173,9 +182,7 @@ function App() {
         <Route
           path="/"
           element={
-             isAuthenticated &&
-              teamName !== null &&
-              teamName !== undefined ? (
+            isAuthenticated && teamName !== null && teamName !== undefined ? (
               <Navigate to="/home" />
             ) : isAuthenticated && teamName === null ? (
               <Navigate to="/register/pick-team" />
@@ -466,7 +473,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : isQuarterFinalsComplete ? (
-              <SemiSelectionPage group={semiFinalsArr[0]} key={21}/>
+              <SemiSelectionPage group={semiFinalsArr[0]} key={21} />
             ) : (
               <Navigate to="/semifinals" />
             )
@@ -478,7 +485,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : isQuarterFinalsComplete ? (
-              <SemiSelectionPage group={semiFinalsArr[1]} key={22}/>
+              <SemiSelectionPage group={semiFinalsArr[1]} key={22} />
             ) : (
               <Navigate to="/semifinals" />
             )
@@ -494,7 +501,7 @@ function App() {
             isLoading ? (
               <Loading />
             ) : isSemiFinalsComplete ? (
-              <FinalsSelectionPage group={consolationArr[0]} key={23}/>
+              <FinalsSelectionPage group={consolationArr[0]} key={23} />
             ) : (
               <Navigate to="/finals" />
             )
@@ -506,13 +513,68 @@ function App() {
             isLoading ? (
               <Loading />
             ) : isSemiFinalsComplete ? (
-              <FinalsSelectionPage group={finalsArr[0]} key={24}/>
+              <FinalsSelectionPage group={finalsArr[0]} key={24} />
             ) : (
               <Navigate to="/finals" />
             )
           }
         />
-        <Route path="/scoring" element={isLoading ? <Loading /> : <ScoringPage />} />
+
+        {/* View other people's bracket routes */}
+        <Route
+          path="/leaderboard/:teamName/group-stage"
+          element={
+            otherGroupsArr.length > 0 ? (
+              <OtherGroupStagePage />
+            ) : (
+              <Navigate to="/leaderboard" />
+            )
+          }
+        />
+        <Route
+          path="/leaderboard/:teamName/ro16"
+          element={
+            otherGroupsArr.length > 0 ? (
+              <OtherRo16Page />
+            ) : (
+              <Navigate to="/leaderboard" />
+            )
+          }
+        />
+        <Route
+          path="/leaderboard/:teamName/quarterfinals"
+          element={
+            otherGroupsArr.length > 0 ? (
+              <OtherQfPage />
+            ) : (
+              <Navigate to="/leaderboard" />
+            )
+          }
+        />
+        <Route
+          path="/leaderboard/:teamName/semifinals"
+          element={
+            otherGroupsArr.length > 0 ? (
+              <OtherSfPage />
+            ) : (
+              <Navigate to="/leaderboard" />
+            )
+          }
+        />
+        <Route
+          path="/leaderboard/:teamName/finals"
+          element={
+            otherGroupsArr.length > 0 ? (
+              <OtherFinalsPage />
+            ) : (
+              <Navigate to="/leaderboard" />
+            )
+          }
+        />
+        <Route
+          path="/scoring"
+          element={isLoading ? <Loading /> : <ScoringPage />}
+        />
         <Route path="/logout" element={<Header />} />
       </Routes>
     </>

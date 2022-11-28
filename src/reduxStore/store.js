@@ -46,7 +46,7 @@ const authInitialState = {
   isGroupStageComplete: false,
   isRo16Complete: false,
   isQuarterFinalsComplete: false,
-  isSemiFinalsComplete: false
+  isSemiFinalsComplete: false,
 };
 
 const authenticationSlice = createSlice({
@@ -180,9 +180,9 @@ const bracketSlice = createSlice({
     setSemiFinalsWinners(currentState, action) {
       let mixedArr = action.payload;
       if (mixedArr.length === 2) {
-        currentState.semiFinalsWinners = [mixedArr[0]]
+        currentState.semiFinalsWinners = [mixedArr[0]];
       } else if (mixedArr.length === 4) {
-        currentState.semiFinalsWinners = [mixedArr[0], mixedArr[1]]
+        currentState.semiFinalsWinners = [mixedArr[0], mixedArr[1]];
       } else {
         currentState.semiFinalsWinners = mixedArr;
       }
@@ -201,11 +201,11 @@ const bracketSlice = createSlice({
     setConsolationArr(currentState, action) {
       let sfRunnerUps = action.payload;
       if (sfRunnerUps.length === 2) {
-        currentState.consolationArr = [[sfRunnerUps[1], 63, [61, 62]]]
+        currentState.consolationArr = [[sfRunnerUps[1], 63, [61, 62]]];
       } else if (sfRunnerUps.length === 4) {
-      currentState.consolationArr = [
-        [sfRunnerUps[2], sfRunnerUps[3], 63, [61, 62]],
-      ];
+        currentState.consolationArr = [
+          [sfRunnerUps[2], sfRunnerUps[3], 63, [61, 62]],
+        ];
       }
     },
     setConsolationWinner(currentState, action) {
@@ -214,11 +214,123 @@ const bracketSlice = createSlice({
   },
 });
 
+const otherBracketInitialState = {
+  groupsArr: [],
+  ro16Arr: [],
+  ro16Winners: [],
+  quarterFinalsArr: [],
+  quarterFinalsWinners: [],
+  semiFinalsArr: [],
+  semiFinalsWinners: [],
+  finalsArr: [],
+  finalsWinner: [],
+  consolationArr: [],
+  consolationWinner: [],
+  name: "",
+};
+
+const otherBracketSlice = createSlice({
+  name: "otherBracket",
+  initialState: otherBracketInitialState,
+  reducers: {
+    setGroupsArr(currentState, action) {
+      let currGroups = action.payload;
+      currentState.groupsArr = [
+        [currGroups[0], currGroups[1], currGroups[2], currGroups[3]],
+        [currGroups[4], currGroups[5], currGroups[6], currGroups[7]],
+        [currGroups[8], currGroups[9], currGroups[10], currGroups[11]],
+        [currGroups[12], currGroups[13], currGroups[14], currGroups[15]],
+        [currGroups[16], currGroups[17], currGroups[18], currGroups[19]],
+        [currGroups[20], currGroups[21], currGroups[22], currGroups[23]],
+        [currGroups[24], currGroups[25], currGroups[26], currGroups[27]],
+        [currGroups[28], currGroups[29], currGroups[30], currGroups[31]],
+      ];
+    },
+    setRo16Arr(currentState, action) {
+      let currGroups = action.payload;
+      currentState.ro16Arr = [
+        [currGroups[0], currGroups[5], 49],
+        [currGroups[4], currGroups[1], 51],
+        [currGroups[8], currGroups[13], 50],
+        [currGroups[12], currGroups[9], 52],
+        [currGroups[16], currGroups[21], 53],
+        [currGroups[20], currGroups[17], 55],
+        [currGroups[24], currGroups[29], 54],
+        [currGroups[28], currGroups[25], 56],
+      ];
+    },
+    setRo16Winners(currentState, action) {
+      currentState.ro16Winners = action.payload;
+    },
+    setQuarterFinalsArr(currentState, action) {
+      let ro16Winners = action.payload;
+      currentState.quarterFinalsArr = [
+        [ro16Winners[0], ro16Winners[1], 57, [49, 50]],
+        [ro16Winners[2], ro16Winners[3], 59, [51, 52]],
+        [ro16Winners[4], ro16Winners[5], 58, [53, 54]],
+        [ro16Winners[6], ro16Winners[7], 60, [55, 56]],
+      ];
+    },
+    setQuarterFinalsWinners(currentState, action) {
+      currentState.quarterFinalsWinners = action.payload;
+    },
+    setSemiFinalsArr(currentState, action) {
+      let qfWinners = action.payload;
+      currentState.semiFinalsArr = [
+        [qfWinners[0], qfWinners[1], 61, [57, 58]],
+        [qfWinners[2], qfWinners[3], 62, [59, 60]],
+      ];
+    },
+    setSemiFinalsWinners(currentState, action) {
+      let mixedArr = action.payload;
+      if (mixedArr.length === 2) {
+        currentState.semiFinalsWinners = [mixedArr[0]];
+      } else if (mixedArr.length === 4) {
+        currentState.semiFinalsWinners = [mixedArr[0], mixedArr[1]];
+      } else {
+        currentState.semiFinalsWinners = mixedArr;
+      }
+    },
+    setFinalsArr(currentState, action) {
+      let sfWinners = action.payload;
+      if (sfWinners.length === 2) {
+        currentState.finalsArr = [[sfWinners[0], 64, [61, 62]]];
+      } else if (sfWinners.length === 4) {
+        currentState.finalsArr = [[sfWinners[0], sfWinners[1], 64, [61, 62]]];
+      }
+    },
+    setFinalsWinner(currentState, action) {
+      currentState.finalsWinner = action.payload;
+    },
+    setConsolationArr(currentState, action) {
+      let sfRunnerUps = action.payload;
+      if (sfRunnerUps.length === 2) {
+        currentState.consolationArr = [[sfRunnerUps[1], 63, [61, 62]]];
+      } else if (sfRunnerUps.length === 4) {
+        currentState.consolationArr = [
+          [sfRunnerUps[2], sfRunnerUps[3], 63, [61, 62]],
+        ];
+      }
+    },
+    setConsolationWinner(currentState, action) {
+      currentState.consolationWinner = action.payload;
+    },
+    setName(currentState, action) {
+      currentState.name = action.payload;
+    },
+  },
+});
+
 const store = configureStore({
-  reducer: { auth: authenticationSlice.reducer, bracket: bracketSlice.reducer },
+  reducer: {
+    auth: authenticationSlice.reducer,
+    bracket: bracketSlice.reducer,
+    otherBracket: otherBracketSlice.reducer,
+  },
 });
 
 export const authActions = authenticationSlice.actions;
 export const bracketActions = bracketSlice.actions;
+export const otherBracketActions = otherBracketSlice.actions;
 
 export default store;
