@@ -628,7 +628,19 @@ module.exports = {
           .then((dbRes) => {
             console.log(dbRes);
             res.status(200).send([scores, userIds]);
-          });
+          }).catch((err) => console.log(err));
+
+        const date = new Date();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        const hours = date.getHours();
+        const minutes = `${date.getMinutes()}`.padStart(2, "0");
+        const monthStr = month === 11 ? "Nov" : month === 12 ? "Dec" : "";
+        const adjustedHours = hours >= 13 ? hours % 12 : hours;
+        const amPm = hours >= 12 ? "pm" : "am";
+        const updateStr = `${monthStr} ${day} at ${adjustedHours}:${minutes}${amPm}`;
+
+        sequelize.query(`UPDATE test_users SET name = '${updateStr}' WHERE id = 'updateTime'`)
       });
 
     // sequelize.query(`
