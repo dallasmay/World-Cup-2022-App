@@ -477,10 +477,11 @@ module.exports = {
   getLeaderBoard: (req, res) => {
     sequelize
       .query(
-        `SELECT name, team_name, (group_score + ro16_score + quarter_score + semi_score + final_score) AS score FROM users ORDER BY score DESC`
+        `SELECT name, team_name, (group_score + ro16_score + quarter_score + semi_score + final_score) AS score FROM users ORDER BY score DESC;
+         SELECT name FROM test_users WHERE id = 'updateTime';`
       )
       .then((dbRes) => {
-        res.status(200).send(dbRes[0]);
+        res.status(200).send(dbRes[1]);
       })
       .catch((err) => {
         console.log(err);
@@ -605,29 +606,29 @@ module.exports = {
             qualScore
           );
         }
-        res.status(200).send([scores, userIds]);
+        // res.status(200).send([scores, userIds]);
 
-  //       sequelize
-  //         .query(
-  //           `
-  //       UPDATE test_users
-  //       SET
-  //         group_score=bulk_query.updated_group_score
-  //       FROM
-  //         (
-  //           SELECT *
-  //           FROM
-  //             UNNEST(ARRAY[${userIds}], ARRAY[${scores}])
-  //             AS t(user_id, updated_group_score)
-  //         ) AS bulk_query
-  //       WHERE
-  //         test_users.id=bulk_query.user_id;
-  // `
-  //         )
-  //         .then((dbRes) => {
-  //           console.log(dbRes);
-  //           res.status(200).send([scores, userIds]);
-  //         });
+        sequelize
+          .query(
+            `
+        UPDATE users
+        SET
+          group_score=bulk_query.updated_group_score
+        FROM
+          (
+            SELECT *
+            FROM
+              UNNEST(ARRAY[${userIds}], ARRAY[${scores}])
+              AS t(user_id, updated_group_score)
+          ) AS bulk_query
+        WHERE
+          users.id=bulk_query.user_id;
+  `
+          )
+          .then((dbRes) => {
+            console.log(dbRes);
+            res.status(200).send([scores, userIds]);
+          });
       });
 
     // sequelize.query(`
@@ -641,5 +642,61 @@ module.exports = {
     //     semi_score INT DEFAULT 0,
     //     final_score INT DEFAULT 0
     // );`);
+  },
+  getOtherTeam: (req, res) => {
+    const { teamName } = req.body;
+
+    sequelize
+      .query(`SELECT id, name FROM users WHERE team_name = '${teamName}'`)
+      .then((dbRes) => {
+        let userId = dbRes[0][0].id;
+        let name = dbRes[0][0].name;
+
+        sequelize
+          .query(
+            `SELECT group_letter, position, name, abbr, fifa_rank, c.id, round, game_number
+          FROM brackets AS b
+          INNER JOIN countries AS c
+          ON b.country_id = c.id
+          WHERE b.user_id = '${userId}' AND round = 'group'
+          ORDER BY group_letter ASC, position ASC;
+
+          SELECT group_letter, position, name, abbr, fifa_rank, c.id, round, game_number
+          FROM brackets AS b
+          INNER JOIN countries AS c
+          ON b.country_id = c.id
+          WHERE b.user_id = '${userId}' AND round = 'ro16'
+          ORDER BY game_number ASC;
+
+          SELECT group_letter, position, name, abbr, fifa_rank, c.id, round, game_number
+          FROM brackets AS b
+          INNER JOIN countries AS c
+          ON b.country_id = c.id
+          WHERE b.user_id = '${userId}' AND round = 'qua'
+          ORDER BY game_number ASC;
+
+          SELECT group_letter, position, name, abbr, fifa_rank, c.id, round, game_number
+          FROM brackets AS b
+          INNER JOIN countries AS c
+          ON b.country_id = c.id
+          WHERE (b.user_id = '${userId}' AND round = 'sem')
+          OR (b.user_id = '${userId}' AND round = 'cons')
+          ORDER BY round DESC, game_number ASC;
+
+          SELECT group_letter, position, name, abbr, fifa_rank, c.id, round, game_number
+          FROM brackets AS b
+          INNER JOIN countries AS c
+          ON b.country_id = c.id
+          WHERE (b.user_id = '${userId}' AND round = 'final')
+          OR (b.user_id = '${userId}' AND round = 'wCons')
+          ORDER BY game_number ASC;`
+          )
+          .then((dbRes) => {
+            res.status(200).send([dbRes[1], name]);
+          })
+          .catch((err) => console.log(err));
+      }).then((dbRes) => {
+        console.log(dbRes);
+      }).catch((err) => console.log(err))
   },
 };

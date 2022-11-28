@@ -25,6 +25,7 @@ const {
   getLeaderBoard,
   setLiveGroupChoice,
   calcGroupPoints,
+  getOtherTeam,
 } = require("./controller");
 
 // DEV ENDPOINTS
@@ -51,6 +52,7 @@ app.post("/bracket/semifinals", setSemifinalsChoice);
 app.post("/bracket/finals", setFinalsChoices);
 
 app.get("/leaderboard", getLeaderBoard);
+app.post("/leaderboard/other-team", getOtherTeam);
 
 
 
