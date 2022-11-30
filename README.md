@@ -5,6 +5,7 @@ Dallas May - Dev, UX
 
 Dylan May - UI/UX
 
+## About
 The Bracket Bash is an app developed to run a bracket competition for the 2022 FIFA World Cup. It is fully deployed and is currently in use by around 30 people.
 
 The Bracket Bash allows users to create and edit their own personal bracket with their predictions for the results of the tournament. There is a dedicated scoring system and leaderboard to allow users to see their rank and how well they place compared to everyone else. Participants can also seamlessly view other users' brackets from within the leaderboard. 
