@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# FIFA World Cup 2022 Bracket Bash
+**Creators:** 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Dallas May - Dev, UX
 
-## Available Scripts
+Dylan May - UI/UX
+<hr/>
 
-In the project directory, you can run:
+The Bracket Bash is an app developed to run a bracket competition for the 2022 FIFA World Cup. It is fully deployed and is currently in use by around 30 people.
 
-### `npm start`
+The Bracket Bash allows users to create and edit their own personal bracket with their predictions for the results of the tournament. There is a dedicated scoring system and leaderboard to allow users to see their rank and how well they place compared to everyone else. Participants can also seamlessly view other users' brackets from within the leaderboard. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Bracket Creation
+Users can create an account which assigns them an empty bracket to be filled out. All changes to the bracket are saved in the database, and updated as necessary. Bracket creation is split into two parts: Group Stage and Knockout Stage, corresponding to the format of the tournament.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Group Stage**
 
-### `npm test`
+In the Group Stage, participants can view 8 groups which contain 4 teams each. Clicking a group brings up the selection page, where users can drag and drop each country to predict their final positions at the end of the Group Stage.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Screenshot of group stage page. Features Group A with Netherlands, Senegal, Ecuador, and Qatar, and Group B with England, United States, Wales, and Iran](/WorldCupAppScreenshots/GroupStagePage.jpg?raw=true "Group Stage Page")
+![Screenshot of group selection page. Features four countries in 1st, second, third, and fourth place with their names and flags](/WorldCupAppScreenshots/Group-Selection-Page.jpg?raw=true "Group Selection Page")
 
-### `npm run build`
+**Knockout Stage**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In the Knockout Stage, participants can view the head-to-head matchups, which are determined by their choices in the Group Stage. Clicking on a match brings up the selection page, where users can tap either country card to select them as the winner.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Screenshot of Round of 16 page. Features head to head match ups for this round of the knockout stage](/WorldCupAppScreenshots/Ro16Page.jpg?raw=true "Round of 16 Page")
+![Screenshot of head to head selection page. Shows two cards of countries with flags and names, with the Netherlands highlighted in gold with a crown above it.](/WorldCupAppScreenshots/H2H-Selection-Page.jpg?raw=true "Head to Head Selection Page")
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Users can navigate between each round of the tournament via the navigation bar at the top of the screen. Users can also easily make all of their choices via the navigation at the bottom of the selection pages. Rounds are locked until all predictions in the preceeding round have been made.
 
-### `npm run eject`
+Due to the nature of a bracket, predictions build on each other, with the options in every round relying on previous predictions. As a result, if changes are made to any earlier round, all "down-the-line" predictions affected by that change must be reset and the user must re-make those predictions with the new match-ups.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This is all handled dynamically by the app; it only resets predictions directly affected by the changes, which maximizes user experience by only requiring them to re-make the minimum amount of choices. It also re-locks the rounds accordingly, so it is clear where you need to be making decisions.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Bracket Locking
+During the selection phase of the competition, there was a countdown timer informing users how long they had to make their selections. After the tournament started, brackets were locked and users could no longer make any changes. The selection pages and routes were removed and the app transformed into a read-only state.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Leaderboard
+The app features a leaderboard, which shows all users' team names and their current points. An admin GUI was created to update the live results from the tournament. Calculation of points was also enacted from this GUI with a button click. A backend route was hit, which retrieved all user brackets and compared each one with the live results, awarding points to every player based on the scoring system created. All users' scores get updated in the database simultaneously. 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![Screenshot of leaderboard page, with various people with their names and team-names displayed, along with how many points they have.](/WorldCupAppScreenshots/LeaderBoardPage.jpg?raw=true "Head to Head Selection Page")
 
-## Learn More
+## Viewing Other Participants' Brackets
+The leaderboard also contains the functionality to view other users' brackets. Clicking on a name on the leaderboard brings up a read-only view of that user's bracket, allowing comparisons to be made between all of the different participants.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Screenshot of read-only page of John's bracket.](/WorldCupAppScreenshots/ViewOtherBracketPage.jpg?raw=true "Head to Head Selection Page")
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Other UI Screens
+![Screenshot of home page, containing links to your bracket, the leaderboard, and the scoring system.](/WorldCupAppScreenshots/HomePage.jpg?raw=true "Home Page")
+![Screenshot of scoring system page](/WorldCupAppScreenshots/ScoringPage.jpg?raw=true "Scoring System Page")
+![Screenshot of scoring system page part 2](/WorldCupAppScreenshots/ScoringPage2.jpg?raw=true "Scoring System Page 2")
