@@ -9,7 +9,7 @@ Dylan May - UI/UX
 
 Frontend - React, Redux, Dnd Kit, hosted on Netlify
 
-Backend - Node.js with Express, hosted on Digital Ocean
+Backend - Node.js with Express, hosted on Digital Ocean | Firebase for authentication
 
 Database - PostgreSQL, hosted on Supabase
 
