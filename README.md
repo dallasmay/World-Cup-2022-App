@@ -4,7 +4,6 @@
 Dallas May - Dev, UX
 
 Dylan May - UI/UX
-<hr/>
 
 The Bracket Bash is an app developed to run a bracket competition for the 2022 FIFA World Cup. It is fully deployed and is currently in use by around 30 people.
 
