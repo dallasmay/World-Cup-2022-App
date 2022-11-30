@@ -39,12 +39,12 @@ During the selection phase of the competition, there was a countdown timer infor
 ## Leaderboard
 The app features a leaderboard, which shows all users' team names and their current points. An admin GUI was created to update the live results from the tournament. Calculation of points was also enacted from this GUI with a button click. A backend route was hit, which retrieved all user brackets and compared each one with the live results, awarding points to every player based on the scoring system created. All users' scores get updated in the database simultaneously. 
 
-![Screenshot of leaderboard page, with various people with their names and team-names displayed, along with how many points they have.](/WorldCupAppScreenshots/LeaderBoardPage.jpg?raw=true "Head to Head Selection Page")
+![Screenshot of leaderboard page, with various people with their names and team-names displayed, along with how many points they have.](/WorldCupAppScreenshots/LeaderBoardPage.jpg?raw=true "Leaderboard Page")
 
 ## Viewing Other Participants' Brackets
 The leaderboard also contains the functionality to view other users' brackets. Clicking on a name on the leaderboard brings up a read-only view of that user's bracket, allowing comparisons to be made between all of the different participants.
 
-![Screenshot of read-only page of John's bracket.](/WorldCupAppScreenshots/ViewOtherBracketPage.jpg?raw=true "Head to Head Selection Page")
+![Screenshot of read-only page of John's bracket.](/WorldCupAppScreenshots/ViewOtherBracketPage.jpg?raw=true "View Other Bracket Page")
 
 ## Other UI Screens
 ![Screenshot of home page, containing links to your bracket, the leaderboard, and the scoring system.](/WorldCupAppScreenshots/HomePage.jpg?raw=true "Home Page")
