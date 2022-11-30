@@ -5,6 +5,14 @@ Dallas May - Dev, UX
 
 Dylan May - UI/UX
 
+**Tech Stack:** 
+
+Frontend - React, Redux, Dnd Kit, hosted on Netlify
+
+Backend - Node.js with Express, hosted on Digital Ocean
+
+Database - PostgreSQL, hosted on Supabase
+
 ## About
 The Bracket Bash is an app developed to run a bracket competition for the 2022 FIFA World Cup. It is fully deployed and is currently in use by around 30 people.
 
