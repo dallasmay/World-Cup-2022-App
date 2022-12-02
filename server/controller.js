@@ -628,7 +628,8 @@ module.exports = {
           .then((dbRes) => {
             console.log(dbRes);
             res.status(200).send([scores, userIds]);
-          }).catch((err) => console.log(err));
+          })
+          .catch((err) => console.log(err));
 
         const date = new Date();
         const month = date.getMonth() + 1;
@@ -640,7 +641,9 @@ module.exports = {
         const amPm = hours >= 12 ? "pm" : "am";
         const updateStr = `${monthStr} ${day} at ${adjustedHours}:${minutes}${amPm}`;
 
-        sequelize.query(`UPDATE test_users SET name = '${updateStr}' WHERE id = 'updateTime'`)
+        sequelize.query(
+          `UPDATE test_users SET name = '${updateStr}' WHERE id = 'updateTime'`
+        );
       });
 
     // sequelize.query(`
@@ -707,8 +710,36 @@ module.exports = {
             res.status(200).send([dbRes[1], name]);
           })
           .catch((err) => console.log(err));
-      }).then((dbRes) => {
+      })
+      .then((dbRes) => {
         console.log(dbRes);
-      }).catch((err) => console.log(err))
+      })
+      .catch((err) => console.log(err));
   },
+  setLiveRo16: (req, res) => {
+    const { userId, winnerObj, gameNum } = req.body;
+    const { id, position, groupLetter } = winnerObj;
+    
+    sequelize
+      .query(
+        `
+         DELETE
+         FROM live_bracket
+         WHERE user_id = '${userId}' AND round = 'ro16' AND game_number = '${gameNum}';
+
+         INSERT INTO live_bracket (user_id, round, group_letter, country_id, position, game_number)
+        VALUES ('${userId}', 'ro16', '${groupLetter}', '${id}', '${position}', '${gameNum}');
+`
+      )
+      .then((dbRes) => {
+        console.log(dbRes);
+        res
+          .status(200)
+          .send(`Game ${gameNum} updated successfully!`);
+      })
+      .catch((err) => console.log(err));
+  },
+  calcRo16Points: (req, res) => {
+    
+  }
 };

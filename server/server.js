@@ -26,12 +26,16 @@ const {
   setLiveGroupChoice,
   calcGroupPoints,
   getOtherTeam,
+  setLiveRo16,
+  calcRo16Points,
 } = require("./controller");
 
 // DEV ENDPOINTS
 app.get("/seed", seed);
 app.post("/live-bracket/group", setLiveGroupChoice);
+app.post("/live-bracket/ro16", setLiveRo16);
 app.get("/points/group", calcGroupPoints);
+app.get("/points/ro16", calcRo16Points);
 
 //ENDPOINTS
 app.post("/user", getUserInfo);
