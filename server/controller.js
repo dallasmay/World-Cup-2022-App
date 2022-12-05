@@ -537,6 +537,7 @@ module.exports = {
 
       SELECT country_id, group_letter, position
       FROM live_bracket
+      WHERE round = 'group'
       ORDER BY group_letter ASC, position ASC;
     `
       )
@@ -719,7 +720,7 @@ module.exports = {
   setLiveRo16: (req, res) => {
     const { userId, winnerObj, gameNum } = req.body;
     const { id, position, groupLetter } = winnerObj;
-    
+
     sequelize
       .query(
         `
@@ -733,13 +734,114 @@ module.exports = {
       )
       .then((dbRes) => {
         console.log(dbRes);
-        res
-          .status(200)
-          .send(`Game ${gameNum} updated successfully!`);
+        res.status(200).send(`Game ${gameNum} updated successfully!`);
       })
       .catch((err) => console.log(err));
   },
   calcRo16Points: (req, res) => {
-    
-  }
+
+    // SELECT user_id, country_id, game_number, group_letter
+    //   FROM brackets
+    //   WHERE round = 'ro16' AND (user_id = 'FIYXSaYa4ahN6ZORjxHGwgIMtWP2' OR user_id = 'TLEutsVObPdp2hoXMff8AdvmGvR2' OR user_id = 'hReaZjqr5bQ5Th2mEv7gggGKNVx2' OR user_id = 'iIivU5r1d7f0m0NChSFd55axMK13' OR user_id = 'ql4lemXcLxOyCeDbrV74611RF903')
+    //   ORDER BY user_id, game_number ASC;
+
+    //   SELECT country_id, game_number, group_letter
+    //   FROM live_bracket
+    //   WHERE round = 'ro16'
+    //   ORDER BY group_letter ASC, position ASC;
+
+    sequelize
+      .query(
+        `
+        SELECT user_id, country_id, game_number, group_letter
+          FROM brackets
+          WHERE round = 'ro16'
+          ORDER BY user_id, game_number ASC;
+
+          SELECT country_id, game_number, group_letter
+          FROM live_bracket
+          WHERE round = 'ro16'
+          ORDER BY group_letter ASC, position ASC;`
+      )
+      .then((dbRes) => {
+        const userBrackets = dbRes[1][0].rows;
+        const liveBracket = dbRes[1][1].rows;
+
+        const numOfBrackets = userBrackets.length / 8;
+        const separatedUserBrackets = [];
+        const scores = [];
+        const userIds = [];
+
+        for (let i = 1; i <= numOfBrackets; i++) {
+          let currentBracket = [];
+          for (let j = 0; j < 8; j++) {
+            currentBracket.push(userBrackets.shift());
+          }
+          separatedUserBrackets.push(currentBracket);
+        }
+
+        for (let i = 0; i < separatedUserBrackets.length; i++) {
+          let userPoints = 0;
+          let userId = separatedUserBrackets[i][0].user_id;
+          for (let j = 0; j < separatedUserBrackets[i].length; j++) {
+            let countryId = separatedUserBrackets[i][j].country_id;
+            let gameNum = separatedUserBrackets[i][j].game_number;
+
+            const liveCountryMatch = liveBracket.find((ele) => {
+              return ele.country_id === countryId;
+            });
+
+            if (liveCountryMatch === undefined) {
+              console.log(`No match for ${countryId}`)
+            } else if (liveCountryMatch.game_number === gameNum) {
+              userPoints += 80;
+              console.log("Right choice, right position");
+            } else {
+              userPoints += 40;
+              console.log("Right choice, wrong position");
+            }
+          }
+          scores.push(userPoints);
+          userIds.push(`'${userId}'`);
+        }
+
+        sequelize
+          .query(
+            `
+        UPDATE users
+        SET
+          ro16_score=bulk_query.updated_ro16_score
+        FROM
+          (
+            SELECT *
+            FROM
+              UNNEST(ARRAY[${userIds}], ARRAY[${scores}])
+              AS t(user_id, updated_ro16_score)
+          ) AS bulk_query
+        WHERE
+          users.id=bulk_query.user_id;
+  `
+          )
+          .then((dbRes) => {
+            console.log(dbRes);
+            res.status(200).send([scores, userIds]);
+          })
+          .catch((err) => console.log(err));
+
+        const date = new Date();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        const hours = date.getHours();
+        const minutes = `${date.getMinutes()}`.padStart(2, "0");
+        const monthStr = month === 11 ? "Nov" : month === 12 ? "Dec" : "";
+        const adjustedHours = hours >= 13 ? hours % 12 : hours;
+        const amPm = hours >= 12 ? "pm" : "am";
+        const updateStr = `${monthStr} ${day} at ${adjustedHours}:${minutes}${amPm}`;
+
+        sequelize.query(
+          `UPDATE test_users SET name = '${updateStr}' WHERE id = 'updateTime'`
+        );
+      })
+      .catch((err) => console.log(err));
+  },
 };
