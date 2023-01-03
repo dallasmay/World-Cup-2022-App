@@ -5,6 +5,9 @@ import axios from "axios";
 
 import BackToProfile from "../../components/BackToProfile/BackToProfile";
 import Loading from "../../components/Loading/Loading";
+import Fireworks from "../../components/fireworkAnimations/Fireworks/Fireworks";
+import Fireworks2 from "../../components/fireworkAnimations/Fireworks2/Fireworks2";
+import Fireworks3 from "../../components/fireworkAnimations/Fireworks3/Fireworks3";
 
 import { otherBracketActions, authActions } from "../../reduxStore/store";
 
@@ -21,6 +24,7 @@ const LeaderboardPage = () => {
   const [leaderboardArr, setLeaderboardArr] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState("");
+  const [isFireworkActive, setIsFireworkActive] = useState(true);
 
   const teamName = useSelector((state) => state.auth.teamName);
 
@@ -35,9 +39,15 @@ const LeaderboardPage = () => {
       .catch((err) => alert(err));
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsFireworkActive(false);
+    }, 12250);
+  }, []);
+
   const nameClickHandler = (ele) => {
     if (ele.team_name === teamName) {
-      return
+      return;
     }
 
     setIsLoading(true);
@@ -54,7 +64,9 @@ const LeaderboardPage = () => {
         dispatch(otherBracketActions.setRo16Arr(res.data[0][0].rows));
         dispatch(otherBracketActions.setRo16Winners(res.data[0][1].rows));
         dispatch(otherBracketActions.setQuarterFinalsArr(res.data[0][1].rows));
-        dispatch(otherBracketActions.setQuarterFinalsWinners(res.data[0][2].rows));
+        dispatch(
+          otherBracketActions.setQuarterFinalsWinners(res.data[0][2].rows)
+        );
         dispatch(otherBracketActions.setSemiFinalsArr(res.data[0][2].rows));
         dispatch(otherBracketActions.setFinalsArr(res.data[0][3].rows));
         dispatch(otherBracketActions.setConsolationArr(res.data[0][3].rows));
@@ -77,7 +89,9 @@ const LeaderboardPage = () => {
           dispatch(
             otherBracketActions.setConsolationWinner([res.data[0][4].rows[0]])
           );
-          dispatch(otherBracketActions.setFinalsWinner([res.data[0][4].rows[1]]));
+          dispatch(
+            otherBracketActions.setFinalsWinner([res.data[0][4].rows[1]])
+          );
         }
         navigate(`/leaderboard/${ele.team_name}/group-stage`);
       })
@@ -89,11 +103,14 @@ const LeaderboardPage = () => {
   } else {
     return (
       <>
+        {isFireworkActive ? <Fireworks /> : ""}
+        {isFireworkActive ? <Fireworks2 /> : ""}
+        {isFireworkActive ? <Fireworks3 /> : ""}
         <BackToProfile path={"/home"} backTo={"profile"} noBottomLine={true} />
         <div className={styles["content-container"]}>
           <h1 className={styles.heading1}>Leaderboard</h1>
           <div className={styles["refresh-bar"]}>
-            <Refresh className={styles.refresh}/>
+            <Refresh className={styles.refresh} />
             <p>Updated on {lastUpdated}</p>
           </div>
           <div className={styles["leaderboard-container"]}>
@@ -110,7 +127,13 @@ const LeaderboardPage = () => {
                         <p
                           className={styles["team-name"]}
                           style={
-                            ele.team_name === teamName
+                            index + 1 === 1
+                              ? { color: "var(--yellow)" }
+                              : index + 1 === 2
+                              ? { color: "#C0CBDC" }
+                              : index + 1 === 3
+                              ? { color: "#F68D60" }
+                              : ele.team_name === teamName
                               ? { color: "var(--green)" }
                               : {}
                           }
@@ -119,14 +142,24 @@ const LeaderboardPage = () => {
                             ? ele.team_name.slice(0, 19) + "..."
                             : ele.team_name}
                         </p>
-                        {ele.team_name === teamName ? "" : <Caret className={styles.caret} />}
+                        {ele.team_name === teamName ? (
+                          ""
+                        ) : (
+                          <Caret className={styles.caret} />
+                        )}
                       </div>
                       <p className={styles.name}>{ele.name}</p>
                     </div>
                     <p
                       className={styles.points}
                       style={
-                        ele.team_name === teamName
+                        index + 1 === 1
+                          ? { color: "var(--yellow)" }
+                          : index + 1 === 2
+                          ? { color: "#C0CBDC" }
+                          : index + 1 === 3
+                          ? { color: "#F68D60" }
+                          : ele.team_name === teamName
                           ? { color: "var(--green)" }
                           : {}
                       }

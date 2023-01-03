@@ -9,11 +9,12 @@ const LockBanner = () => {
   const timezone = new Date().getTimezoneOffset() / 60;
 
   return (
-    <div className={styles["banner-container"]}>
-      <Lock />
-      <p className={styles.text}>Brackets lock {timezone === 7 ? "in" : "at"}</p>
-      <p className={styles["bold-text"]} style={timezone === 7 ? {width: "9.2rem"} : {width: "13rem"}}>{timezone === 7 ? `${hours}h ${minutes}m ${seconds}s` : "11:59pm MST 11/20"}</p>
-    </div>
+    // <div className={styles["banner-container"]}>
+    //   <Lock />
+    //   <p className={styles.text}>Brackets lock {timezone === 7 ? "in" : "at"}</p>
+    //   <p className={styles["bold-text"]} style={timezone === 7 ? {width: "9.2rem"} : {width: "13rem"}}>{timezone === 7 ? `${hours}h ${minutes}m ${seconds}s` : "11:59pm MST 11/20"}</p>
+    // </div>
+    <div></div>
   );
 };
 

@@ -28,8 +28,10 @@ const {
   getOtherTeam,
   setLiveRo16,
   setLiveQf,
+  setLiveSf,
   calcRo16Points,
   calcQfPoints,
+  calcSfPoints,
 } = require("./controller");
 
 // DEV ENDPOINTS
@@ -37,9 +39,11 @@ app.get("/seed", seed);
 app.post("/live-bracket/group", setLiveGroupChoice);
 app.post("/live-bracket/ro16", setLiveRo16);
 app.post("/live-bracket/quarterfinals", setLiveQf);
+app.post("/live-bracket/semifinals", setLiveSf);
 app.get("/points/group", calcGroupPoints);
 app.get("/points/ro16", calcRo16Points);
 app.get("/points/quarterfinals", calcQfPoints);
+app.get("/points/semifinals", calcSfPoints);
 
 //ENDPOINTS
 app.post("/user", getUserInfo);
